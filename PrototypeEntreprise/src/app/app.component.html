@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="/"><b>Prototype</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Accueil <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/Annuaire">Annuaire</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/Stages">Offres de stages</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/Emploi">Offres d'emploi</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/Formation">Formation continue</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/Association">Association</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/Annonces">Annonces</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div [style.background]="'url(assets/img/bg.jpg)'"
+     [style.background-repeat]="'no-repeat'"
+     [style.background-attachment]="'fixed'"
+     [style.background-size]="'cover'">
+<router-outlet></router-outlet>
+</div>
