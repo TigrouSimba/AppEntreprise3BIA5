@@ -36,6 +36,10 @@ public class UtilisateurControl implements Serializable{
 	public String doLogin() {
 		return "login.xhtml";
 	}
+	public String doNavbar()
+	{
+		return "navBar.xhtml";
+	}
 
 	
 	

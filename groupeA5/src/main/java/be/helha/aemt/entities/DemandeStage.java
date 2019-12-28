@@ -50,4 +50,10 @@ public class DemandeStage implements Serializable {
 		super();
 	}
 
+	public DemandeStage(String nom, String contenu) {
+		super();
+		this.nom = nom;
+		this.contenu = contenu;
+	}
+
 }
