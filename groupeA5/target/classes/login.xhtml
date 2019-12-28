@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<head>
+<title>Login Form</title>
+<meta http-equiv="
+	Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	 <!-- <p:panel header="Login Form"> -->
+		<form method="POST" action="j_security_check">
+			Username: <input type="text" name="j_username"/>
+			Password: <input type="password" name="j_password"/>
+			<br/>
+			<input type="submit" name="Login"/>
+			<input type="reset" name="Reset"/>
+		</form>
+	<!--</p:panel> -->
+</body>
+</html>

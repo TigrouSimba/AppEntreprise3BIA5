@@ -1,0 +1,33 @@
+3 role :
+-visiteur
+-ancien
+-admin
+dans les user stories
+
+les anciens postent des offres de stage. Ensuite l'admin est notifié de cela et le met sur connected.
+
+les élèves actuelles ne peuvent pas y accéder seul les anciens
+
+le site peut etre accessible quand on est pas connecté sauf que l'on juste accés à la page d'accueil pas les autres. Seul un ancien peut se connecter et avoir accés à toutes les autres pages.
+
+visiteur est une personne non connecté et n'a accés que à la page d'accueil
+
+ancien pourra juste ajouter stage et emploi
+
+formation enverra un lien vers la page correspondante du site ceref (ex : formation en info par jojo)
+
+tout doit etre confirmer par l'admin avant detre post
+
+pour annuaire recherecher par année ou nom
+
+pour les comptes il y un profil avec photo, description,...
+
+pour les stages et emploi mettre annonce complete
+
+pour annonce un ancien peut en mettre 
+
+pour association mettre un bouton et texte pour ajouter des images
+
+il faut importer un fichier excel
+
+il faut stocker les images directement dans la db
