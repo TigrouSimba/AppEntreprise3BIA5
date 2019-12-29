@@ -8,10 +8,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import be.helha.aemt.dao.VisiteurDAO;
 import be.helha.aemt.ejb.GestionVisiteurEJB;
 import be.helha.aemt.ejb.IGestionVisiteurEJB;
-import be.helha.aemt.entities.Visiteur;
 
 @SessionScoped
 @Named //permet d'utiliser les controller dans les pages html
