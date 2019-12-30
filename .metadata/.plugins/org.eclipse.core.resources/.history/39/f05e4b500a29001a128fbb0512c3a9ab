@@ -1,0 +1,19 @@
+package be.helha.aemt.control;
+
+import java.io.Serializable;
+
+import javax.servlet.http.HttpServletRequest;
+
+import be.helha.aemt.entities.DemandeStage;
+
+public class DemandeStageControl implements Serializable {
+	
+	private static final String FIELD_NOM ="nom";
+	private static final String FIELD_CONTENU="contenu";
+	
+	public DemandeStage doGet(HttpServletRequest request)
+	{
+		
+	}
+
+}

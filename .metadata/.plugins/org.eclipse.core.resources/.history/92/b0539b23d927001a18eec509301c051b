@@ -1,0 +1,24 @@
+package be.helha.aemt.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+
+
+import be.helha.aemt.entities.DemandeStage;
+
+public class DemandeStageDao {
+
+	@PersistenceContext(unitName = "gAVisiteurJTA")
+	private EntityManager em;
+	
+	public List<DemandeStage> findAll(){
+		return em.createQuery("SELECT demandeStage FROM DEMANDESTAGE demandeStage").getResultList();
+	}
+	public void add(DemandeStage post)
+	{
+		em.persist(post);
+	}
+}

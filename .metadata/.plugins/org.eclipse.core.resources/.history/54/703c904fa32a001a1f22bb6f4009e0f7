@@ -1,0 +1,61 @@
+package be.helha.aemt.control;
+
+import java.io.Serializable;
+
+import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import be.helha.aemt.ejb.IGestionDemandeStageEJB;
+import be.helha.aemt.entities.DemandeStage;
+@SessionScoped
+@Named
+public class DemandeStageControl implements Serializable {
+	
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+	private static final String FIELD_NOM ="nom";
+	private static final String FIELD_CONTENU="contenu";
+	
+	private DemandeStage dmS;
+	private String nom = "test";
+	
+	@EJB
+	private IGestionDemandeStageEJB ejb;
+	
+	public DemandeStage getDmS() {
+		return dmS;
+	}
+
+	public void setDmS(DemandeStage dmS) {
+		this.dmS = dmS;
+	}
+
+	public IGestionDemandeStageEJB getEjb() {
+		return ejb;
+	}
+
+	public void setEjb(IGestionDemandeStageEJB ejb) {
+		this.ejb = ejb;
+	}
+
+
+	public DemandeStageControl() {
+		super();
+		dmS = new DemandeStage();
+	}
+	public void enregistreDemandeStage()
+	{
+		System.out.println(dmS.getNom());
+	}
+	
+	
+}

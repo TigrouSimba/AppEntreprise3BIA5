@@ -1,0 +1,25 @@
+package be.helha.aemt.ejb;
+
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import be.helha.aemt.entities.DemandeStage;
+
+public class GestionDemandeStageEJB  {
+	@EJB
+	private DemandeStage dao;
+	
+	public List<DemandeStage>findAll()
+	{
+		
+	}
+
+	@Override
+	public List<DemandeStage> Add() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<servers>
+  <server auto-publish-setting="2" auto-publish-time="1" glassfish.adminserverportnumber="4848" glassfish.domainpath="C:\Users\kevin\Downloads\payara-5.193 (1)\payara5\glassfish\domains\domain1" glassfish.serverportnumber="8080" hostname="localhost" id="Payara Server 5 (5.193) [domain1]" name="Payara Server 5 (5.193) [domain1]" previous-domain="C:\Users\kevin\Downloads\payara-5.193 (1)\payara5\glassfish\domains\domain1" previous-name="Payara Server 5 (5.193) [domain1]" runtime-id="Payara Server 5 (5.193)" server-type="payara.server" server-type-id="payara.server" start-timeout="240" stop-timeout="240" timestamp="51">
+    <list key="modules" value0="groupeA5::org.eclipse.jst.jee.server:groupeA5::jst.web::4.0"/>
+  </server>
+</servers>

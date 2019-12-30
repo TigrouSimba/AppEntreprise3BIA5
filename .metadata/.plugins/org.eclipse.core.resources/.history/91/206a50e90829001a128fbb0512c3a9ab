@@ -1,0 +1,10 @@
+package be.helha.aemt.control;
+
+import java.io.Serializable;
+
+public class DemandeStageControl implements Serializable {
+	
+	private static final String FIELD_NOM ="nom";
+	private static final String FIELD_CONTENU="contenu";
+
+}

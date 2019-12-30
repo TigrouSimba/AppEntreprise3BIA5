@@ -1,0 +1,9 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.1" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+<persistence-unit name="gAVisiteurJTA" transaction-type="JTA">
+<jta-data-source>jdbc/groupeA5</jta-data-source>
+<exclude-unlisted-classes>true</exclude-unlisted-classes>
+<properties>
+<class>be.helha.aemt.entities.DemandeStage</class>
+</properties>
+</persistence-unit>
+</persistence>

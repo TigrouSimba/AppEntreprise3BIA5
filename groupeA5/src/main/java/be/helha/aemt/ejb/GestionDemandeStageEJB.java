@@ -8,7 +8,7 @@ import javax.ejb.Stateless;
 
 import be.helha.aemt.dao.DemandeStageDao;
 import be.helha.aemt.entities.DemandeStage;
-
+@Stateless
 public class GestionDemandeStageEJB  {
 	@EJB
 	private DemandeStageDao dao;
