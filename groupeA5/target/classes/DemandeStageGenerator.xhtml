@@ -18,30 +18,33 @@
 		<form>
 			<div class="row">
 				<div class="col col-sm-10">
-					<h:inputText class="form-control" type="text" value="#{demandeStageControl.dms.nom}" id="Nom">
+					<h:inputText class="form-control" type="text" id="Nom">
 					
 					</h:inputText>
 					
 				</div>
 			</div>
-			
+			<div class="row">
+				<h2>Entreprise</h2>
+			</div>
+			<div class="row">
+				<h:inputText class="form-control" type="text" id="entreprise">
+					
+					</h:inputText>
+			</div>
 			<div class="row">
 				<h2>Contenu</h2>
 			</div>
 			<div class="row">
-				<h:inputTextarea class="form-control" value="#{demandeStageControl.dms.contenu}" type="text" id="contenu" rows="10">
+				<h:inputTextarea class="form-control" type="text" id="contenu" rows="10">
 				
 				</h:inputTextarea>		
 			</div>
 			<DIV class="row">
-				<h:commandButton class="btn btn-success btn-lg" value="Envoyer Une Lettre de motivation" action ="#{demandeStageControl.enregistreDemandeStage()}"></h:commandButton>
+				<h:commandButton class="btn btn-success btn-lg" value="Envoyer Une Lettre de motivation"></h:commandButton>
 			</DIV>
 		</form>
-		<div class="row">
-			#{demandeStageControl.nom}
-			#{demandeStageControl.nom}
-			#{utilisateurControl.nom}
-		</div>
+		
 	</div>	
 
 

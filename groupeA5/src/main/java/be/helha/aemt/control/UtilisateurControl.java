@@ -17,7 +17,6 @@ public class UtilisateurControl implements Serializable{
 
 	private String nom="Anonyme";
 	
-	
 	@EJB
 	private IGestionVisiteurEJB ejb;
 

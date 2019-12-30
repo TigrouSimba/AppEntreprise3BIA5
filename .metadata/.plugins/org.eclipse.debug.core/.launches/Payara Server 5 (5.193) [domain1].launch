@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<launchConfiguration type="org.payara.jst.server.GlassfishServerLaunchConfigurationType">
-<stringAttribute key="server-id" value="Payara Server 5 (5.193) [domain1]"/>
-</launchConfiguration>

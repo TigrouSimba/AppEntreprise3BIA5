@@ -1,3 +1,0 @@
-#GlassFish 3
-#Mon Dec 30 04:01:29 CET 2019
-org.eclipse.jst.jee.server\:groupeA5=C\:\\Users\\kevin\\Downloads\\payara-5.193 (1)\\payara5\\glassfish\\domains\\domain1\\eclipseApps\\groupeA5

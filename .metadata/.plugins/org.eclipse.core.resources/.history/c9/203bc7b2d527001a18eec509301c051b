@@ -1,7 +1,0 @@
-package be.helha.aemt.dao;
-
-public class DemandeStageDao {
-
-	@PersistenceContext(unitName = "gAVisiteurJTA")
-	private EntityManager em;
-}
