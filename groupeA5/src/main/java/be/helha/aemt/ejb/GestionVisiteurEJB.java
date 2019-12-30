@@ -13,7 +13,7 @@ import be.helha.aemt.entities.Visiteur;
 @Stateless
 public class GestionVisiteurEJB implements IGestionVisiteurEJB {
 
-	@EJB //injection et plus tard on verra @Inject
+	@EJB 
 	private VisiteurDAO dao;
 	
 	@Override
