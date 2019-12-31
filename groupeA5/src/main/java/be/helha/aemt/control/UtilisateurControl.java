@@ -6,7 +6,10 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
 import be.helha.aemt.ejb.GestionVisiteurEJB;
 import be.helha.aemt.ejb.IGestionVisiteurEJB;
@@ -48,6 +51,13 @@ public class UtilisateurControl implements Serializable{
 		this.ejb = ejb;
 	}
 	
+	public String logout() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext ec = context.getExternalContext();
+		final HttpServletRequest request = (HttpServletRequest) ec.getRequest();
+		request.getSession(false).invalidate(); // on invalide
+	     return "index.xhtml";
+	}
 	
 	
 	
