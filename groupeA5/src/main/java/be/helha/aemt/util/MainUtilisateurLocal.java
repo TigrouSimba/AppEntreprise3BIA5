@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import be.helha.aemt.entities.Annonce;
+import be.helha.aemt.entities.DemandeStage;
 import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.Formation;
 import be.helha.aemt.entities.OffreEmploi;
@@ -36,6 +37,8 @@ public class MainUtilisateurLocal {
 		
 		OffreEmploi ofe1=new OffreEmploi("nomEmploi", "contenuEmploi", "categorieEmploi", ul);
 		
+		DemandeStage do1 = new DemandeStage("nomStage","Stage");
+		
 		EntityTransaction tx=em.getTransaction();
 		tx.begin();
 		
@@ -50,6 +53,8 @@ public class MainUtilisateurLocal {
 		em.persist(en1);
 		
 		em.persist(ofe1);
+		
+		em.persist(do1);
 		
 		tx.commit();
 			
