@@ -22,6 +22,18 @@ public class GestionVisiteurEJB implements IGestionVisiteurEJB {
 		return dao.findAll();
 	}
 
+	@Override
+	public Visiteur findOccurence(String pseudo) {
+		// TODO Auto-generated method stub
+		return dao.findOccurence(pseudo);
+	}
+
+	@Override
+	public Utilisateur add(Utilisateur u) {
+		// TODO Auto-generated method stub
+		return dao.add(u);
+	}
+
 	
 
 }

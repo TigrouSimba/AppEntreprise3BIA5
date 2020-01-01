@@ -4,6 +4,7 @@
 		<jta-data-source>jdbc/groupeA5</jta-data-source>
 		<class>be.helha.aemt.entities.Utilisateur</class>
 		<class>be.helha.aemt.entities.Visiteur</class>
+		<class>be.helha.aemt.entities.Eleve</class>
 		<class>be.helha.aemt.entities.Annonce</class>
 		<class>be.helha.aemt.entities.Evenement</class>
 		<class>be.helha.aemt.entities.Formation</class>
@@ -18,6 +19,7 @@
 	<persistence-unit name="groupeA5" transaction-type="RESOURCE_LOCAL">
 		<class>be.helha.aemt.entities.Utilisateur</class>
 		<class>be.helha.aemt.entities.Visiteur</class>
+		<class>be.helha.aemt.entities.Eleve</class>
 		<class>be.helha.aemt.entities.Annonce</class>
 		<class>be.helha.aemt.entities.Evenement</class>
 		<class>be.helha.aemt.entities.Formation</class>

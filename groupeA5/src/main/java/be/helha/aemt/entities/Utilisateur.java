@@ -54,6 +54,21 @@ public class Utilisateur extends Visiteur implements Serializable{
 		annonces=new ArrayList<Annonce>();
 		offresEmploi=new ArrayList<OffreEmploi>();
 	}
+	
+	public Utilisateur(String login, String password, String groupName) {
+		this.login = login;
+		try {
+			this.password = toHexString(getSHA(password));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//this.password=password;
+		
+		this.groupName=groupName;
+		annonces=new ArrayList<Annonce>();
+		offresEmploi=new ArrayList<OffreEmploi>();
+	}
 
 
 	/*public Integer getId() {

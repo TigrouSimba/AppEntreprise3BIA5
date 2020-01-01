@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import be.helha.aemt.entities.Eleve;
 import be.helha.aemt.entities.Utilisateur;
 
 @Stateless
@@ -21,5 +22,13 @@ public class UtilisateurDAO {
 		String requete="SELECT utilisateur FROM Utilisateur utilisateur";
 		TypedQuery<Utilisateur>qSelectAll=em.createQuery(requete,Utilisateur.class);
 		return qSelectAll.getResultList();
+	}
+	
+	public Utilisateur findOccurence(String pseudo) {
+		String requete="select ul FROM Utilisateur ul where ul.login=:pLogin";
+		TypedQuery<Utilisateur>qFind=em.createQuery(requete, Utilisateur.class);
+		qFind.setParameter("pLogin", pseudo);		
+		List<Utilisateur>req=qFind.getResultList();
+		return req.size()==0?null:req.get(0);
 	}
 }

@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 
 import be.helha.aemt.entities.Annonce;
 import be.helha.aemt.entities.DemandeStage;
+import be.helha.aemt.entities.Eleve;
 import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.Formation;
 import be.helha.aemt.entities.OffreEmploi;
@@ -29,6 +30,8 @@ public class MainUtilisateurLocal {
 		
 		Visiteur v1=new Visiteur("192.193.194.195");
 		
+		Eleve el=new Eleve("test", "el", 2020);
+		
 		Annonce an1=new Annonce("nomAnnonce", "contenuAnnonce",  new Date(), ul);
 		
 		Evenement en1=new Evenement("nomEvenement");
@@ -47,6 +50,8 @@ public class MainUtilisateurLocal {
 		em.persist(ul3);
 		
 		em.persist(v1);
+		
+		em.persist(el);
 		
 		em.persist(an1);
 		

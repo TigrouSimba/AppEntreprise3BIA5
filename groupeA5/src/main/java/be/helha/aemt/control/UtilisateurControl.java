@@ -12,16 +12,24 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 import be.helha.aemt.ejb.GestionVisiteurEJB;
+import be.helha.aemt.ejb.IGestionEleveEJB;
 import be.helha.aemt.ejb.IGestionVisiteurEJB;
+import be.helha.aemt.entities.Eleve;
+import be.helha.aemt.entities.Utilisateur;
 
 @SessionScoped
 @Named //permet d'utiliser les controller dans les pages html
 public class UtilisateurControl implements Serializable{
 
-	private String nom="Anonyme";
-	
+	private String nom,prenom,mdp,message;
+	private int annee;
+	private Eleve el;
+
 	@EJB
 	private IGestionVisiteurEJB ejb;
+	
+	@EJB
+	private IGestionEleveEJB ejbEleve;
 
 	public UtilisateurControl() {
 		
@@ -35,6 +43,46 @@ public class UtilisateurControl implements Serializable{
 		this.nom = nom;
 	}
 	
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public int getAnnee() {
+		return annee;
+	}
+
+	public void setAnnee(int annee) {
+		this.annee = annee;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Eleve getEl() {
+		return el;
+	}
+
+	public void setEl(Eleve el) {
+		this.el = el;
+	}
+	
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+
 	public String doList() {
 		return "list.xhtml";
 	}
@@ -51,12 +99,36 @@ public class UtilisateurControl implements Serializable{
 		this.ejb = ejb;
 	}
 	
+	public IGestionEleveEJB getEjbEleve() {
+		return ejbEleve;
+	}
+
+	public void setEjbEleve(IGestionEleveEJB ejbEleve) {
+		this.ejbEleve = ejbEleve;
+	}
+
 	public String logout() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext ec = context.getExternalContext();
 		final HttpServletRequest request = (HttpServletRequest) ec.getRequest();
 		request.getSession(false).invalidate(); // on invalide
 	     return "index.xhtml";
+	}
+	
+	public String register() {
+		el=new Eleve(nom,prenom,annee);
+		if(ejbEleve.findOccurence(el)==null) {
+			setMessage("L'utilisateur n'existe pas");
+			return "inscription.xhtml"; 
+		}
+		else if(ejb.findOccurence(nom+prenom+annee)!=null) {
+			setMessage("L'utilisateur existe déjà");
+			return "inscription.xhtml";
+		}
+		setMessage("");
+		Utilisateur ul=new Utilisateur(nom+prenom+annee,mdp,"ancien");
+		ejb.add(ul);
+		return "index.xhtml";
 	}
 	
 	

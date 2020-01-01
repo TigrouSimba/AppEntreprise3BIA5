@@ -17,23 +17,29 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Inscription</h5>
-            <form class="form-signin" method="POST" action="j_security_check">
-              <!--<div class="form-label-group">-->
-              	<label for="inputPseudo">Nom, prénom et année de diplomation :</label>
-                <input type="text" id="inputPseudo" class="form-control" name="j_username" placeholder="NomPrenomAnnee" required="true" autofocus="true"/>                
-              <!--</div>-->
+            <h:form> 
+                         
+              	<label for="inputNom">Nom :</label>
+                <h:inputText value="#{utilisateurControl.nom}" id="inputNom" class="form-control" required="true"></h:inputText>
 				<br/>
-              
-              <!--<div class="form-label-group">-->
-              	<label for="inputMdp">Mot de passe :</label>
-                <input type="text" id="inputMdp" class="form-control" name="j_password" placeholder="Mot de passe" required="true"/>                
-              <!--</div>-->
+				
+				<label for="inputPrenom">Prénom :</label>
+                <h:inputText value="#{utilisateurControl.prenom}" id="inputPrenom" class="form-control" required="true"></h:inputText>
 				<br/>
-             
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="Logup">S'inscrire</button>
-            </form>
-          </div>
-         
+				
+				<label for="inputAnnee">Année de diplomation :</label>
+                <h:inputText value="#{utilisateurControl.annee}" id="inputAnnee" class="form-control" required="true"></h:inputText>
+				<br/>
+				
+				<label for="inputMdp">Mot de passe :</label>
+                <h:inputSecret value="#{utilisateurControl.mdp}" id="inputMdp" class="form-control" required="true"></h:inputSecret>
+				<br/>
+				
+              	
+              <h:commandButton class="btn btn-lg btn-primary btn-block text-uppercase" value="S'inscrire" action="#{utilisateurControl.register()}"></h:commandButton>
+            </h:form>
+            #{utilisateurControl.message}
+          </div>         
         </div>
       </div>
     </div>

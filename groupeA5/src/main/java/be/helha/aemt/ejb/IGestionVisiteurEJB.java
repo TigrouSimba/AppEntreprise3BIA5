@@ -13,4 +13,8 @@ public interface IGestionVisiteurEJB {
 
 	public List<Visiteur>findAll();
 	
+	public Visiteur findOccurence(String pseudo);
+	
+	public Utilisateur add(Utilisateur u);
+	
 }
