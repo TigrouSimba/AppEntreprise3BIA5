@@ -2,21 +2,29 @@ package be.helha.aemt.dao;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import be.helha.aemt.ejb.IGestionDemandeStageEJB;
 import be.helha.aemt.entities.DemandeStage;
-
-public class DemandeStageDao implements IGestionDemandeStageEJB {
+import be.helha.aemt.entities.Evenement;
+@Stateless
+@LocalBean
+public class DemandeStageDao  {
 
 	@PersistenceContext(unitName = "gAVisiteurJTA")
 	private EntityManager em;
 	
 	public List<DemandeStage> findAll(){
-		return em.createQuery("SELECT demandeStage FROM DEMANDESTAGE demandeStage").getResultList();
+		
+		String requete ="SELECT demandeStage FROM DEMANDESTAGE demandeStage";
+		TypedQuery<DemandeStage>qSelectAll=em.createQuery(requete,DemandeStage.class);
+		return qSelectAll.getResultList();
 	}
-	@Override
+	
 	public void Add(DemandeStage post) {
 		// TODO Auto-generated method stub
 		em.persist(post);

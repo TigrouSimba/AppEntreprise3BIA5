@@ -9,7 +9,7 @@ import javax.ejb.Stateless;
 import be.helha.aemt.dao.DemandeStageDao;
 import be.helha.aemt.entities.DemandeStage;
 
-public class GestionDemandeStageEJB  {
+public class GestionDemandeStageEJB implements IGestionDemandeStageEJB  {
 	@EJB
 	private DemandeStageDao dao;
 	
@@ -17,9 +17,9 @@ public class GestionDemandeStageEJB  {
 	{
 		return dao.findAll();
 	}
-	
-	public void post(DemandeStage post)
-	{
+	@Override
+	public void Add(DemandeStage post) {
+		// TODO Auto-generated method stub
 		dao.Add(post);
 	}
 
