@@ -21,7 +21,7 @@ import be.helha.aemt.entities.Utilisateur;
 @Named //permet d'utiliser les controller dans les pages html
 public class UtilisateurControl implements Serializable{
 
-	private String nom,prenom,mdp,message;
+	private String nom="",prenom="",mdp="",message="";
 	private int annee;
 	private Eleve el;
 
@@ -119,16 +119,35 @@ public class UtilisateurControl implements Serializable{
 		el=new Eleve(nom,prenom,annee);
 		if(ejbEleve.findOccurence(el)==null) {
 			setMessage("L'utilisateur n'existe pas");
-			return "inscription.xhtml"; 
+			setNom("");
+			setPrenom("");
+			setAnnee(0);
+			//return "inscription.xhtml"; 
+			return "";
 		}
 		else if(ejb.findOccurence(nom+prenom+annee)!=null) {
 			setMessage("L'utilisateur existe déjà");
-			return "inscription.xhtml";
+			setNom("");
+			setPrenom("");
+			setAnnee(0);
+			//return "inscription.xhtml";
+			return "";
 		}
-		setMessage("");
 		Utilisateur ul=new Utilisateur(nom+prenom+annee,mdp,"ancien");
+		setMessage("");
+		setNom("");
+		setPrenom("");
+		setAnnee(0);		
 		ejb.add(ul);
 		return "index.xhtml";
+	}
+	
+	public String isConnected() {
+		String nom=FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+		if(nom==null) {
+			return "false";
+		}
+		return "true";
 	}
 	
 	
