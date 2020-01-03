@@ -29,7 +29,7 @@ public class Utilisateur extends Visiteur implements Serializable{
 	private String password;
 	private String email;
 	private String groupName;
-	private Image photo;
+	private ImgEntite photo;
 	@OneToMany(mappedBy = "createurAnnonce")
 	private List<Annonce> annonces;
 	@OneToMany(mappedBy = "createurEmploi")
@@ -121,12 +121,12 @@ public class Utilisateur extends Visiteur implements Serializable{
 	}
 
 
-	public Image getPhoto() {
+	public ImgEntite getPhoto() {
 		return photo;
 	}
 
 
-	public void setPhoto(Image photo) {
+	public void setPhoto(ImgEntite photo) {
 		this.photo = photo;
 	}
 

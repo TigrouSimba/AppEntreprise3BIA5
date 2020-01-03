@@ -4,16 +4,16 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
-import be.helha.aemt.entities.Image;
+import be.helha.aemt.entities.ImgEntite;
 
 
 @Remote
 public interface IGestionImageEJB {
 
-	public List<Image>findAll();
+	public List<ImgEntite>findAll();
 	
-	public Image findOccurence(String nom);
+	public ImgEntite findOccurence(String nom);
 	
-	public Image add(Image i);
+	public ImgEntite add(ImgEntite i);
 	
 }

@@ -27,7 +27,7 @@ public class Annonce implements Serializable{
 	private String nomAnnonce,contenuAnnonce;
 	private Date dateAnnonce;
 	@OneToMany(mappedBy = "annonce")
-	private List<Image> imgsAnnonce;
+	private List<ImgEntite> imgsAnnonce;
 	@ManyToOne(targetEntity=Utilisateur.class,cascade= CascadeType.PERSIST)
 	private Utilisateur createurAnnonce;
 	
@@ -41,7 +41,7 @@ public class Annonce implements Serializable{
 		this.nomAnnonce = nomAnnonce;
 		this.contenuAnnonce = contenuAnnonce;
 		this.dateAnnonce = dateAnnonce;
-		imgsAnnonce=new ArrayList<Image>();
+		imgsAnnonce=new ArrayList<ImgEntite>();
 		this.createurAnnonce = createurAnnonce;
 	}
 
@@ -77,11 +77,11 @@ public class Annonce implements Serializable{
 		this.dateAnnonce = dateAnnonce;
 	}
 
-	public List<Image> getImgsAnnonce() {
+	public List<ImgEntite> getImgsAnnonce() {
 		return imgsAnnonce;
 	}
 
-	public void setImgsAnnonce(List<Image> imgsAnnonce) {
+	public void setImgsAnnonce(List<ImgEntite> imgsAnnonce) {
 		this.imgsAnnonce = imgsAnnonce;
 	}
 
@@ -156,7 +156,7 @@ public class Annonce implements Serializable{
 	}
 
 	
-	public void ajoutImage(Image img) {
+	public void ajoutImage(ImgEntite img) {
 		imgsAnnonce.add(img);
 	}
 	

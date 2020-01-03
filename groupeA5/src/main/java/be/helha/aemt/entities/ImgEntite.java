@@ -1,8 +1,6 @@
 package be.helha.aemt.entities;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -10,11 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.servlet.http.Part;
 
+import org.glassfish.jersey.media.multipart.FormDataMultiPart;
+
+import com.mysql.jdbc.Blob;
+
 @Entity
-public class Image implements Serializable{
+public class ImgEntite implements Serializable{
 
 	/**
 	 * 
@@ -25,38 +28,34 @@ public class Image implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	//private File img;
-	private FileIt img;
+	@Lob
+	private byte[] img;
 	@ManyToOne(targetEntity=Annonce.class,cascade= CascadeType.PERSIST)
 	private Annonce annonce;
 	@ManyToOne(targetEntity=Evenement.class,cascade= CascadeType.PERSIST)
 	private Evenement evenement;
 	
-	public Image() {
+	public ImgEntite() {
 		
 	}
 
-	public Image(File img, Annonce annonce) {
+	public ImgEntite(File img, Annonce annonce) {
 		
 		//this.img = img;
 		this.annonce = annonce;
 	}
 
-	public Image(File img, Evenement evenement) {
+	public ImgEntite(File img, Evenement evenement) {
 		
 		//this.img = img;
 		//this.img=new File(img.getPath()+ File.separator+img.getName());
 		this.evenement = evenement;
 	}
 
-	public Image(Part img) {
+	public ImgEntite(byte[] img) {
 		
-		//this.img = img;
-		try {
-			InputStream filecontent = img.getInputStream();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.img = img;
+		
 	}
 
 	public Integer getId() {
@@ -76,16 +75,18 @@ public class Image implements Serializable{
 	}*/
 	
 	
+	
 
 	public Annonce getAnnonce() {
 		return annonce;
 	}
 
-	public InputStream getImg() {
+
+	public byte[] getImg() {
 		return img;
 	}
 
-	public void setImg(InputStream img) {
+	public void setImg(byte[] img) {
 		this.img = img;
 	}
 
@@ -120,7 +121,7 @@ public class Image implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Image other = (Image) obj;
+		ImgEntite other = (ImgEntite) obj;
 		if (annonce == null) {
 			if (other.annonce != null)
 				return false;

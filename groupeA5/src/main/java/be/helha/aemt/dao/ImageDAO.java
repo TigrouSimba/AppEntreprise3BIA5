@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import be.helha.aemt.entities.Image;
+import be.helha.aemt.entities.ImgEntite;
 
 @Stateless
 @LocalBean
@@ -17,21 +17,21 @@ public class ImageDAO {
 	@PersistenceContext(unitName = "gAVisiteurJTA")
 	private EntityManager em;
 	
-	public List<Image> findAll() {		
-		String requete="SELECT img FROM Image img";
-		TypedQuery<Image>qSelectAll=em.createQuery(requete,Image.class);
+	public List<ImgEntite> findAll() {		
+		String requete="SELECT img FROM ImgEntite img";
+		TypedQuery<ImgEntite>qSelectAll=em.createQuery(requete,ImgEntite.class);
 		return qSelectAll.getResultList();
 	}
 	
-	public Image findOccurence(String nom) {
-		String requete="select img FROM Image img where img.login=:pLogin";
-		TypedQuery<Image>qFind=em.createQuery(requete, Image.class);
+	public ImgEntite findOccurence(String nom) {
+		String requete="select img FROM ImgEntite img where img.login=:pLogin";
+		TypedQuery<ImgEntite>qFind=em.createQuery(requete, ImgEntite.class);
 		qFind.setParameter("pLogin", nom);		
-		List<Image>req=qFind.getResultList();
+		List<ImgEntite>req=qFind.getResultList();
 		return req.size()==0?null:req.get(0);
 	}
 	
-	public Image add(Image i) {
+	public ImgEntite add(ImgEntite i) {
 		em.persist(i);
 		return i;	
 	}

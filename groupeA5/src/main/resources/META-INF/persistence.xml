@@ -10,7 +10,7 @@
 		<class>be.helha.aemt.entities.Formation</class>
 		<class>be.helha.aemt.entities.OffreEmploi</class>
 		<class>be.helha.aemt.entities.DemandeStage</class>
-		<class>be.helha.aemt.entities.Image</class>
+		<class>be.helha.aemt.entities.ImgEntite</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 		
@@ -26,7 +26,8 @@
 		<class>be.helha.aemt.entities.Formation</class>
 		<class>be.helha.aemt.entities.OffreEmploi</class>
 		<class>be.helha.aemt.entities.DemandeStage</class>
-		<class>be.helha.aemt.entities.Image</class>
+		<class>be.helha.aemt.entities.ImgEntite</class>
+		<class>be.helha.aemt.entities.ImgEntite</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

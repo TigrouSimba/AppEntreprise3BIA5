@@ -24,6 +24,28 @@
 						type="submit" action="#{imageControl.ajoutImage()}"
 						value="Enregistrer"></h:commandButton>
 				</h:form>
+				<br/>
+				<h:form>
+								<ui:repeat value="#{imageControl.ejb.findAll()}" var="item" varStatus="myVarStatus">
+									<li>
+										<div class="row">
+											<div
+												class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
+												<div class="card-body">
+													<!-- <h:link outcome="association.xhtml" value="#{item.nomEvenement}" />-->
+													
+													<img src="data:image/jpg;base64,#{imageControl.imageShow(myVarStatus.index)}" height="200" width="200"/>
+													
+													
+												</div>
+											</div>
+										</div>
+										
+									</li>
+								</ui:repeat>
+							</h:form>
+							
+							#{imageControl.message}
 			</div>
 		</div>
 	</div>

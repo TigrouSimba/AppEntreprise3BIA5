@@ -8,7 +8,7 @@ import javax.ejb.Stateless;
 import be.helha.aemt.dao.ImageDAO;
 import be.helha.aemt.dao.UtilisateurDAO;
 import be.helha.aemt.dao.VisiteurDAO;
-import be.helha.aemt.entities.Image;
+import be.helha.aemt.entities.ImgEntite;
 import be.helha.aemt.entities.Utilisateur;
 import be.helha.aemt.entities.Visiteur;
 
@@ -19,19 +19,19 @@ public class GestionImageEJB implements IGestionImageEJB {
 	private ImageDAO dao;
 	
 	@Override
-	public List<Image> findAll() {
+	public List<ImgEntite> findAll() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
 
 	@Override
-	public Image findOccurence(String nom) {
+	public ImgEntite findOccurence(String nom) {
 		// TODO Auto-generated method stub
 		return dao.findOccurence(nom);
 	}
 
 	@Override
-	public Image add(Image i) {
+	public ImgEntite add(ImgEntite i) {
 		// TODO Auto-generated method stub
 		return dao.add(i);
 	}

@@ -19,13 +19,13 @@ public class Portrait implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String temoignage;
-	private Image img;
+	private ImgEntite img;
 	
 	public Portrait() {
 		
 	}
 
-	public Portrait(String temoignage, Image img) {
+	public Portrait(String temoignage, ImgEntite img) {
 		super();
 		this.temoignage = temoignage;
 		this.img = img;
@@ -47,11 +47,11 @@ public class Portrait implements Serializable{
 		this.temoignage = temoignage;
 	}
 
-	public Image getImg() {
+	public ImgEntite getImg() {
 		return img;
 	}
 
-	public void setImg(Image img) {
+	public void setImg(ImgEntite img) {
 		this.img = img;
 	}
 

@@ -23,7 +23,7 @@ public class Evenement implements Serializable{
 	private Integer id;
 	private String nomEvenement;
 	@OneToMany(mappedBy = "evenement")
-	private List<Image> imgsEvenement;
+	private List<ImgEntite> imgsEvenement;
 	
 	public Evenement() {
 		
@@ -31,7 +31,7 @@ public class Evenement implements Serializable{
 
 	public Evenement(String nomEvenement) {
 		this.nomEvenement = nomEvenement;
-		imgsEvenement = new ArrayList<Image>();
+		imgsEvenement = new ArrayList<ImgEntite>();
 	}
 
 	public Integer getId() {
@@ -50,11 +50,11 @@ public class Evenement implements Serializable{
 		this.nomEvenement = nomEvenement;
 	}
 
-	public List<Image> getImgsEvenement() {
+	public List<ImgEntite> getImgsEvenement() {
 		return imgsEvenement;
 	}
 
-	public void setImgsEvenement(List<Image> imgsEvenement) {
+	public void setImgsEvenement(List<ImgEntite> imgsEvenement) {
 		this.imgsEvenement = imgsEvenement;
 	}
 
@@ -100,7 +100,7 @@ public class Evenement implements Serializable{
 		return "Evenement [id=" + id + ", nomEvenement=" + nomEvenement + ", imgsEvenement=" + imgsEvenement + "]";
 	}
 	
-	public void ajoutImage(Image img) {
+	public void ajoutImage(ImgEntite img) {
 		imgsEvenement.add(img);
 	}
 	

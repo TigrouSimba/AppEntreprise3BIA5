@@ -1,31 +1,38 @@
 package be.helha.aemt.control;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Files;
+import java.util.Base64;
+import java.util.zip.Deflater;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+import javax.imageio.ImageIO;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
-import be.helha.aemt.ejb.GestionVisiteurEJB;
-import be.helha.aemt.ejb.IGestionEleveEJB;
+
 import be.helha.aemt.ejb.IGestionImageEJB;
-import be.helha.aemt.ejb.IGestionVisiteurEJB;
-import be.helha.aemt.entities.Eleve;
-import be.helha.aemt.entities.Image;
-import be.helha.aemt.entities.Utilisateur;
+import be.helha.aemt.entities.Evenement;
+import be.helha.aemt.entities.ImgEntite;
 
 @SessionScoped
 @Named //permet d'utiliser les controller dans les pages html
 public class ImageControl implements Serializable{
 
 	private Part file;
+	private String message;
 
 	@EJB
 	private IGestionImageEJB ejb;
@@ -50,10 +57,53 @@ public class ImageControl implements Serializable{
 		this.ejb = ejb;
 	}
 
-	public String ajoutImage() {
-		Image img=new Image(file);
-		ejb.add(img);
-		return "index.xhtml";
+	public String ajoutImage() {		
+	    InputStream initialStream = null;
+	    byte[] buffer = null;
+	    //File targetFile = new File("targetFile.jpg");
+	    OutputStream outStream = null;
+		try {
+			initialStream = file.getInputStream();
+			buffer = new byte[initialStream.available()];
+			initialStream.read(buffer);
+			/*outStream = new FileOutputStream(targetFile);
+			outStream.write(buffer);*/
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	    	 
+		ImgEntite img=new ImgEntite(buffer);
+		new Thread(new Runnable() {
+		    public void run() {
+		    	ejb.add(img);	
+		    }
+		}).start();
+		
+		return "index.xhtml";	
+
+	}
+	
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public String imageShow(int index) {
+		
+	    /*byte[] buffer = null;	 
+	    try {			
+	    	InputStream initialStream = new FileInputStream(ejb.findAll().get(index).getImg());
+			buffer = new byte[initialStream.available()];
+			initialStream.read(buffer);
+			initialStream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		return Base64.getEncoder().encodeToString(ejb.findAll().get(index).getImg());		
 	}
 	
 }
