@@ -22,8 +22,8 @@ public class Evenement implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nomEvenement;
-	/*@OneToMany(mappedBy = "evenement")
-	private List<Image> imgsEvenement;*/
+	@OneToMany(mappedBy = "evenement")
+	private List<Image> imgsEvenement;
 	
 	public Evenement() {
 		
@@ -31,7 +31,7 @@ public class Evenement implements Serializable{
 
 	public Evenement(String nomEvenement) {
 		this.nomEvenement = nomEvenement;
-		//imgsEvenement = new ArrayList<Image>();
+		imgsEvenement = new ArrayList<Image>();
 	}
 
 	public Integer getId() {
@@ -50,20 +50,20 @@ public class Evenement implements Serializable{
 		this.nomEvenement = nomEvenement;
 	}
 
-	/*public List<Image> getImgsEvenement() {
+	public List<Image> getImgsEvenement() {
 		return imgsEvenement;
 	}
 
 	public void setImgsEvenement(List<Image> imgsEvenement) {
 		this.imgsEvenement = imgsEvenement;
-	}*/
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		//result = prime * result + ((imgsEvenement == null) ? 0 : imgsEvenement.hashCode());
+		result = prime * result + ((imgsEvenement == null) ? 0 : imgsEvenement.hashCode());
 		result = prime * result + ((nomEvenement == null) ? 0 : nomEvenement.hashCode());
 		return result;
 	}
@@ -82,11 +82,11 @@ public class Evenement implements Serializable{
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		/*if (imgsEvenement == null) {
+		if (imgsEvenement == null) {
 			if (other.imgsEvenement != null)
 				return false;
 		} else if (!imgsEvenement.equals(other.imgsEvenement))
-			return false;*/
+			return false;
 		if (nomEvenement == null) {
 			if (other.nomEvenement != null)
 				return false;
@@ -97,12 +97,12 @@ public class Evenement implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Evenement [id=" + id + ", nomEvenement=" + nomEvenement + /*", imgsEvenement=" + imgsEvenement + */"]";
+		return "Evenement [id=" + id + ", nomEvenement=" + nomEvenement + ", imgsEvenement=" + imgsEvenement + "]";
 	}
 	
-	/*public void ajoutImage(Image img) {
+	public void ajoutImage(Image img) {
 		imgsEvenement.add(img);
-	}*/
+	}
 	
 	
 

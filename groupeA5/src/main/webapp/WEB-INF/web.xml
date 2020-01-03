@@ -31,7 +31,7 @@
 		<web-resource-collection>
 			<web-resource-name>Protected Admin Area</web-resource-name>
 			<description></description>
-			<url-pattern>/list.xhtml</url-pattern>
+			<url-pattern>/admin.xhtml</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<description></description>

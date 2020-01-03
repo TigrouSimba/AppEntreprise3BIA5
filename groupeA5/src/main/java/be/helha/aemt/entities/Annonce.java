@@ -26,8 +26,8 @@ public class Annonce implements Serializable{
 	private Integer id;
 	private String nomAnnonce,contenuAnnonce;
 	private Date dateAnnonce;
-	/*@OneToMany(mappedBy = "annonce")
-	private List<Image> imgsAnnonce;*/
+	@OneToMany(mappedBy = "annonce")
+	private List<Image> imgsAnnonce;
 	@ManyToOne(targetEntity=Utilisateur.class,cascade= CascadeType.PERSIST)
 	private Utilisateur createurAnnonce;
 	
@@ -41,7 +41,7 @@ public class Annonce implements Serializable{
 		this.nomAnnonce = nomAnnonce;
 		this.contenuAnnonce = contenuAnnonce;
 		this.dateAnnonce = dateAnnonce;
-		//imgsAnnonce=new ArrayList<Image>();
+		imgsAnnonce=new ArrayList<Image>();
 		this.createurAnnonce = createurAnnonce;
 	}
 
@@ -77,13 +77,13 @@ public class Annonce implements Serializable{
 		this.dateAnnonce = dateAnnonce;
 	}
 
-	/*public List<Image> getImgsAnnonce() {
+	public List<Image> getImgsAnnonce() {
 		return imgsAnnonce;
 	}
 
 	public void setImgsAnnonce(List<Image> imgsAnnonce) {
 		this.imgsAnnonce = imgsAnnonce;
-	}*/
+	}
 
 	public Utilisateur getCreateurAnnonce() {
 		return createurAnnonce;
@@ -101,7 +101,7 @@ public class Annonce implements Serializable{
 		result = prime * result + ((createurAnnonce == null) ? 0 : createurAnnonce.hashCode());
 		result = prime * result + ((dateAnnonce == null) ? 0 : dateAnnonce.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		//result = prime * result + ((imgsAnnonce == null) ? 0 : imgsAnnonce.hashCode());
+		result = prime * result + ((imgsAnnonce == null) ? 0 : imgsAnnonce.hashCode());
 		result = prime * result + ((nomAnnonce == null) ? 0 : nomAnnonce.hashCode());
 		return result;
 	}
@@ -135,11 +135,11 @@ public class Annonce implements Serializable{
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		/*if (imgsAnnonce == null) {
+		if (imgsAnnonce == null) {
 			if (other.imgsAnnonce != null)
 				return false;
 		} else if (!imgsAnnonce.equals(other.imgsAnnonce))
-			return false;*/
+			return false;
 		if (nomAnnonce == null) {
 			if (other.nomAnnonce != null)
 				return false;
@@ -151,15 +151,15 @@ public class Annonce implements Serializable{
 	@Override
 	public String toString() {
 		return "Annonce [id=" + id + ", nomAnnonce=" + nomAnnonce + ", contenuAnnonce=" + contenuAnnonce
-				+ ", dateAnnonce=" + dateAnnonce + /*", imgsAnnonce=" + imgsAnnonce + */", createurAnnonce="
+				+ ", dateAnnonce=" + dateAnnonce + ", imgsAnnonce=" + imgsAnnonce + ", createurAnnonce="
 				+ createurAnnonce + "]";
 	}
 
 	
-	/*public void ajoutImage(Image img) {
+	public void ajoutImage(Image img) {
 		imgsAnnonce.add(img);
 	}
-	*/
+	
 	
 	
 

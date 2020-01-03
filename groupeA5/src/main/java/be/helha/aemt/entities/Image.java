@@ -1,6 +1,8 @@
 package be.helha.aemt.entities;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.servlet.http.Part;
 
 @Entity
 public class Image implements Serializable{
@@ -21,7 +24,8 @@ public class Image implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private File img;
+	//private File img;
+	private FileIt img;
 	@ManyToOne(targetEntity=Annonce.class,cascade= CascadeType.PERSIST)
 	private Annonce annonce;
 	@ManyToOne(targetEntity=Evenement.class,cascade= CascadeType.PERSIST)
@@ -32,20 +36,27 @@ public class Image implements Serializable{
 	}
 
 	public Image(File img, Annonce annonce) {
-		super();
-		this.img = img;
+		
+		//this.img = img;
 		this.annonce = annonce;
 	}
 
 	public Image(File img, Evenement evenement) {
-		super();
-		this.img = img;
+		
+		//this.img = img;
+		//this.img=new File(img.getPath()+ File.separator+img.getName());
 		this.evenement = evenement;
 	}
 
-	public Image(File img) {
-		super();
-		this.img = img;
+	public Image(Part img) {
+		
+		//this.img = img;
+		try {
+			InputStream filecontent = img.getInputStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Integer getId() {
@@ -56,16 +67,26 @@ public class Image implements Serializable{
 		this.id = id;
 	}
 
-	public File getImg() {
+	/*public File getImg() {
 		return img;
 	}
 
 	public void setImg(File img) {
 		this.img = img;
-	}
+	}*/
+	
+	
 
 	public Annonce getAnnonce() {
 		return annonce;
+	}
+
+	public InputStream getImg() {
+		return img;
+	}
+
+	public void setImg(InputStream img) {
+		this.img = img;
 	}
 
 	public void setAnnonce(Annonce annonce) {
