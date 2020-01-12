@@ -130,6 +130,16 @@ public class OffreEmploi implements Serializable{
 		return "OffreEmploi [id=" + id + ", nomEmploi=" + nomEmploi + ", contenuEmploi=" + contenuEmploi
 				+ ", categorieEmploi=" + categorieEmploi + ", createurEmploi=" + createurEmploi + "]";
 	}
+
+	public OffreEmploi(Integer id, String nomEmploi, String contenuEmploi, String categorieEmploi,
+			Utilisateur createurEmploi) {
+		super();
+		this.id = id;
+		this.nomEmploi = nomEmploi;
+		this.contenuEmploi = contenuEmploi;
+		this.categorieEmploi = categorieEmploi;
+		this.createurEmploi = createurEmploi;
+	}
 	
 	
 
