@@ -17,10 +17,10 @@
 		<div class="row">
 			<h1>Creation de Demande de Stage</h1>
 		</div>
-		<form>
+		<h:form>
 			<div class="row">
 				<div class="col col-sm-10">
-					<h:inputText class="form-control" type="text" value="#{DemandeStageControl.nom}" id="Nom">
+					<h:inputText class="form-control" type="text" value="#{demandeStageControl.nom}" id="Nom">
 					
 					</h:inputText>
 					
@@ -43,9 +43,12 @@
 				</h:inputTextarea>		
 			</div>
 			<DIV class="row">
-				<h:commandButton class="btn btn-success btn-lg" value="Envoyer Une Lettre de motivation"></h:commandButton>
+				<h:commandButton  action="#{demandeStageControl.postDemandeStage()}" class="btn btn-success btn-lg" value="Envoyer Une Lettre de motivation"></h:commandButton>
 			</DIV>
-		</form>
+			<div class="row">
+				#{demandeStageControl.nom} #{demandeStageControl.contenu}
+			</div>
+		</h:form>
 	</DIV>
 	</div>
 	</div>	

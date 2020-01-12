@@ -17,6 +17,7 @@ public class GestionDemandeStageEJB implements IGestionDemandeStageEJB  {
 	@Override
 	public List<DemandeStage>findAll()
 	{
+		System.out.println("test");
 		return dao.findAll();
 	}
 	@Override

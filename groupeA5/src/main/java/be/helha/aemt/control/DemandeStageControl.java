@@ -57,15 +57,13 @@ public class DemandeStageControl implements Serializable {
 
 	public DemandeStageControl() {
 		
-		nom ="mamam";
+		
 		demandestage = new DemandeStage();
 	}
 	
 	public DemandeStage getDemandestage() {
 		return demandestage;
 	}
-
-
 
 	public void setDemandestage(DemandeStage demandestage) {
 		this.demandestage = demandestage;
@@ -76,6 +74,13 @@ public class DemandeStageControl implements Serializable {
 
 	public void setContenu(String contenu) {
 		this.contenu = contenu;
+	}
+	//Methode
+	public void postDemandeStage()
+	{
+		DemandeStage da = new DemandeStage(nom,contenu);
+		System.out.println(da.getNom());
+		ejb.Add(da);
 	}
 
 	
