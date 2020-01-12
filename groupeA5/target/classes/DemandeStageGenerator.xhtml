@@ -12,13 +12,15 @@
 <ui:include src="navbar.xhtml"></ui:include>
 	
 	<div class="container-fluid">
+	<div class="card card-signin my-5">
+	<DIV class="card-body">
 		<div class="row">
 			<h1>Creation de Demande de Stage</h1>
 		</div>
 		<form>
 			<div class="row">
 				<div class="col col-sm-10">
-					<h:inputText class="form-control" type="text" id="Nom">
+					<h:inputText class="form-control" type="text" value="#{DemandeStageControl.nom}" id="Nom">
 					
 					</h:inputText>
 					
@@ -36,7 +38,7 @@
 				<h2>Contenu</h2>
 			</div>
 			<div class="row">
-				<h:inputTextarea class="form-control" type="text" id="contenu" rows="10">
+				<h:inputTextarea class="form-control" type="text" id="contenu" value="#{demandeStageControl.contenu}" rows="10">
 				
 				</h:inputTextarea>		
 			</div>
@@ -44,7 +46,8 @@
 				<h:commandButton class="btn btn-success btn-lg" value="Envoyer Une Lettre de motivation"></h:commandButton>
 			</DIV>
 		</form>
-		
+	</DIV>
+	</div>
 	</div>	
 
 

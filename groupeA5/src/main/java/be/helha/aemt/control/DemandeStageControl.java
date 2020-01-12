@@ -21,6 +21,16 @@ public class DemandeStageControl implements Serializable {
 	
 	private String nom;
 	
+	private String contenu;
+	
+	
+
+
+
+	private DemandeStage demandestage;
+	
+	
+
 	@EJB
 	private IGestionDemandeStageEJB ejb;
 	
@@ -28,7 +38,7 @@ public class DemandeStageControl implements Serializable {
 		return ejb;
 	}
 
-
+	//Getteur et setteur
 
 	public void setEjb(IGestionDemandeStageEJB ejb) {
 		this.ejb = ejb;
@@ -48,7 +58,26 @@ public class DemandeStageControl implements Serializable {
 	public DemandeStageControl() {
 		
 		nom ="mamam";
+		demandestage = new DemandeStage();
 	}
+	
+	public DemandeStage getDemandestage() {
+		return demandestage;
+	}
+
+
+
+	public void setDemandestage(DemandeStage demandestage) {
+		this.demandestage = demandestage;
+	}
+	public String getContenu() {
+		return contenu;
+	}
+
+	public void setContenu(String contenu) {
+		this.contenu = contenu;
+	}
+
 	
 	
 
