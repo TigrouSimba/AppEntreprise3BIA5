@@ -19,8 +19,7 @@ public class DemandeStageDao  {
 	private EntityManager em;
 	
 	public List<DemandeStage> findAll(){
-		
-		String requete ="SELECT demandeStage FROM DEMANDESTAGE demandeStage";
+		String requete ="SELECT eve FROM DemandeStage eve";
 		TypedQuery<DemandeStage>qSelectAll=em.createQuery(requete,DemandeStage.class);
 		return qSelectAll.getResultList();
 	}

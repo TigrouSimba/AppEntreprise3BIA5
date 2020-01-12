@@ -8,11 +8,13 @@ import javax.ejb.Stateless;
 
 import be.helha.aemt.dao.DemandeStageDao;
 import be.helha.aemt.entities.DemandeStage;
-
+@Stateless
 public class GestionDemandeStageEJB implements IGestionDemandeStageEJB  {
+	
 	@EJB
 	private DemandeStageDao dao;
 	
+	@Override
 	public List<DemandeStage>findAll()
 	{
 		return dao.findAll();
