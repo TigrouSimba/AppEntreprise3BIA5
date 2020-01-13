@@ -19,7 +19,7 @@ public class OffreEmploiDao {
 	private EntityManager em;
 	
 	public List<OffreEmploi> findAll() {		
-		String requete="SELECT eve FROM Offreemploi eve";
+		String requete="SELECT img FROM OffreEmploi img";
 		TypedQuery<OffreEmploi>qSelectAll=em.createQuery(requete,OffreEmploi.class);
 		return qSelectAll.getResultList();
 	}
