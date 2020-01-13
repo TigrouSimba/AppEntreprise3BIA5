@@ -12,7 +12,9 @@ import be.helha.aemt.entities.DemandeStage;
 import be.helha.aemt.entities.Eleve;
 import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.Formation;
+import be.helha.aemt.entities.ImgEntite;
 import be.helha.aemt.entities.OffreEmploi;
+import be.helha.aemt.entities.Portrait;
 import be.helha.aemt.entities.Utilisateur;
 import be.helha.aemt.entities.Visiteur;
 
@@ -42,6 +44,10 @@ public class MainUtilisateurLocal {
 		
 		DemandeStage do1 = new DemandeStage("nomStage","Stage");
 		
+		ImgEntite img=new ImgEntite();
+		
+		Portrait po=new Portrait("", img);
+		
 		EntityTransaction tx=em.getTransaction();
 		tx.begin();
 		
@@ -60,6 +66,10 @@ public class MainUtilisateurLocal {
 		em.persist(ofe1);
 		
 		em.persist(do1);
+		
+		em.persist(img);
+		
+		em.persist(po);
 		
 		tx.commit();
 			

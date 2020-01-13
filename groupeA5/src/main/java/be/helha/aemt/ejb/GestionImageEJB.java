@@ -25,9 +25,9 @@ public class GestionImageEJB implements IGestionImageEJB {
 	}
 
 	@Override
-	public ImgEntite findOccurence(String nom) {
+	public ImgEntite findOccurence(ImgEntite img) {
 		// TODO Auto-generated method stub
-		return dao.findOccurence(nom);
+		return dao.findOccurence(img);
 	}
 
 	@Override

@@ -153,16 +153,16 @@ public class UtilisateurControl implements Serializable{
 	public String isAdmin() {
 		String nom=FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
 		if(nom==null) {
-			return "true";
+			return "false";
 		}
 		Utilisateur ul=ejb.findOccurence(nom);
 		if(ul==null) {
-			return "true";
-		}
-		if(ul.getGroupName().equals("admin")) {
 			return "false";
 		}
-		return "true";
+		if(ul.getGroupName().equals("admin")) {
+			return "true";
+		}
+		return "false";
 	}
 	
 	
