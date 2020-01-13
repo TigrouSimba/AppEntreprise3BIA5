@@ -23,10 +23,10 @@ public class ImageDAO {
 		return qSelectAll.getResultList();
 	}
 	
-	public ImgEntite findOccurence(String nom) {
-		String requete="select img FROM ImgEntite img where img.login=:pLogin";
+	public ImgEntite findOccurence(ImgEntite img) {
+		String requete="select image FROM ImgEntite image where image.img=:pImage";
 		TypedQuery<ImgEntite>qFind=em.createQuery(requete, ImgEntite.class);
-		qFind.setParameter("pLogin", nom);		
+		qFind.setParameter("pImage", img.getImg());		
 		List<ImgEntite>req=qFind.getResultList();
 		return req.size()==0?null:req.get(0);
 	}

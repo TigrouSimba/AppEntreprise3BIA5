@@ -47,6 +47,18 @@
 							</h:form>
 
 						</ul>
+						<h:form rendered="#{utilisateurControl.isAdmin() eq 'true'}">
+				<div class="row">			
+					<h:form method="POST">
+					Nom de l'évènement: <h:inputText value="#{evenementControl.nomEvenement}" name="nom" id="nom" />
+					<br />
+					<h:commandButton
+						class="btn btn-lg btn-primary btn-block text-uppercase"
+						type="submit" action="#{evenementControl.ajoutEvenement()}"
+						value="Enregistrer"></h:commandButton>
+				</h:form>
+				</div>
+				</h:form>
 					</div>
 					<div class="col col-5">
 						<h3>
@@ -58,18 +70,21 @@
 
 							<li><i>"Il y a une bonne entente et ambiance"</i></li>
 						</ul>
-					</div>
-				</div>
-				<div class="row">
-					<h:form method="POST">
-					Nom de l'évènement: <h:inputText value="#{evenementControl.nomEvenement}" name="nom" id="nom" />
+						<div class="row">			
+					<h:form method="POST" enctype="multipart/form-data">
+					Témoignage : <h:inputText value="#{portraitControl.temoignage}" name="nom" id="nom" />
 					<br />
+					Photo : <h:inputFile value="#{portraitControl.file}" name="file" id="file" />
+					<br/>
 					<h:commandButton
 						class="btn btn-lg btn-primary btn-block text-uppercase"
-						type="submit" action="#{evenementControl.ajoutEvenement()}"
+						type="submit" action="#{portraitControl.ajoutPortrait()}"
 						value="Enregistrer"></h:commandButton>
 				</h:form>
 				</div>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 	</div>

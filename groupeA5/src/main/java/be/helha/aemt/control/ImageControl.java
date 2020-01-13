@@ -32,7 +32,6 @@ import be.helha.aemt.entities.ImgEntite;
 public class ImageControl implements Serializable{
 
 	private Part file;
-	private String message;
 
 	@EJB
 	private IGestionImageEJB ejb;
@@ -57,7 +56,7 @@ public class ImageControl implements Serializable{
 		this.ejb = ejb;
 	}
 
-	public String ajoutImage() {		
+	public ImgEntite ajoutImage() {		
 	    InputStream initialStream = null;
 	    byte[] buffer = null;
 	    //File targetFile = new File("targetFile.jpg");
@@ -79,17 +78,11 @@ public class ImageControl implements Serializable{
 		    }
 		}).start();
 		
-		return "index.xhtml";	
+		return img;	
 
 	}
 	
-	public String getMessage() {
-		return message;
-	}
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
 	public String imageShow(int index) {
 		
 	    /*byte[] buffer = null;	 

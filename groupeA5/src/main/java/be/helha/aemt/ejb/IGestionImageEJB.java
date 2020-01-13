@@ -12,7 +12,7 @@ public interface IGestionImageEJB {
 
 	public List<ImgEntite>findAll();
 	
-	public ImgEntite findOccurence(String nom);
+	public ImgEntite findOccurence(ImgEntite img);
 	
 	public ImgEntite add(ImgEntite i);
 	

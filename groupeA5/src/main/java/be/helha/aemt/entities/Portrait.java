@@ -2,10 +2,12 @@ package be.helha.aemt.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Portrait implements Serializable{
@@ -19,6 +21,7 @@ public class Portrait implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String temoignage;
+	@OneToOne(targetEntity=ImgEntite.class,cascade= CascadeType.PERSIST)
 	private ImgEntite img;
 	
 	public Portrait() {
@@ -26,7 +29,7 @@ public class Portrait implements Serializable{
 	}
 
 	public Portrait(String temoignage, ImgEntite img) {
-		super();
+		
 		this.temoignage = temoignage;
 		this.img = img;
 	}
