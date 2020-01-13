@@ -10,6 +10,12 @@ import be.helha.aemt.entities.Evenement;
 @Remote
 public interface IGestionEvenementEJB {
 
-	public List<Evenement>findAll();
+	public List<Evenement>findAllAccepter();
+	
+	public List<Evenement>findAllEnCours();
+	
+	public Evenement add(Evenement e);
+	
+	public Evenement modifier(Evenement e);
 	
 }

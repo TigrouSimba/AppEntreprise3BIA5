@@ -15,9 +15,27 @@ public class GestionEvenementEJB implements IGestionEvenementEJB {
 	private EvenementDAO dao;
 	
 	@Override
-	public List<Evenement> findAll() {
+	public List<Evenement> findAllAccepter() {
 		// TODO Auto-generated method stub
-		return dao.findAll();
+		return dao.findAllAccepter();
+	}
+	
+	@Override
+	public List<Evenement> findAllEnCours() {
+		// TODO Auto-generated method stub
+		return dao.findAllEnCours();
+	}
+
+	@Override
+	public Evenement add(Evenement e) {
+		// TODO Auto-generated method stub
+		return dao.add(e);
+	}
+
+	@Override
+	public Evenement modifier(Evenement e) {
+		// TODO Auto-generated method stub
+		return dao.modifier(e);
 	}
 
 	

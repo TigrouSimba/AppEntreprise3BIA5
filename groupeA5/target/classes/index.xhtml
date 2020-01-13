@@ -28,7 +28,7 @@
 						</h3>
 						<ul>
 							<h:form>
-								<ui:repeat value="#{evenementControl.ejb.findAll()}" var="item">
+								<ui:repeat value="#{evenementControl.ejb.findAllAccepter()}" var="item">
 									<li>
 										<div class="row">
 											<div
@@ -59,6 +59,16 @@
 							<li><i>"Il y a une bonne entente et ambiance"</i></li>
 						</ul>
 					</div>
+				</div>
+				<div class="row">
+					<h:form method="POST">
+					Nom de l'évènement: <h:inputText value="#{evenementControl.nomEvenement}" name="nom" id="nom" />
+					<br />
+					<h:commandButton
+						class="btn btn-lg btn-primary btn-block text-uppercase"
+						type="submit" action="#{evenementControl.ajoutEvenement()}"
+						value="Enregistrer"></h:commandButton>
+				</h:form>
 				</div>
 			</div>
 		</div>

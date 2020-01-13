@@ -22,6 +22,7 @@ public class Evenement implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nomEvenement;
+	private Integer accepter;
 	@OneToMany(mappedBy = "evenement")
 	private List<ImgEntite> imgsEvenement;
 	
@@ -31,6 +32,7 @@ public class Evenement implements Serializable{
 
 	public Evenement(String nomEvenement) {
 		this.nomEvenement = nomEvenement;
+		this.accepter=0;
 		imgsEvenement = new ArrayList<ImgEntite>();
 	}
 
@@ -57,11 +59,24 @@ public class Evenement implements Serializable{
 	public void setImgsEvenement(List<ImgEntite> imgsEvenement) {
 		this.imgsEvenement = imgsEvenement;
 	}
+	
+	public void ajoutImage(ImgEntite img) {
+		imgsEvenement.add(img);
+	}
+
+	public Integer getAccepter() {
+		return accepter;
+	}
+
+	public void setAccepter(Integer accepter) {
+		this.accepter = accepter;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((accepter == null) ? 0 : accepter.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((imgsEvenement == null) ? 0 : imgsEvenement.hashCode());
 		result = prime * result + ((nomEvenement == null) ? 0 : nomEvenement.hashCode());
@@ -77,6 +92,11 @@ public class Evenement implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Evenement other = (Evenement) obj;
+		if (accepter == null) {
+			if (other.accepter != null)
+				return false;
+		} else if (!accepter.equals(other.accepter))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -97,11 +117,8 @@ public class Evenement implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Evenement [id=" + id + ", nomEvenement=" + nomEvenement + ", imgsEvenement=" + imgsEvenement + "]";
-	}
-	
-	public void ajoutImage(ImgEntite img) {
-		imgsEvenement.add(img);
+		return "Evenement [id=" + id + ", nomEvenement=" + nomEvenement + ", accepter=" + accepter + ", imgsEvenement="
+				+ imgsEvenement + "]";
 	}
 	
 	
