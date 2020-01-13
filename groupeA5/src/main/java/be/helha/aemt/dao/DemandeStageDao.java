@@ -28,5 +28,6 @@ public class DemandeStageDao  {
 		// TODO Auto-generated method stub
 		em.persist(post);
 		
+		
 	}
 }

@@ -10,4 +10,6 @@ import be.helha.aemt.entities.OffreEmploi;
 public interface IGestionOffreEmploiEJB {
 	
 	public List<OffreEmploi>findAll();
+	public OffreEmploi add(OffreEmploi of);
+	
 }

@@ -18,5 +18,18 @@ public class GestionOffreEmploi implements IGestionOffreEmploiEJB  {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
+	@Override
+	public OffreEmploi add(OffreEmploi of) {
+		// TODO Auto-generated method stub
+		dao.post(of);
+		return null;
+	}
+
+	
+
+	
+
+	
+	
 
 }
