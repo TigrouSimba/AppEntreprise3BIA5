@@ -25,6 +25,13 @@
 	    <version>5.1.48</version>
 	</dependency>
 	
+	<dependency>
+	    <groupId>net.bootsfaces</groupId>
+	    <artifactId>bootsfaces</artifactId>
+	    <version>1.4.2</version>
+	    <scope>compile</scope>
+	</dependency>
+	
 	<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
 	<dependency>
 	    <groupId>javax</groupId>

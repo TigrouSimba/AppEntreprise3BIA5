@@ -12,6 +12,10 @@ public interface IGestionEleveEJB {
 
 	public List<Eleve>findAll();
 	
+	public List<Eleve>findAllSections(String sections);
+	
+	public List<Eleve>findSections();
+	
 	public Eleve findOccurence(Eleve eleve);
 	
 }

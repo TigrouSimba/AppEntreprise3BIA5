@@ -1,7 +1,10 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
-<html xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <head>
 <title>Annonces</title>
 <meta http-equiv="
@@ -14,7 +17,40 @@
      <div id="nav"/>
 	<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 35rem;">
   <div class="card-body">
-    
+    <div class="container-fluid">
+		<div class="row">
+			<h1>Liste de stage</h1>
+			
+		</div>
+		 
+		<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 35rem;">
+			<div class="card-body">		
+				<ui:repeat value="#{utilisateurControl.ejbEleve.findAll()}" var="item">
+					<div class="row" >
+						<div class="col col-6">
+							
+							#{item.nom} #{item.prenom} #{item.annee}
+					
+							
+						</div>
+						<div class="col col-6">
+						
+						</div>
+					</div>
+				</ui:repeat>
+				
+					<select name="eleve" id="eleve">
+					<ui:repeat value="#{utilisateurControl.ejbEleve.findSections()}" var="item">	
+					<option>#{item}</option>
+					</ui:repeat>
+					</select>
+					
+					
+					
+			</div>
+		</div>
+		
+	</div>	
       
   </div>
 </div>

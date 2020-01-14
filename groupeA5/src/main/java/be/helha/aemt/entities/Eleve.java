@@ -19,16 +19,18 @@ public class Eleve implements Serializable{
 	private Integer id;
 	private String nom,prenom;
 	private int annee;
+	private String sections;
 	
 	public Eleve() {
 		
 	}
 
-	public Eleve(String nom, String prenom, int annee) {
+	public Eleve(String nom, String prenom, int annee, String sections) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.annee = annee;
+		this.sections=sections;
 	}
 
 	public Integer getId() {
@@ -63,6 +65,14 @@ public class Eleve implements Serializable{
 		this.annee = annee;
 	}
 
+	public String getSections() {
+		return sections;
+	}
+
+	public void setSections(String sections) {
+		this.sections = sections;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -71,6 +81,7 @@ public class Eleve implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		result = prime * result + ((sections == null) ? 0 : sections.hashCode());
 		return result;
 	}
 
@@ -100,12 +111,17 @@ public class Eleve implements Serializable{
 				return false;
 		} else if (!prenom.equals(other.prenom))
 			return false;
+		if (sections == null) {
+			if (other.sections != null)
+				return false;
+		} else if (!sections.equals(other.sections))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Eleve [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", annee=" + annee + "]";
+		return "Eleve [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", annee=" + annee + ", sections=" +sections+"]";
 	}
 	
 	
