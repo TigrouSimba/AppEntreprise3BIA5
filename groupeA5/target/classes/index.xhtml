@@ -26,7 +26,7 @@
 						<h3>
 							<b><em>Evènements</em></b>
 						</h3>
-						<ul>
+						<ul style="list-style-type: none;">
 							<h:form>
 								<ui:repeat value="#{evenementControl.ejb.findAllAccepter()}" var="item">
 									<li>
@@ -50,7 +50,8 @@
 						<h:form rendered="#{utilisateurControl.isAdmin() eq 'true'}">
 				<div class="row">			
 					<h:form method="POST">
-					Nom de l'évènement: <h:inputText value="#{evenementControl.nomEvenement}" name="nom" id="nom" />
+					Nom de l'évènement: <h:inputText value="#{evenementControl.nomEvenement}" required="true"
+								requiredMessage="Le champ ne peut pas être vide"/>
 					<br />
 					<h:commandButton
 						class="btn btn-lg btn-primary btn-block text-uppercase"
@@ -64,15 +65,35 @@
 						<h3>
 							<b><em>Portraits</em></b>
 						</h3>
-						<ul style="list-style-type: none;">
-							<li><i>"Les cours sont très bien organisés"</i> - Jolyne
-								Kujo</li>
+						<!-- <ul style="list-style-type: none;">-->
+						
+							<ul style="list-style-type: none;">
+							<h:form>
+								<ui:repeat value="#{portraitControl.ejb.findAll()}" var="item" varStatus="myVarStatus">
+									<li>
+										<div class="row">
+											<div
+												class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
+												<div class="card-body">
+													<img src="data:image/jpg;base64,#{imageControl.imageShow(myVarStatus.index)}" height="200" width="200"/>
+													<br/>
+													<i>"#{item.temoignage}"</i>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ui:repeat>
+							</h:form>
 
-							<li><i>"Il y a une bonne entente et ambiance"</i></li>
 						</ul>
+						<h:form rendered="#{utilisateurControl.isAdmin() eq 'true'}">
 						<div class="row">			
 					<h:form method="POST" enctype="multipart/form-data">
-					Témoignage : <h:inputText value="#{portraitControl.temoignage}" name="nom" id="nom" />
+					Témoignage : <h:inputText value="#{portraitControl.temoignage}" required="true"
+								requiredMessage="Le champ ne peut pas être vide"/>
+					<br />
+					Nom de la personne ayant fait le témoignage : <h:inputText value="#{portraitControl.nom}" required="true"
+								requiredMessage="Le champ ne peut pas être vide"/>
 					<br />
 					Photo : <h:inputFile value="#{portraitControl.file}" name="file" id="file" />
 					<br/>
@@ -82,6 +103,7 @@
 						value="Enregistrer"></h:commandButton>
 				</h:form>
 				</div>
+				</h:form>
 					</div>
 				</div>
 				

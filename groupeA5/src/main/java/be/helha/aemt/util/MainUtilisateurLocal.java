@@ -46,7 +46,7 @@ public class MainUtilisateurLocal {
 		
 		ImgEntite img=new ImgEntite();
 		
-		Portrait po=new Portrait("", img);
+		Portrait po=new Portrait("","", img);
 		
 		EntityTransaction tx=em.getTransaction();
 		tx.begin();
