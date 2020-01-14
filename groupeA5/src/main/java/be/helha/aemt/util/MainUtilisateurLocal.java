@@ -26,19 +26,22 @@ public class MainUtilisateurLocal {
 		
 		EntityManager em=emf.createEntityManager();
 
-		Utilisateur ul=new Utilisateur("admin", "helha", "admin@gmail.com","admin");
+		Utilisateur ul=new Utilisateur("us1", "a", "us1@gmail.com","admin");
 		Utilisateur ul2=new Utilisateur("us2", "a", "us2@gmail.com","user");
 		Utilisateur ul3=new Utilisateur("us3", "a", "us3@gmail.com","ancien");
 		
 		Visiteur v1=new Visiteur("192.193.194.195");
 		
-		Eleve el=new Eleve("test", "el", 2020, "Informatique de gestion");
-		Eleve el2=new Eleve("test2", "el", 2020, "Informatique de gestion");
-		Eleve el3=new Eleve("test3", "el", 2020, "Comptabilité");
+		Eleve el=new Eleve("Nya", "Corentin", 2020, "Informatique de gestion");
+		Eleve el2=new Eleve("Opese", "Kevin", 2020, "Informatique de gestion");
+		Eleve el3=new Eleve("Nicole", "Catherine", 2021, "Comptabilité");
+		Eleve el4=new Eleve("Gérard", "Hubert", 2017, "Assistant de direction");
+		Eleve el5=new Eleve("Chevalier", "Pierre", 2018, "Informatique de gestion");
+		Eleve el6=new Eleve("Vincent", "Hubert", 2022, "Informatique de gestion");
 		
 		Annonce an1=new Annonce("nomAnnonce", "contenuAnnonce",  new Date(), ul);
 		
-		//Evenement en1=new Evenement("nomEvenement");
+		Evenement en1=new Evenement("nomEvenement");
 		
 		Formation fo1=new Formation("nomFormation", "lienFormation");
 		
@@ -46,9 +49,9 @@ public class MainUtilisateurLocal {
 		
 		DemandeStage do1 = new DemandeStage("nomStage","Stage");
 		
-		/*ImgEntite img=new ImgEntite();
+		ImgEntite img=new ImgEntite();
 		
-		Portrait po=new Portrait("","", img);*/
+		Portrait po=new Portrait("","", img);
 		
 		EntityTransaction tx=em.getTransaction();
 		tx.begin();
@@ -62,18 +65,21 @@ public class MainUtilisateurLocal {
 		em.persist(el);
 		em.persist(el2);
 		em.persist(el3);
+		em.persist(el4);
+		em.persist(el5);
+		em.persist(el6);
 		
 		em.persist(an1);
 		
-		//em.persist(en1);
+		em.persist(en1);
 		
 		em.persist(ofe1);
 		
 		em.persist(do1);
 		
-		/*em.persist(img);
+		em.persist(img);
 		
-		em.persist(po);*/
+		em.persist(po);
 		
 		tx.commit();
 			

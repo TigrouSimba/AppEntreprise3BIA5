@@ -15,83 +15,57 @@
 
   <body> 
      <div id="nav"/>
-	<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 35rem;">
+	<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: auto;">
   <div class="card-body">
     <div class="container-fluid">
 		<div class="row">
-			<h1>Liste de stage</h1>
+			<h1>Liste des étudiants</h1>
 			
 		</div>
+
+		<form>
+		    <input type="text" id="recherche" />
+		</form>	
+		<br></br><br></br>
+		
+		<nav>
+		  <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+		    <a class="nav-item nav-link active" id="nav-informatique-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-home" aria-selected="true">Informatique de gestion</a>
+		    <a class="nav-item nav-link" id="nav-comptabilite-tab" data-toggle="tab" href="#nav-compta" role="tab" aria-controls="nav-profile" aria-selected="false">Comptabilité</a>
+		    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-assistant" role="tab" aria-controls="nav-contact" aria-selected="false">Assistant de direction</a>
+		  </div>
+		</nav>
+		
+		<div class="tab-content" id="nav-myTab">
+		  <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+		 	 <h:form>
+			  	<b:dataTable value="#{utilisateurControl.ejbEleve.findAllSections('Informatique de gestion')}" var="o">
+	                <b:dataTableColumn value="#{o.nom}"  label="Nom"/>
+	                <b:dataTableColumn value="#{o.prenom}" label="Prénom"/> 
+	                <b:dataTableColumn value="#{o.annee}" label="Année de diplomation"/> 
+	            </b:dataTable>                           
+           	 </h:form>
+		  </div>
+		  <div class="tab-pane fade" id="nav-compta" role="tabpanel" aria-labelledby="nav-compta-tab">
+		 	 <h:form>
+			  	<b:dataTable value="#{utilisateurControl.ejbEleve.findAllSections('Comptabilité')}" var="o">
+	                <b:dataTableColumn value="#{o.nom}"  label="Nom"/>
+	                <b:dataTableColumn value="#{o.prenom}" label="Prénom"/> 
+	                <b:dataTableColumn value="#{o.annee}" label="Année de diplomation"/> 
+	            </b:dataTable>                           
+           	 </h:form>
+		  </div>
+		  <div class="tab-pane fade" id="nav-assistant" role="tabpanel" aria-labelledby="nav-assistant-tab">
+		 	 <h:form>
+			  	<b:dataTable value="#{utilisateurControl.ejbEleve.findAllSections('Assistant de direction')}" var="o">
+	                <b:dataTableColumn value="#{o.nom}"  label="Nom"/>
+	                <b:dataTableColumn value="#{o.prenom}" label="Prénom"/> 
+	                <b:dataTableColumn value="#{o.annee}" label="Année de diplomation"/> 
+	            </b:dataTable>                           
+           	 </h:form>
+		    </div>
+	 	  </div>		
 		 
-		<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 35rem;">
-			<div class="card-body">		
-				<ui:repeat value="#{utilisateurControl.ejbEleve.findAll()}" var="item">
-					<div class="row" >
-						<div class="col col-6">
-							
-							#{item.nom} #{item.prenom} #{item.annee}
-					
-							
-						</div>
-						<div class="col col-6">
-						
-						</div>
-					</div>
-				</ui:repeat>
-				
-					<select name="eleve" id="eleve">
-					<ui:repeat value="#{utilisateurControl.ejbEleve.findSections()}" var="item">	
-					<option id="test">#{item}</option>
-					</ui:repeat>
-					</select>
-					
-				
-			  	
-				<ui:repeat value="#{utilisateurControl.ejbEleve.findAllSections(eleve)}" var="item">
-					<div class="row" >
-						<div class="col col-6">
-							
-							#{item.nom} #{item.prenom} #{item.annee}
-					
-							
-						</div>
-						<div class="col col-6">
-						
-						</div>
-					</div>
-				</ui:repeat>
-				
-				<h:dataTable value="#{utilisateurControl.ejbEleve.findAll()}" var="o">
- 
-					<h:column>
-						#{o.nom}
-					</h:column>
-				
-					<h:column>
-						#{o.prenom}
-					</h:column>
-				
-					<h:column>
-						#{o.annee}
-					</h:column>
-				 
-				</h:dataTable>
-				
-				<h:form>
-				  <b:dataTable value="#{utilisateurControl.ejbEleve.findAll()}"
-				               var="o">
-				    <b:dataTableColumn value="#{o.nom}" />
-				    <b:dataTableColumn value="#{o.prenom}" />
-				    <b:dataTableColumn value="#{o.annee}" />
-				  </b:dataTable>
-				</h:form>
-					
-					
-					
-					
-					
-			</div>
-		</div>
 		
 	</div>	
       

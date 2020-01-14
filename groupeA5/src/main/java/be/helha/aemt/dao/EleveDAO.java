@@ -25,7 +25,7 @@ public class EleveDAO {
 	}
 	
 	public List<Eleve> findAllSections(String sections) {		
-		String requete="SELECT el FROM Eleve el where el.sections=:pSections";
+		String requete="SELECT el FROM Eleve el where el.sections=:pSections order by el.annee desc";
 		TypedQuery<Eleve>qSelectAllSections=em.createQuery(requete,Eleve.class);
 		qSelectAllSections.setParameter("pSections", sections);	
 		List<Eleve>req=qSelectAllSections.getResultList();
