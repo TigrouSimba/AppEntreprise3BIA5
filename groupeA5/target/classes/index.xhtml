@@ -47,19 +47,25 @@
 							</h:form>
 
 						</ul>
-						<h:form rendered="#{utilisateurControl.isAdmin() eq 'true'}">
-				<div class="row">			
-					<h:form method="POST">
+						
+					<h:form method="POST" rendered="#{utilisateurControl.isAdmin() eq 'true'}" enctype="multipart/form-data">
 					Nom de l'évènement: <h:inputText value="#{evenementControl.nomEvenement}" required="true"
 								requiredMessage="Le champ ne peut pas être vide"/>
-					<br />
+					
+					<br/>
 					<h:commandButton
 						class="btn btn-lg btn-primary btn-block text-uppercase"
 						type="submit" action="#{evenementControl.ajoutEvenement()}"
 						value="Enregistrer"></h:commandButton>
 				</h:form>
-				</div>
+				<br />
+				<h:form enctype="multipart/form-data">
+					Photo : <h:inputFile value="#{evenementControl.img}"/>
+					<h:commandButton
+						    value="Ajouter l'image"
+						    action="#{evenementControl.addtoList()}"/>
 				</h:form>
+				
 					</div>
 					<div class="col col-5">
 						<h3>
@@ -77,7 +83,7 @@
 												<div class="card-body">
 													<img src="data:image/jpg;base64,#{imageControl.imageShow(myVarStatus.index)}" height="200" width="200"/>
 													<br/>
-													<i>"#{item.temoignage}"</i>
+													<i>"#{item.temoignage}"</i> - #{item.nom}
 												</div>
 											</div>
 										</div>
@@ -86,13 +92,13 @@
 							</h:form>
 
 						</ul>
-						<h:form rendered="#{utilisateurControl.isAdmin() eq 'true'}">
-						<div class="row">			
-					<h:form method="POST" enctype="multipart/form-data">
+						
+								
+					<h:form method="POST" enctype="multipart/form-data" rendered="#{utilisateurControl.isAdmin() eq 'true'}">
 					Témoignage : <h:inputText value="#{portraitControl.temoignage}" required="true"
 								requiredMessage="Le champ ne peut pas être vide"/>
 					<br />
-					Nom de la personne ayant fait le témoignage : <h:inputText value="#{portraitControl.nom}" required="true"
+					Nom de l'ancien : <h:inputText value="#{portraitControl.nom}" required="true"
 								requiredMessage="Le champ ne peut pas être vide"/>
 					<br />
 					Photo : <h:inputFile value="#{portraitControl.file}" name="file" id="file" />
@@ -102,8 +108,8 @@
 						type="submit" action="#{portraitControl.ajoutPortrait()}"
 						value="Enregistrer"></h:commandButton>
 				</h:form>
-				</div>
-				</h:form>
+				
+				
 					</div>
 				</div>
 				

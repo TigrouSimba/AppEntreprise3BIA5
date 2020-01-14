@@ -31,3 +31,21 @@ pour association mettre un bouton et texte pour ajouter des images
 il faut importer un fichier excel
 
 il faut stocker les images directement dans la db
+
+ajouter un email pour utilisateur
+
+pour se connecter c'est l'email et le mot de passe
+
+quand l'utilisateur est dans la db et que c'est infos sont correctes il est inscrit
+
+si l'élève existe mais n'est pas dans la db et qu'il s'inscrit, une notification est envoyé à l'administrateur pour valider son inscription et son ajout dans la table utilisateur et eleve
+
+login : admin
+
+mdp : helha
+
+pour les portraits le nom doit être celui d'un ancien dans la db si pas erreur
+
+dans l'annuaire la possibilité de rajouter un portrait en cherchant un ancien serait bien
+
+mettre user helha pour compte ancien
