@@ -33,6 +33,8 @@ public class MainUtilisateurLocal {
 		Visiteur v1=new Visiteur("192.193.194.195");
 		
 		Eleve el=new Eleve("test", "el", 2020, "Informatique de gestion");
+		Eleve el2=new Eleve("test2", "el", 2020, "Informatique de gestion");
+		Eleve el3=new Eleve("test3", "el", 2020, "Comptabilité");
 		
 		Annonce an1=new Annonce("nomAnnonce", "contenuAnnonce",  new Date(), ul);
 		
@@ -58,6 +60,8 @@ public class MainUtilisateurLocal {
 		em.persist(v1);
 		
 		em.persist(el);
+		em.persist(el2);
+		em.persist(el3);
 		
 		em.persist(an1);
 		

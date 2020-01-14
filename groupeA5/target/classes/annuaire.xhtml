@@ -41,9 +41,52 @@
 				
 					<select name="eleve" id="eleve">
 					<ui:repeat value="#{utilisateurControl.ejbEleve.findSections()}" var="item">	
-					<option>#{item}</option>
+					<option id="test">#{item}</option>
 					</ui:repeat>
 					</select>
+					
+				
+			  	
+				<ui:repeat value="#{utilisateurControl.ejbEleve.findAllSections(eleve)}" var="item">
+					<div class="row" >
+						<div class="col col-6">
+							
+							#{item.nom} #{item.prenom} #{item.annee}
+					
+							
+						</div>
+						<div class="col col-6">
+						
+						</div>
+					</div>
+				</ui:repeat>
+				
+				<h:dataTable value="#{utilisateurControl.ejbEleve.findAll()}" var="o">
+ 
+					<h:column>
+						#{o.nom}
+					</h:column>
+				
+					<h:column>
+						#{o.prenom}
+					</h:column>
+				
+					<h:column>
+						#{o.annee}
+					</h:column>
+				 
+				</h:dataTable>
+				
+				<h:form>
+				  <b:dataTable value="#{utilisateurControl.ejbEleve.findAll()}"
+				               var="o">
+				    <b:dataTableColumn value="#{o.nom}" />
+				    <b:dataTableColumn value="#{o.prenom}" />
+				    <b:dataTableColumn value="#{o.annee}" />
+				  </b:dataTable>
+				</h:form>
+					
+					
 					
 					
 					
