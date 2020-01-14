@@ -32,7 +32,7 @@ public class MainUtilisateurLocal {
 		
 		Visiteur v1=new Visiteur("192.193.194.195");
 		
-		Eleve el=new Eleve("test", "el", 2020);
+		Eleve el=new Eleve("test", "el", 2020, "Informatique de gestion");
 		
 		Annonce an1=new Annonce("nomAnnonce", "contenuAnnonce",  new Date(), ul);
 		
