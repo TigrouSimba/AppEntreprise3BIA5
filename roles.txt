@@ -55,3 +55,5 @@ pour eleve ajouter les éléments :
 numero de gsm
 
 entreprise
+
+photo de profil pour eleve

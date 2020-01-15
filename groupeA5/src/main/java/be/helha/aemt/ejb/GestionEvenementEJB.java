@@ -44,6 +44,11 @@ public class GestionEvenementEJB implements IGestionEvenementEJB {
 		// TODO Auto-generated method stub
 		return dao.modifier(e);
 	}
+	
+	@Override
+	public void delete(Evenement e) {
+		dao.delete(e);
+	}
 
 	
 

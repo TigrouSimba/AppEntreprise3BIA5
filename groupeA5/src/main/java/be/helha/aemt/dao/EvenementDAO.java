@@ -45,4 +45,8 @@ public class EvenementDAO {
 		em.merge(e);
 		return e;
 	}
+	
+	public void delete(Evenement e) {
+		em.remove(em.merge(e));
+	}
 }

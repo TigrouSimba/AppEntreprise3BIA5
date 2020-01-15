@@ -65,6 +65,7 @@ public class PortraitControl implements Serializable{
 		Portrait po =new Portrait(temoignage,nom,img);
 		ejb.add(po);
 		temoignage="";
+		nom="";
 		return "index.xhtml";
 	}
 
@@ -128,5 +129,9 @@ public class PortraitControl implements Serializable{
 		this.nom = nom;
 	}
 	
+	public String deletePortrait(Portrait portrait) {
+		ejb.delete(portrait);
+		return "index.xhtml?faces-redirect=true";		
+	}
 	
 }

@@ -60,8 +60,8 @@ public class EvenementControl implements Serializable{
 	}
 	
 	public String ajoutEvenement() {
-		if(nomEvenement.equals("") || imgs.size()==0){
-			return "";
+		if(nomEvenement.equals("")){
+			return "index.xhtml?faces-redirect=true";
 		}
 		Evenement el =new Evenement(nomEvenement);
 		//ejb.add(el);
@@ -75,7 +75,7 @@ public class EvenementControl implements Serializable{
 		ejb.add(el);
 		nomEvenement="";
 		imgs.clear();
-		return "index.xhtml";
+		return "index.xhtml?faces-redirect=true";
 	}
 	
 	public String accepterEvenement(Evenement e) {
@@ -127,5 +127,12 @@ public class EvenementControl implements Serializable{
 	public void setEjbImg(IGestionImageEJB ejbImg) {
 		this.ejbImg = ejbImg;
 	}
+	
+	public String deleteEvent(Evenement event) {
+		ejb.delete(event);
+		return "index.xhtml?faces-redirect=true";
+		
+	}
+	
 	
 }

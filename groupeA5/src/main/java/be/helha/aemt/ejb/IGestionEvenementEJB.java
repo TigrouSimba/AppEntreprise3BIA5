@@ -21,4 +21,6 @@ public interface IGestionEvenementEJB {
 	
 	public Evenement modifier(Evenement e);
 	
+	public void delete(Evenement e);
+	
 }

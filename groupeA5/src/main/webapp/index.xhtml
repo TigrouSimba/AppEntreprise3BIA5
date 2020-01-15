@@ -41,6 +41,9 @@
 														<f:param name="id" value="#{item.id}" />
 													</h:link>
 												</div>
+												<h:form rendered="#{utilisateurControl.isAdmin() eq 'true'}">
+													<h:commandButton value="Supprimer" class="btn btn-danger" action="#{evenementControl.deleteEvent(item)}"/>
+												</h:form>
 											</div>
 										</div>
 									</li>
@@ -79,7 +82,7 @@
 					
 			
 					<h:commandButton
-						class="btn btn-lg btn-primary btn-block text-uppercase"
+						class="btn btn-primary"
 						type="submit" action="#{evenementControl.ajoutEvenement()}"
 						value="Enregistrer"></h:commandButton>
 				</h:form>
@@ -138,7 +141,7 @@
 					Photo : <h:inputFile value="#{portraitControl.file}" name="file" id="file" />
 					<br/>
 					<h:commandButton
-						class="btn btn-lg btn-primary btn-block text-uppercase"
+						class="btn btn-primary"
 						type="submit" action="#{portraitControl.ajoutPortrait()}"
 						value="Enregistrer"></h:commandButton>
 				</h:form>
