@@ -57,6 +57,12 @@ public class ImgEntite implements Serializable{
 		this.img = img;
 		
 	}
+	
+	public ImgEntite(byte[] img, Evenement evenement) {
+		
+		this.img = img;
+		this.evenement = evenement;
+	}
 
 	public Integer getId() {
 		return id;

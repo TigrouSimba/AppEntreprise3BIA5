@@ -35,6 +35,8 @@ public class PortraitControl implements Serializable{
 	
 	private String temoignage="";
 	
+	private String nom="";
+	
 	private ImageControl imgControl;
 	
 	private Part file;
@@ -59,8 +61,8 @@ public class PortraitControl implements Serializable{
 			e.printStackTrace();
 		}	    	 
 		ImgEntite img=new ImgEntite(buffer);
-		ejbImg.add(img);		
-		Portrait po =new Portrait(temoignage,img);
+		//ejbImg.add(img);		
+		Portrait po =new Portrait(temoignage,nom,img);
 		ejb.add(po);
 		temoignage="";
 		return "index.xhtml";
@@ -116,6 +118,14 @@ public class PortraitControl implements Serializable{
 
 	public void setEjbImg(IGestionImageEJB ejbImg) {
 		this.ejbImg = ejbImg;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 	
 	

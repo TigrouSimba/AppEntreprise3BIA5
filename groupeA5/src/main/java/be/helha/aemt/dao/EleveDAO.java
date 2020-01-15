@@ -24,6 +24,20 @@ public class EleveDAO {
 		return qSelectAll.getResultList();
 	}
 	
+	public List<Eleve> findAllSections(String sections) {		
+		String requete="SELECT el FROM Eleve el where el.sections=:pSections order by el.annee desc";
+		TypedQuery<Eleve>qSelectAllSections=em.createQuery(requete,Eleve.class);
+		qSelectAllSections.setParameter("pSections", sections);	
+		List<Eleve>req=qSelectAllSections.getResultList();
+		return req.size()==0?null:req;
+	}
+	
+	public List<Eleve> findSections() {		
+		String requete="SELECT distinct el.sections FROM Eleve el";
+		TypedQuery<Eleve>qSelectSections=em.createQuery(requete,Eleve.class);
+		return qSelectSections.getResultList();
+	}
+	
 	public Eleve findOccurence(Eleve eleve) {
 		String requete="select el FROM Eleve el where el.nom=:pNom and "
 				+ "el.prenom=:pPrenom and el.annee=:pAnnee";

@@ -32,7 +32,12 @@ public class MainUtilisateurLocal {
 		
 		Visiteur v1=new Visiteur("192.193.194.195");
 		
-		Eleve el=new Eleve("test", "el", 2020);
+		Eleve el=new Eleve("Nya", "Corentin", 2020, "Informatique de gestion");
+		Eleve el2=new Eleve("Opese", "Kevin", 2020, "Informatique de gestion");
+		Eleve el3=new Eleve("Nicole", "Catherine", 2021, "Comptabilité");
+		Eleve el4=new Eleve("Gérard", "Hubert", 2017, "Assistant de direction");
+		Eleve el5=new Eleve("Chevalier", "Pierre", 2018, "Informatique de gestion");
+		Eleve el6=new Eleve("Vincent", "Hubert", 2022, "Informatique de gestion");
 		
 		Annonce an1=new Annonce("nomAnnonce", "contenuAnnonce",  new Date(), ul);
 		
@@ -46,7 +51,7 @@ public class MainUtilisateurLocal {
 		
 		ImgEntite img=new ImgEntite();
 		
-		Portrait po=new Portrait("", img);
+		Portrait po=new Portrait("","", img);
 		
 		EntityTransaction tx=em.getTransaction();
 		tx.begin();
@@ -58,6 +63,11 @@ public class MainUtilisateurLocal {
 		em.persist(v1);
 		
 		em.persist(el);
+		em.persist(el2);
+		em.persist(el3);
+		em.persist(el4);
+		em.persist(el5);
+		em.persist(el6);
 		
 		em.persist(an1);
 		

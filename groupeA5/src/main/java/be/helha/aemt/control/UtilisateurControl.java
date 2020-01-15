@@ -23,6 +23,7 @@ public class UtilisateurControl implements Serializable{
 
 	private String nom="",prenom="",mdp="",message="";
 	private int annee;
+	private String sections="";
 	private Eleve el;
 
 	@EJB
@@ -65,6 +66,14 @@ public class UtilisateurControl implements Serializable{
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getSections() {
+		return sections;
+	}
+
+	public void setSections(String sections) {
+		this.sections = sections;
 	}
 
 	public Eleve getEl() {
@@ -116,7 +125,7 @@ public class UtilisateurControl implements Serializable{
 	}
 	
 	public String register() {
-		el=new Eleve(nom,prenom,annee);
+		el=new Eleve(nom,prenom,annee,sections);
 		if(ejbEleve.findOccurence(el)==null) {
 			setMessage("L'utilisateur n'existe pas");
 			setNom("");

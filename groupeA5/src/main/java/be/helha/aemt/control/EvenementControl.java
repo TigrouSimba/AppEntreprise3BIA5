@@ -1,13 +1,21 @@
 package be.helha.aemt.control;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.servlet.http.Part;
 
 import be.helha.aemt.ejb.IGestionEvenementEJB;
+import be.helha.aemt.ejb.IGestionImageEJB;
 import be.helha.aemt.entities.Evenement;
+import be.helha.aemt.entities.ImgEntite;
 
 
 @SessionScoped
@@ -22,7 +30,14 @@ public class EvenementControl implements Serializable{
 	@EJB
 	private IGestionEvenementEJB ejb;
 	
+	@EJB
+	private IGestionImageEJB ejbImg;
+	
 	private String nomEvenement="";
+	
+	private List<ImgEntite> imgs=new ArrayList<ImgEntite>();
+	
+	private Part img;
 
 	public EvenementControl() {
 		
@@ -46,6 +61,14 @@ public class EvenementControl implements Serializable{
 	
 	public String ajoutEvenement() {
 		Evenement el =new Evenement(nomEvenement);
+		//ejb.add(el);
+		//el.setImgsEvenement(imgs);
+		for (ImgEntite imgEntite : imgs) {
+			imgEntite.setEvenement(el);
+			//ejbImg.add2(imgEntite);
+		}
+		//ejbImg.addList(imgs);
+		el.setImgsEvenement(imgs);
 		ejb.add(el);
 		nomEvenement="";
 		return "index.xhtml";
@@ -57,5 +80,48 @@ public class EvenementControl implements Serializable{
 		return "index.xhtml";
 	}
 	
+	public void addtoList() { // no parameter
+		InputStream initialStream = null;
+	    byte[] buffer = null;
+	    //File targetFile = new File("targetFile.jpg");
+	    OutputStream outStream = null;
+		try {
+			initialStream = img.getInputStream();
+			buffer = new byte[initialStream.available()];
+			initialStream.read(buffer);
+			/*outStream = new FileOutputStream(targetFile);
+			outStream.write(buffer);*/
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	 
+		
+		ImgEntite ie=new ImgEntite(buffer);
+	    imgs.add(ie);
+	}
+
+	public List<ImgEntite> getImgs() {
+		return imgs;
+	}
+
+	public void setImgs(List<ImgEntite> imgs) {
+		this.imgs = imgs;
+	}
+
+	public Part getImg() {
+		return img;
+	}
+
+	public void setImg(Part img) {
+		this.img = img;
+	}
+
+	public IGestionImageEJB getEjbImg() {
+		return ejbImg;
+	}
+
+	public void setEjbImg(IGestionImageEJB ejbImg) {
+		this.ejbImg = ejbImg;
+	}
 	
 }

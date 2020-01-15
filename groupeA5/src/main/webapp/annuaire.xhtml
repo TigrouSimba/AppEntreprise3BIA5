@@ -1,7 +1,10 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
-<html xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <head>
 <title>Annonces</title>
 <meta http-equiv="
@@ -12,9 +15,59 @@
 
   <body> 
      <div id="nav"/>
-	<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 35rem;">
+	<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: auto;">
   <div class="card-body">
-    
+    <div class="container-fluid">
+		<div class="row">
+			<h1>Liste des étudiants</h1>
+			
+		</div>
+
+		<form>
+		    <input type="text" id="recherche" />
+		</form>	
+		<br></br><br></br>
+		
+		<nav>
+		  <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+		    <a class="nav-item nav-link active" id="nav-informatique-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-home" aria-selected="true">Informatique de gestion</a>
+		    <a class="nav-item nav-link" id="nav-comptabilite-tab" data-toggle="tab" href="#nav-compta" role="tab" aria-controls="nav-profile" aria-selected="false">Comptabilité</a>
+		    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-assistant" role="tab" aria-controls="nav-contact" aria-selected="false">Assistant de direction</a>
+		  </div>
+		</nav>
+		
+		<div class="tab-content" id="nav-myTab">
+		  <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+		 	 <h:form>
+			  	<b:dataTable value="#{utilisateurControl.ejbEleve.findAllSections('Informatique de gestion')}" var="o">
+	                <b:dataTableColumn value="#{o.nom}"  label="Nom"/>
+	                <b:dataTableColumn value="#{o.prenom}" label="Prénom"/> 
+	                <b:dataTableColumn value="#{o.annee}" label="Année de diplomation"/> 
+	            </b:dataTable>                           
+           	 </h:form>
+		  </div>
+		  <div class="tab-pane fade" id="nav-compta" role="tabpanel" aria-labelledby="nav-compta-tab">
+		 	 <h:form>
+			  	<b:dataTable value="#{utilisateurControl.ejbEleve.findAllSections('Comptabilité')}" var="o">
+	                <b:dataTableColumn value="#{o.nom}"  label="Nom"/>
+	                <b:dataTableColumn value="#{o.prenom}" label="Prénom"/> 
+	                <b:dataTableColumn value="#{o.annee}" label="Année de diplomation"/> 
+	            </b:dataTable>                           
+           	 </h:form>
+		  </div>
+		  <div class="tab-pane fade" id="nav-assistant" role="tabpanel" aria-labelledby="nav-assistant-tab">
+		 	 <h:form>
+			  	<b:dataTable value="#{utilisateurControl.ejbEleve.findAllSections('Assistant de direction')}" var="o">
+	                <b:dataTableColumn value="#{o.nom}"  label="Nom"/>
+	                <b:dataTableColumn value="#{o.prenom}" label="Prénom"/> 
+	                <b:dataTableColumn value="#{o.annee}" label="Année de diplomation"/> 
+	            </b:dataTable>                           
+           	 </h:form>
+		    </div>
+	 	  </div>		
+		 
+		
+	</div>	
       
   </div>
 </div>

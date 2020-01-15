@@ -19,6 +19,18 @@ public class GestionEleveEJB implements IGestionEleveEJB {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
+	
+	@Override
+	public List<Eleve> findAllSections(String sections) {
+		// TODO Auto-generated method stub
+		return dao.findAllSections(sections);
+	}
+	
+	@Override
+	public List<Eleve> findSections() {
+		// TODO Auto-generated method stub
+		return dao.findSections();
+	}
 
 	@Override
 	public Eleve findOccurence(Eleve eleve) {

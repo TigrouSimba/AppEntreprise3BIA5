@@ -16,4 +16,8 @@ public interface IGestionImageEJB {
 	
 	public ImgEntite add(ImgEntite i);
 	
+	public List<ImgEntite> addList(List<ImgEntite> i);
+	
+	public ImgEntite add2(ImgEntite i);
+	
 }

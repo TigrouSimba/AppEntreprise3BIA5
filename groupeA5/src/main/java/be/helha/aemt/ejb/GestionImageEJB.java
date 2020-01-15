@@ -35,7 +35,17 @@ public class GestionImageEJB implements IGestionImageEJB {
 		// TODO Auto-generated method stub
 		return dao.add(i);
 	}
-
 	
+	@Override
+	public List<ImgEntite> addList(List<ImgEntite> i) {
+		// TODO Auto-generated method stub
+		return dao.addList(i);
+	}
+
+	@Override
+	public ImgEntite add2(ImgEntite i) {
+		// TODO Auto-generated method stub
+		return dao.add2(i);
+	}
 
 }

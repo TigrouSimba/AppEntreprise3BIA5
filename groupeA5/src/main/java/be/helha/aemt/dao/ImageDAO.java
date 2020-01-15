@@ -35,4 +35,14 @@ public class ImageDAO {
 		em.persist(i);
 		return i;	
 	}
+	
+	public ImgEntite add2(ImgEntite i) {
+		em.merge(i);
+		return i;	
+	}
+	
+	public List<ImgEntite> addList(List<ImgEntite> i) {
+		em.persist(i);
+		return i;	
+	}
 }
