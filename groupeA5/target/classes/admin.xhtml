@@ -21,7 +21,40 @@
 						<h3>
 							<b><em>Evènements</em></b>
 						</h3>
-						<ul>
+						<table class="table">
+						  <thead class="thead-dark">
+						    <tr>
+						      <th scope="col">#</th>
+						      <th scope="col">Email</th>
+						      <th scope="col">Nom de l'événement</th>
+						      <th scope="col">Validation</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<h:form>
+								<ui:repeat value="#{evenementControl.ejb.findAllEnCours()}" var="item" varStatus="myVarStatus">
+								
+								    <tr>
+								      <th scope="row">#{myVarStatus.index+1}</th>
+								      <td>#{item.user.email}</td>
+								      <td>
+								      	<h:link value="#{item.nomEvenement}" outcome="association.xhtml">
+											<f:param name="nom" value="#{item.nomEvenement}" />
+											<f:param name="id" value="#{item.id}" />
+										</h:link>
+								      </td>
+								      <td>
+								      	<h:commandButton
+												class="btn btn-lg btn-primary btn-block text-uppercase"
+												type="submit" action="#{evenementControl.accepterEvenement(item)}"
+												value="Enregistrer"></h:commandButton>
+								      </td>
+								    </tr>
+						   		</ui:repeat>
+						   	</h:form>
+						  </tbody>
+						</table>
+						<!--  <ul>
 							<h:form>
 								<ui:repeat value="#{evenementControl.ejb.findAllEnCours()}" var="item">
 									<li>
@@ -31,7 +64,6 @@
 											<div
 												class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
 												<div class="card-body">
-													<!-- <h:link outcome="association.xhtml" value="#{item.nomEvenement}" />-->
 													<h:link value="#{item.nomEvenement}"
 														outcome="association.xhtml">
 														<f:param name="nom" value="#{item.nomEvenement}" />
@@ -52,10 +84,11 @@
 							</h:form>
 
 						</ul>
+						-->
 					</div>
 					
 				</div>
-				<h:form method="POST" enctype="multipart/form-data">
+				<!--  <h:form method="POST" enctype="multipart/form-data">
 					File: <h:inputFile value="#{imageControl.file}" name="file" id="file" />
 					<br />
 					<h:commandButton
@@ -71,7 +104,6 @@
 											<div
 												class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
 												<div class="card-body">
-													<!-- <h:link outcome="association.xhtml" value="#{item.nomEvenement}" />-->
 													
 													<img src="data:image/jpg;base64,#{imageControl.imageShow(myVarStatus.index)}" height="200" width="200"/>
 													
@@ -84,7 +116,7 @@
 								</ui:repeat>
 							</h:form>
 							
-							
+							-->
 			</div>
 		</div>
 	</div>

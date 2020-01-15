@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Evenement implements Serializable{
@@ -26,14 +27,17 @@ public class Evenement implements Serializable{
 	private Integer accepter;
 	@OneToMany(targetEntity=ImgEntite.class,mappedBy = "evenement",cascade= CascadeType.PERSIST)
 	private List<ImgEntite> imgsEvenement;
+	@OneToOne(targetEntity=Utilisateur.class,cascade= CascadeType.PERSIST)
+	private Utilisateur user;
 	
 	public Evenement() {
 		
 	}
 
-	public Evenement(String nomEvenement) {
+	public Evenement(String nomEvenement,int accepter,Utilisateur user) {
 		this.nomEvenement = nomEvenement;
-		this.accepter=0;
+		this.accepter=accepter;
+		this.user=user;
 		imgsEvenement =new ArrayList<ImgEntite>();
 	}
 
@@ -71,6 +75,14 @@ public class Evenement implements Serializable{
 
 	public void setAccepter(Integer accepter) {
 		this.accepter = accepter;
+	}
+
+	public Utilisateur getUser() {
+		return user;
+	}
+
+	public void setUser(Utilisateur user) {
+		this.user = user;
 	}
 
 	@Override

@@ -28,7 +28,7 @@
 						</h3>
 						<ul style="list-style-type: none;">
 							<h:form>
-								<ui:repeat value="#{evenementControl.ejb.findAll()}" var="item">
+								<ui:repeat value="#{evenementControl.ejb.findAllAccepter()}" var="item">
 									<li>
 										<div class="row">
 											<div
@@ -55,7 +55,7 @@
 					
 						<h4><b><em>Ajout d'un évènement</em></b></h4>
 					
-					<h:form method="POST" rendered="#{utilisateurControl.isAdmin() eq 'true'}" enctype="multipart/form-data">
+					<h:form method="POST" rendered="#{utilisateurControl.isConnected() eq 'true'}" enctype="multipart/form-data">
 					Nom de l'évènement: <h:inputText value="#{evenementControl.nomEvenement}" required="true"
 								requiredMessage="Le champ ne peut pas être vide"/>
 					<br/>
@@ -87,7 +87,7 @@
 						value="Enregistrer"></h:commandButton>
 				</h:form>
 				<br/>
-				<h:form enctype="multipart/form-data" rendered="#{utilisateurControl.isAdmin() eq 'true'}">
+				<h:form enctype="multipart/form-data" rendered="#{utilisateurControl.isConnected() eq 'true'}">
 					Photo : <h:inputFile value="#{evenementControl.img}">
 					<!--  <f:ajax listener="#{evenementControl.addtoList()}" immediate="true" render="@form" /> -->
             

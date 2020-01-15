@@ -26,7 +26,7 @@ public class MainUtilisateurLocal {
 		
 		EntityManager em=emf.createEntityManager();
 
-		Utilisateur ul=new Utilisateur("us1", "a", "us1@gmail.com","admin");
+		Utilisateur ul=new Utilisateur("admin", "helha", "admin@gmail.com","admin");
 		Utilisateur ul2=new Utilisateur("us2", "a", "us2@gmail.com","user");
 		Utilisateur ul3=new Utilisateur("us3", "a", "us3@gmail.com","ancien");
 		
@@ -41,7 +41,7 @@ public class MainUtilisateurLocal {
 		
 		Annonce an1=new Annonce("nomAnnonce", "contenuAnnonce",  new Date(), ul);
 		
-		Evenement en1=new Evenement("nomEvenement");
+		Evenement en1=new Evenement("nomEvenement",1,ul);
 		
 		Formation fo1=new Formation("nomFormation", "lienFormation");
 		

@@ -9,13 +9,16 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 
 import be.helha.aemt.ejb.IGestionEvenementEJB;
 import be.helha.aemt.ejb.IGestionImageEJB;
+import be.helha.aemt.ejb.IGestionVisiteurEJB;
 import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.ImgEntite;
+import be.helha.aemt.entities.Utilisateur;
 
 
 @SessionScoped
@@ -32,6 +35,9 @@ public class EvenementControl implements Serializable{
 	
 	@EJB
 	private IGestionImageEJB ejbImg;
+	
+	@EJB
+	private IGestionVisiteurEJB ejbVisiteur;
 	
 	private String nomEvenement="";
 	
@@ -63,7 +69,12 @@ public class EvenementControl implements Serializable{
 		if(nomEvenement.equals("")){
 			return "index.xhtml?faces-redirect=true";
 		}
-		Evenement el =new Evenement(nomEvenement);
+		Utilisateur us = ejbVisiteur.findOccurence(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
+		
+		Evenement el =new Evenement(nomEvenement,0,us);
+		if(us.getGroupName().equals("admin")) {
+			el.setAccepter(1);
+		}
 		//ejb.add(el);
 		//el.setImgsEvenement(imgs);
 		for (ImgEntite imgEntite : imgs) {
@@ -128,6 +139,14 @@ public class EvenementControl implements Serializable{
 		this.ejbImg = ejbImg;
 	}
 	
+	public IGestionVisiteurEJB getEjbVisiteur() {
+		return ejbVisiteur;
+	}
+
+	public void setEjbVisiteur(IGestionVisiteurEJB ejbVisiteur) {
+		this.ejbVisiteur = ejbVisiteur;
+	}
+
 	public String deleteEvent(Evenement event) {
 		ejb.delete(event);
 		return "index.xhtml?faces-redirect=true";
