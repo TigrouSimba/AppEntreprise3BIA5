@@ -17,7 +17,7 @@ public class FormationDAO {
 	@PersistenceContext(unitName = "gAVisiteurJTA")
 	private EntityManager em;
 
-	public List<Formation> findAllAccepter() {		
+	public List<Formation> findAll() {		
 		String requete="SELECT formation FROM Formation formation";
 		TypedQuery<Formation>qSelectAll=em.createQuery(requete,Formation.class);
 		return qSelectAll.getResultList();
@@ -38,5 +38,11 @@ public class FormationDAO {
 		em.merge(f);
 		return f;
 	}
+	
+	public void supprimer(Formation f) {
+		em.remove(f);
+	}
+	
+	
 }
 

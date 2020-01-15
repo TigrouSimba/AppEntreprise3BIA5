@@ -15,9 +15,9 @@ public class GestionFormationEJB implements IGestionFormationEJB {
 	private FormationDAO dao;
 	
 	@Override
-	public List<Formation> findAllAccepter() {
+	public List<Formation> findAll() {
 		// TODO Auto-generated method stub
-		return dao.findAllAccepter();
+		return dao.findAll();
 	}
 	
 	@Override
@@ -27,15 +27,21 @@ public class GestionFormationEJB implements IGestionFormationEJB {
 	}
 
 	@Override
-	public Formation add(Formation e) {
+	public Formation add(Formation f) {
 		// TODO Auto-generated method stub
-		return dao.add(e);
+		return dao.add(f);
 	}
 
 	@Override
-	public Formation modifier(Formation e) {
+	public Formation modifier(Formation f) {
 		// TODO Auto-generated method stub
-		return dao.modifier(e);
+		return dao.modifier(f);
+	}
+	
+	@Override
+	public void supprimer(Formation f) {
+		// TODO Auto-generated method stub
+		dao.supprimer(f);
 	}
 
 	

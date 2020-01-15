@@ -14,30 +14,20 @@
      <div id="nav"/>
 	<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 35rem;">
   <div class="card-body">
+    
+    
+    <em><b>Formations</b></em>
     <div class="row">
+    <ul>
+	    <ui:repeat value="#{formationControl.ejb.findAll()}" var="item">
+			<li>
+	     	   <a href="#{item.lienFormation}">#{item.nomFormation}</a>
+	     	</li>
+		</ui:repeat>
+	</ul>
       
     </div>
-    <div class="row">
-      <em><b>Formations</b></em>
-    </div>
-    <ul>
-      <li>
-        <a href="">Formation en français</a>
-      </li>
-      <li>
-        <a href="">Formation en anglais</a>
-      </li>
-      <li>
-        <a href="">Formation en informatique</a>
-      </li>
-      <li>
-        <a href="">Formation en comptabilité</a>
-      </li>
-      <li>
-        <a href="">Formation en mathématique</a>
-      </li>
-    </ul>
-    
+
     <h:form>
 			<div class="row">
 				<label for="inputNom">Nom de la formation :</label>
@@ -59,9 +49,9 @@
 					</h:inputText>	
 				</div>	
 			</div>
-			<DIV class="row">
+			<div class="row">
 				<h:commandButton  action="#{formationControl.postFormation()}" class="btn btn-success btn-lg" value="Ajouter une formation"></h:commandButton>
-			</DIV>
+			</div>
 			<div class="row">
 				#{formationControl.nomFormation} #{formationControl.lienFormation}
 			</div>
