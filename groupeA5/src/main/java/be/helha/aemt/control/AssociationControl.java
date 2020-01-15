@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.inject.Named;
 
 import be.helha.aemt.ejb.IGestionEvenementEJB;
+import be.helha.aemt.ejb.IGestionImageEJB;
 
 
 @SessionScoped
@@ -23,6 +24,8 @@ public class AssociationControl implements Serializable{
 	@EJB
 	private IGestionEvenementEJB ejb;
 	
+	@EJB
+	private IGestionImageEJB ejbImg;
 	
 
 	public AssociationControl() {
@@ -35,6 +38,14 @@ public class AssociationControl implements Serializable{
 
 	public void setEjb(IGestionEvenementEJB ejb) {
 		this.ejb = ejb;
+	}
+
+	public IGestionImageEJB getEjbImg() {
+		return ejbImg;
+	}
+
+	public void setEjbImg(IGestionImageEJB ejbImg) {
+		this.ejbImg = ejbImg;
 	}
 
 	

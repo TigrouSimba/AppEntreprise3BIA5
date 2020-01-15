@@ -7,12 +7,19 @@ import javax.ejb.Stateless;
 
 import be.helha.aemt.dao.EvenementDAO;
 import be.helha.aemt.entities.Evenement;
+import be.helha.aemt.entities.ImgEntite;
 
 @Stateless
 public class GestionEvenementEJB implements IGestionEvenementEJB {
 
 	@EJB 
 	private EvenementDAO dao;
+	
+	@Override
+	public List<Evenement> findAll() {
+		// TODO Auto-generated method stub
+		return dao.findAll();
+	}
 	
 	@Override
 	public List<Evenement> findAllAccepter() {
@@ -36,6 +43,11 @@ public class GestionEvenementEJB implements IGestionEvenementEJB {
 	public Evenement modifier(Evenement e) {
 		// TODO Auto-generated method stub
 		return dao.modifier(e);
+	}
+	
+	@Override
+	public void delete(Evenement e) {
+		dao.delete(e);
 	}
 
 	

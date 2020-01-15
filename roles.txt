@@ -49,3 +49,11 @@ pour les portraits le nom doit être celui d'un ancien dans la db si pas erreur
 dans l'annuaire la possibilité de rajouter un portrait en cherchant un ancien serait bien
 
 mettre user helha pour compte ancien
+
+pour eleve ajouter les éléments :
+
+numero de gsm
+
+entreprise
+
+photo de profil pour eleve

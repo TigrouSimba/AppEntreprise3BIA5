@@ -33,4 +33,8 @@ public class PortraitDAO {
 		em.merge(e);
 		return e;
 	}
+	
+	public void delete(Portrait e) {
+		em.remove(em.merge(e));
+	}
 }

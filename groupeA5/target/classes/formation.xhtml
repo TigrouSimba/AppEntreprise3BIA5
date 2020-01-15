@@ -12,31 +12,84 @@
 
   <body> 
      <div id="nav"/>
-	<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 35rem;">
+	<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 45rem;">
   <div class="card-body">
-    <div class="row">
-      
-    </div>
-    <div class="row">
-      <em><b>Formations</b></em>
-    </div>
+     <h:form>
+    
+    <em><b>Formations</b></em>
+    
     <ul>
-      <li>
-        <a href="">Formation en français</a>
-      </li>
-      <li>
-        <a href="">Formation en anglais</a>
-      </li>
-      <li>
-        <a href="">Formation en informatique</a>
-      </li>
-      <li>
-        <a href="">Formation en comptabilité</a>
-      </li>
-      <li>
-        <a href="">Formation en mathématique</a>
-      </li>
-    </ul>
+	    <ui:repeat value="#{formationControl.ejb.findAll()}" var="item">
+		    <div class="row">
+				<li>
+				<div class="col col-auto">
+		     	   <a href="#{item.lienFormation}">#{item.nomFormation}</a>
+		     	   </div>
+		     	   
+		     	</li>
+		     	<div class="col col-auto">
+		     	   <h:commandButton  action="#{formationControl.ejb.deleteFormation(item)}" class="btn btn-danger btn-lg" value="Supprimer"></h:commandButton>
+		        </div>
+		     	 <div class="col col-auto">
+		     	   <h:commandButton  action="#{formationControl.updateFormation(item)}" class="btn btn-warning btn-lg" value="Modifier"></h:commandButton>
+		     	 </div>
+		     </div>
+		</ui:repeat>
+	</ul>
+      </h:form>
+    
+
+    <h:form method="POST">
+			<div class="row">
+				<label for="inputNom">Nom de la formation :</label>
+			</div>
+			<div class="row">
+				<div class="col col-sm-10">
+					<h:inputText class="form-control" id="inputNom" value="#{formationControl.nomFormation}">
+					
+					</h:inputText>
+				</div>
+			</div>
+			<div class="row">
+				<label for="inputLien">Lien de la formation :</label>
+			</div>
+			<div class="row">
+				<div class="col col-sm-10">
+					<h:inputText class="form-control"  id="inputLien" value="#{formationControl.lienFormation}">
+					
+					</h:inputText>	
+				</div>	
+			</div>
+			<div class="row">
+				<h:commandButton action="#{formationControl.postFormation()}" class="btn btn-success btn-lg" value="Ajouter une formation"></h:commandButton>
+			</div>
+	</h:form>
+	<h:form>
+			<div class="row">
+				<label for="newInputNom">Nouveau nom de la formation :</label>
+			</div>
+			<div class="row">
+				<div class="col col-sm-10">
+					<h:inputText class="form-control" id="newInputNom" value="#{formationControl.newNomFormation}">
+					
+					</h:inputText>
+				</div>
+			</div>
+			<div class="row">
+				<label for="newInputLien">Nouveau lien de la formation :</label>
+			</div>
+			<div class="row">
+				<div class="col col-sm-10">
+					<h:inputText class="form-control"  id="newInputLien" value="#{formationControl.newLienFormation}">
+					
+					</h:inputText>	
+				</div>	
+			</div>
+			
+			<div class="row">
+				#{formationControl.nomFormation} #{formationControl.lienFormation}
+			</div>
+	</h:form>
   </div>
 </div>
 

@@ -12,6 +12,8 @@ public interface IGestionImageEJB {
 
 	public List<ImgEntite>findAll();
 	
+	public List<ImgEntite>findAllImagesFromEvent(int id);
+	
 	public ImgEntite findOccurence(ImgEntite img);
 	
 	public ImgEntite add(ImgEntite i);

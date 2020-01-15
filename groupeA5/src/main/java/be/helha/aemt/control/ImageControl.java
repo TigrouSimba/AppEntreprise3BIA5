@@ -99,4 +99,10 @@ public class ImageControl implements Serializable{
 		return Base64.getEncoder().encodeToString(ejb.findAll().get(index).getImg());		
 	}
 	
+	public String imageShow(byte[] img) {
+		return Base64.getEncoder().encodeToString(img);
+	}
+	
+	
+	
 }
