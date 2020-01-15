@@ -12,6 +12,7 @@ public interface IGestionDemandeStageEJB {
 	public List<DemandeStage> findAll();
 	public void Add(DemandeStage post);
 	public DemandeStage findById(int id);
+	public DemandeStage delete(DemandeStage del);
 	
 		
 	

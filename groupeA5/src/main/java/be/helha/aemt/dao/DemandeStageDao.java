@@ -26,8 +26,14 @@ public class DemandeStageDao  {
 	
 	public void Add(DemandeStage post) {
 		// TODO Auto-generated method stub
-		em.merge(post);
-		
+		em.merge(post);	
+	}
+	public void delete(DemandeStage del)
+	{
+		if (!em.contains(del)) {
+		    del = em.merge(del);
+		}
+		em.remove(del);
 		
 	}
 	public DemandeStage findById(int id)

@@ -186,6 +186,10 @@ public class DemandeStageControl implements Serializable {
 		id=item.getId();
 		return "DemandeStageGenerator.xhtml";
 	}
+	public void supprimer(DemandeStage item)
+	{
+		ejb.delete(item);
+	}
 	
 
 	

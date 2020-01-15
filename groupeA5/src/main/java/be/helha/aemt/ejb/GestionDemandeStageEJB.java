@@ -30,6 +30,12 @@ public class GestionDemandeStageEJB implements IGestionDemandeStageEJB  {
 		// TODO Auto-generated method stub
 		return dao.findById(id);
 	}
+	@Override
+	public DemandeStage delete(DemandeStage del) {
+		// TODO Auto-generated method stub
+		 dao.delete(del);
+		 return null;
+	}
 
 	
 }
