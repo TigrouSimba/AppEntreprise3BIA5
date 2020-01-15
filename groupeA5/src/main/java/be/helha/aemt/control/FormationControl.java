@@ -83,6 +83,8 @@ import be.helha.aemt.entities.Formation;
 			Formation form = new Formation(nomFormation,lienFormation);
 			System.out.println(form.getNomFormation());
 			ejb.add(form);
+			nomFormation="";
+			lienFormation="";
 		}
 		
 		public void updateFormation(Formation formation)
@@ -90,6 +92,9 @@ import be.helha.aemt.entities.Formation;
 			formation.setLienFormation(newLienFormation);
 			formation.setNomFormation(newNomFormation);						
 			ejb.updateFormation(formation);
+			newLienFormation="";
+			newNomFormation="";
+			
 		}
 		
 		public void removeFormation(Formation formation)
