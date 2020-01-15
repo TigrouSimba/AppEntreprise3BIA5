@@ -37,6 +37,35 @@
         <a href="">Formation en mathématique</a>
       </li>
     </ul>
+    
+    <h:form>
+			<div class="row">
+				<label for="inputNom">Nom de la formation :</label>
+			</div>
+			<div class="row">
+				<div class="col col-sm-10">
+					<h:inputText class="form-control" type="text" id="inputNom" value="#{formationControl.nomFormation}" required="true" requiredMessage="Le champ ne peut pas être vide">
+					
+					</h:inputText>
+				</div>
+			</div>
+			<div class="row">
+				<label for="inputLien">Lien de la formation :</label>
+			</div>
+			<div class="row">
+				<div class="col col-sm-10">
+					<h:inputText class="form-control" type="text" id="inputLien" value="#{formationControl.lienFormation}" required="true" requiredMessage="Le champ ne peut pas être vide">
+					
+					</h:inputText>	
+				</div>	
+			</div>
+			<DIV class="row">
+				<h:commandButton  action="#{formationControl.postFormation()}" class="btn btn-success btn-lg" value="Ajouter une formation"></h:commandButton>
+			</DIV>
+			<div class="row">
+				#{formationControl.nomFormation} #{formationControl.lienFormation}
+			</div>
+	</h:form>
   </div>
 </div>
 
