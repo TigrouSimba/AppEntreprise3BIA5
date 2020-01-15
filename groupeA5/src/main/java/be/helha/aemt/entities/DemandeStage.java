@@ -1,6 +1,7 @@
 package be.helha.aemt.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 @Entity
 public class DemandeStage implements Serializable {
 	
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -18,6 +20,8 @@ public class DemandeStage implements Serializable {
 	
 	private String nom;
 	private String contenu;
+	private Date date;
+	
 	public DemandeStage(Integer id, String nom, String contenu) {
 		super();
 		this.id = id;
@@ -58,5 +62,10 @@ public class DemandeStage implements Serializable {
 		this.nom = nom;
 		this.contenu = contenu;
 	}
+	@Override
+	public String toString() {
+		return "DemandeStage [id=" + id + ", nom=" + nom + ", contenu=" + contenu + "]";
+	}
+
 
 }

@@ -27,7 +27,8 @@ public class OffreEmploiDao {
 	//Permet d'ajouter les emplois dans la base de donner
 	public OffreEmploi post(OffreEmploi of)
 	{
-		 em.persist(new OffreEmploi("zgzggz", "fgzfgzf","gzzggzz", new Utilisateur()));
+		System.out.println(of);
+		 em.merge(of);
 		 return of;
 	}
 

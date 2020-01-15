@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import be.helha.aemt.ejb.IGestionOffreEmploiEJB;
+import be.helha.aemt.ejb.IGestionVisiteurEJB;
 import be.helha.aemt.entities.OffreEmploi;
 import be.helha.aemt.entities.Utilisateur;
 @SessionScoped
@@ -27,6 +28,9 @@ public class OffreEmploiControl implements Serializable {
 	
 	@EJB
 	private IGestionOffreEmploiEJB ejb;
+	
+	@EJB
+	private IGestionVisiteurEJB ejbVisiteur;
 
 	public OffreEmploiControl() {
 		
@@ -77,12 +81,20 @@ public class OffreEmploiControl implements Serializable {
 	public void post()
 	{
 		
-		UtilisateurControl usc = new UtilisateurControl();
-		System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
-		//Utilisateur us = usc.getEjb().findOccurence(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
-		//System.out.println(us.toString());
 		
-		//ejb.add(new OffreEmploi(nom, contenu, categorie, us));
+		//System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
+		Utilisateur us = ejbVisiteur.findOccurence(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
+		//System.out.println(usc.getEjb().findOccurence(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser()).toString());
+		//System.out.println(us.toString());
+		//System.out.println(us.toString());
+		ejb.add(new OffreEmploi(nom, contenu, categorie, us));
+		System.out.println(us);
+	}
+	public IGestionVisiteurEJB getEjbVisiteur() {
+		return ejbVisiteur;
+	}
+	public void setEjbVisiteur(IGestionVisiteurEJB ejbVisiteur) {
+		this.ejbVisiteur = ejbVisiteur;
 	}
 	
 	

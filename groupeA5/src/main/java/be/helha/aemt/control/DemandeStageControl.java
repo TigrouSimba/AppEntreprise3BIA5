@@ -23,14 +23,12 @@ public class DemandeStageControl implements Serializable {
 	
 	private String contenu;
 	
+	private int id;
 	
-
-
-
+	
+	
 	private DemandeStage demandestage;
 	
-	
-
 	@EJB
 	private IGestionDemandeStageEJB ejb;
 	
@@ -81,6 +79,12 @@ public class DemandeStageControl implements Serializable {
 		DemandeStage da = new DemandeStage(nom,contenu);
 		System.out.println(da.getNom());
 		ejb.Add(da);
+	}
+	//Permet l'affichage du stage
+	public void selectAffichage(int id)
+	{
+		demandestage=ejb.findById(id);
+		System.out.println(demandestage.toString());
 	}
 
 	

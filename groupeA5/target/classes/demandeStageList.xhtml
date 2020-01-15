@@ -17,21 +17,36 @@
 			<h1>Liste de stage</h1>
 			#{demandeStageControl.nom}
 		</div>
+		
+		<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 35rem;">
+			<div class="card-body">
+				<DIV class="row">
+				<H2>#{demandeStageControl.demandestage.nom}</H2>
+				</DIV>
+				<div class="row">
+				#{demandeStageControl.demandestage.contenu}
+				</div>
+			</div>
+		</div>
 		 
 		<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 35rem;">
-			<div class="card-body">		
+			<div class="card-body">
+			<h:form>		
 				<ui:repeat value="#{demandeStageControl.ejb.findAll()}" var="item">
 					<div class="row" >
-						<div class="col col-6">
 							
-							#{item.nom} #{item.contenu}
-							<f:param name="nom" value="#{item.nom}" />
+							
+						
+						<div class="col col-6">
+							#{item.nom}
 						</div>
 						<div class="col col-6">
-						
+							<h:commandButton class="btn btn-block btn-primary" action="#{demandeStageControl.selectAffichage(item.id)()}" value="afficher"></h:commandButton>
 						</div>
 					</div>
 				</ui:repeat>
+			</h:form>
+			#{demandeStageControl.demandestage.nom}
 			</div>
 		</div>
 		

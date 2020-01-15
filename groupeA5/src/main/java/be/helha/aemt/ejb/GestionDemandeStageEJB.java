@@ -25,6 +25,11 @@ public class GestionDemandeStageEJB implements IGestionDemandeStageEJB  {
 		// TODO Auto-generated method stub
 		dao.Add(post);
 	}
+	@Override
+	public DemandeStage findById(int id) {
+		// TODO Auto-generated method stub
+		return dao.findById(id);
+	}
 
 	
 }

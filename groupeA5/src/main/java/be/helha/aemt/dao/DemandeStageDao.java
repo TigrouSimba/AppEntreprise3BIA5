@@ -30,4 +30,12 @@ public class DemandeStageDao  {
 		
 		
 	}
+	public DemandeStage findById(int id)
+	{
+		String requete ="SELECT eve FROM DemandeStage eve Where eve.id =:pId";
+		TypedQuery<DemandeStage>qSelectOne=em.createQuery(requete,DemandeStage.class);
+		qSelectOne.setParameter("pId", id);
+		return qSelectOne.getResultList().get(0);
+		
+	}
 }
