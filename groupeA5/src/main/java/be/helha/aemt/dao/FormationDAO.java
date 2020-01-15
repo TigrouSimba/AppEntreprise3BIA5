@@ -18,13 +18,13 @@ public class FormationDAO {
 	private EntityManager em;
 
 	public List<Formation> findAllAccepter() {		
-		String requete="SELECT eve FROM Formation eve where eve.accepter=1";
+		String requete="SELECT formation FROM Formation formation";
 		TypedQuery<Formation>qSelectAll=em.createQuery(requete,Formation.class);
 		return qSelectAll.getResultList();
 	}
 	
 	public List<Formation> findAllEnCours() {		
-		String requete="SELECT eve FROM Formation eve where eve.accepter=0";
+		String requete="SELECT formation FROM Formation formation";
 		TypedQuery<Formation>qSelectAll=em.createQuery(requete,Formation.class);
 		return qSelectAll.getResultList();
 	}

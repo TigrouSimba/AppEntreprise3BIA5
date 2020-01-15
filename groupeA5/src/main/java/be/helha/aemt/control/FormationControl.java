@@ -54,15 +54,7 @@ import be.helha.aemt.entities.Formation;
 		}
 
 		public FormationControl() {						
-			formation = new Formation();
-		}
-		
-		public Formation getFormation() {
-			return formation;
-		}
-
-		public void setFormation(Formation formation) {
-			this.formation = formation;
+			
 		}
 		
 		//Methode
