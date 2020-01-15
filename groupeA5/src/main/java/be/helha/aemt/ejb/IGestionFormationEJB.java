@@ -19,5 +19,9 @@ public interface IGestionFormationEJB {
 	
 	public void supprimer(Formation e);
 	
+	public void remove(Formation e);
+	
+	public void deleteFormation(Formation e);
+	
 }
 

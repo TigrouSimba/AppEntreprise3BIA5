@@ -12,21 +12,29 @@
 
   <body> 
      <div id="nav"/>
-	<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 35rem;">
+	<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 45rem;">
   <div class="card-body">
-    
+     <h:form>
     
     <em><b>Formations</b></em>
-    <div class="row">
+    
     <ul>
 	    <ui:repeat value="#{formationControl.ejb.findAll()}" var="item">
+	    <div class="row">
 			<li>
+			<div class="col col-auto">
 	     	   <a href="#{item.lienFormation}">#{item.nomFormation}</a>
+	     	   </div>
+	     	   
 	     	</li>
+	     	<div class="col col-auto">
+	     	   <h:commandButton  action="#{formationControl.ejb.deleteFormation(item)}" class="btn btn-danger btn-lg" value="Supprimer"></h:commandButton>
+	     	   </div>
+	     	   </div>
 		</ui:repeat>
 	</ul>
-      
-    </div>
+      </h:form>
+    
 
     <h:form>
 			<div class="row">

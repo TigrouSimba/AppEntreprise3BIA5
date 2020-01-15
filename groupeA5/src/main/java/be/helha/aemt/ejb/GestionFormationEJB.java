@@ -43,6 +43,18 @@ public class GestionFormationEJB implements IGestionFormationEJB {
 		// TODO Auto-generated method stub
 		dao.supprimer(f);
 	}
+	
+	@Override
+	public void remove(Formation f) {
+		// TODO Auto-generated method stub
+		dao.remove(f);
+	}
+	
+	@Override
+	public void deleteFormation(Formation f) {
+		// TODO Auto-generated method stub
+		dao.deleteFormation(f);
+	}
 
 	
 
