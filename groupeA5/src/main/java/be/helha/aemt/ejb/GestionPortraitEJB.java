@@ -34,7 +34,11 @@ public class GestionPortraitEJB implements IGestionPortraitEJB {
 		return null;
 	}
 	
-	
+	@Override
+	public void delete(Portrait e) {
+		// TODO Auto-generated method stub
+		dao.delete(e);
+	}
 
 	
 

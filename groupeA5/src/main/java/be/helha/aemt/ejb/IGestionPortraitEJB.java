@@ -17,4 +17,6 @@ public interface IGestionPortraitEJB {
 	
 	public Portrait modifier(Portrait e);
 	
+	public void delete(Portrait e);
+	
 }

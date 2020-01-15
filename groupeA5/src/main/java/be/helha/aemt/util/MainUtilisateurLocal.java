@@ -77,9 +77,9 @@ public class MainUtilisateurLocal {
 		
 		em.persist(do1);
 		
-		em.persist(img);
+		/*em.persist(img);
 		
-		em.persist(po);
+		em.persist(po);*/
 		
 		tx.commit();
 			
