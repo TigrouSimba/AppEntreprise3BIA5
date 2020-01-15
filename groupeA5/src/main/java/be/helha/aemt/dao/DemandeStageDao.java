@@ -26,7 +26,7 @@ public class DemandeStageDao  {
 	
 	public void Add(DemandeStage post) {
 		// TODO Auto-generated method stub
-		em.persist(post);
+		em.merge(post);
 		
 		
 	}

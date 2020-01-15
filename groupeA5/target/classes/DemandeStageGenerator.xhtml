@@ -13,38 +13,71 @@
 <ui:include src="navbar.xhtml"></ui:include>
 	
 	<div class="container-fluid">
-	<div class="card card-signin my-5">
-	<DIV class="card-body">
+	<div class="card card-signin my-5 bg-light">
+	<DIV class="card-body ">
 		<div class="row">
-			<h1>Creation de Demande de Stage</h1>
+			<h1>Création d'une demande de stage</h1>
 		</div>
 		<h:form>
 			<div class="row">
-				<div class="col col-sm-10">
-					<h:inputText class="form-control" type="text" value="#{demandeStageControl.nom}" id="Nom">
-					
-					</h:inputText>
-					
+				<div class="col col-sm-6">
+					<h2><LABEL>Nom du stage</LABEL></h2>
+				</div>
+				<div class="col col-6">
+					<h2><LABEL>Date</LABEL></h2>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col col-sm-6">
+					<h:inputText class="form-control" type="text" value="#{demandeStageControl.nom}" id="Nom"></h:inputText>
+				</div>
+				<div class="col col-2">
+					<h:inputText class="form-control" type="text" value="#{demandeStageControl.dateJour}" id="DateJ"></h:inputText>
+				</div>
+				<div class="col col-2">
+					<h:inputText class="form-control" type="text" value="#{demandeStageControl.dateMois}" id="DateM"></h:inputText>
+				</div>
+				<div class="col col-2">
+					<h:inputText class="form-control" type="text" value="#{demandeStageControl.dateAnne}" id="DateA"></h:inputText>
 				</div>
 			</div>
 			<div class="row">
 				<h2>Entreprise</h2>
 			</div>
 			<div class="row">
-				<h:inputText class="form-control" type="text" id="entreprise">
-					
-					</h:inputText>
+				 <h:inputText class="form-control form-text" type="text" id="Entreprise" value="#{demandeStageControl.entreprise}"></h:inputText>
 			</div>
 			<div class="row">
 				<h2>Contenu</h2>
 			</div>
 			<div class="row">
-				<h:inputTextarea class="form-control" type="text" id="contenu" value="#{demandeStageControl.contenu}" rows="10">
+				<h:inputTextarea class="form-control form-text " type="text" id="contenu" value="#{demandeStageControl.contenu}" rows="10">
 				
 				</h:inputTextarea>		
 			</div>
+			<div class="row">
+				<h2><LABEL>Mail de L'entreprise</LABEL></h2>
+			</div>
+			<div class="row">
+				<h:inputText class="form-control" value="#{demandeStageControl.mailEntreprise}"></h:inputText>
+			</div>
 			<DIV class="row">
-				<h:commandButton  action="#{demandeStageControl.postDemandeStage()}" class="btn btn-success btn-lg" value="Envoyer Une Lettre de motivation"></h:commandButton>
+				<LABEL>
+					<h2>Numero de telephone</h2>
+				</LABEL>
+			</DIV>
+			<DIV>
+				<LABEL>
+					<h:inputText class="form-control" value="#{demandeStageControl.numero}"></h:inputText>
+				</LABEL>
+			</DIV>
+			
+			<DIV class="row">
+				<h:commandButton  action="#{demandeStageControl.postDemandeStage()}" class="btn btn-success btn-lg" value="Envoyer une lettre de motivation"></h:commandButton>
+			</DIV>
+			<DIV class="row">
+				<h:commandButton  action="#{demandeStageControl.postDemandeStage()}" class="btn btn-danger btn-lg" value="Supprimer"></h:commandButton>
 			</DIV>
 			<div class="row">
 				#{demandeStageControl.nom} #{demandeStageControl.contenu}

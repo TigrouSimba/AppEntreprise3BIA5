@@ -34,6 +34,8 @@ public class Utilisateur extends Visiteur implements Serializable{
 	private List<Annonce> annonces;
 	@OneToMany(mappedBy = "createurEmploi")
 	private List<OffreEmploi> offresEmploi;
+	@OneToMany(mappedBy= "createurStage") 
+	private List<DemandeStage>demandeStage;
 	
 	public Utilisateur() {
 		
@@ -79,6 +81,20 @@ public class Utilisateur extends Visiteur implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}*/
+
+
+	public Utilisateur(String login, String password, String email, String groupName, ImgEntite photo,
+			List<Annonce> annonces, List<OffreEmploi> offresEmploi, List<DemandeStage> demandeStage) {
+		super();
+		this.login = login;
+		this.password = password;
+		this.email = email;
+		this.groupName = groupName;
+		this.photo = photo;
+		this.annonces = annonces;
+		this.offresEmploi = offresEmploi;
+		this.demandeStage = demandeStage;
+	}
 
 
 	public String getLogin() {
