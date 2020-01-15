@@ -33,9 +33,9 @@ public class GestionFormationEJB implements IGestionFormationEJB {
 	}
 
 	@Override
-	public Formation modifier(Formation f) {
+	public Formation updateFormation(Formation f) {
 		// TODO Auto-generated method stub
-		return dao.modifier(f);
+		return dao.updateFormation(f);
 	}
 	
 	@Override

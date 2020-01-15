@@ -15,7 +15,7 @@ public interface IGestionFormationEJB {
 	
 	public Formation add(Formation e);
 	
-	public Formation modifier(Formation e);
+	public Formation updateFormation(Formation e);
 	
 	public void supprimer(Formation e);
 	

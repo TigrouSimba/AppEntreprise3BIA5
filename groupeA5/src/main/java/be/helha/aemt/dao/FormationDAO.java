@@ -43,7 +43,7 @@ public class FormationDAO {
 		return f;
 	}
 	
-	public Formation modifier(Formation f) {
+	public Formation updateFormation(Formation f) {
 		em.merge(f);
 		return f;
 	}

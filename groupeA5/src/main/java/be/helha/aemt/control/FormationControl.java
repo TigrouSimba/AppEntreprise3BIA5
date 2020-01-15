@@ -21,6 +21,10 @@ import be.helha.aemt.entities.Formation;
 		private String nomFormation;
 		
 		private String lienFormation;
+		
+		private String newNomFormation;
+		
+		private String newLienFormation;
 
 		private Formation formation;
 		
@@ -53,6 +57,22 @@ import be.helha.aemt.entities.Formation;
 			this.lienFormation = lienFormation;
 		}
 
+		public String getNewNomFormation() {
+			return newNomFormation;
+		}
+
+		public void setNewNomFormation(String newNomFormation) {
+			this.newNomFormation = newNomFormation;
+		}
+
+		public String getNewLienFormation() {
+			return newLienFormation;
+		}
+
+		public void setNewLienFormation(String newLienFormation) {
+			this.newLienFormation = newLienFormation;
+		}
+
 		public FormationControl() {						
 			
 		}
@@ -63,6 +83,13 @@ import be.helha.aemt.entities.Formation;
 			Formation form = new Formation(nomFormation,lienFormation);
 			System.out.println(form.getNomFormation());
 			ejb.add(form);
+		}
+		
+		public void updateFormation(Formation formation)
+		{
+			formation.setLienFormation(newLienFormation);
+			formation.setNomFormation(newNomFormation);						
+			ejb.updateFormation(formation);
 		}
 		
 		public void removeFormation(Formation formation)
