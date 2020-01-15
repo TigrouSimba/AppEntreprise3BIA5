@@ -7,12 +7,19 @@ import javax.ejb.Stateless;
 
 import be.helha.aemt.dao.EvenementDAO;
 import be.helha.aemt.entities.Evenement;
+import be.helha.aemt.entities.ImgEntite;
 
 @Stateless
 public class GestionEvenementEJB implements IGestionEvenementEJB {
 
 	@EJB 
 	private EvenementDAO dao;
+	
+	@Override
+	public List<Evenement> findAll() {
+		// TODO Auto-generated method stub
+		return dao.findAll();
+	}
 	
 	@Override
 	public List<Evenement> findAllAccepter() {

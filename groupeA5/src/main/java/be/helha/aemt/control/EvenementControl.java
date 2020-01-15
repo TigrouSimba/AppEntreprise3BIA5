@@ -60,6 +60,9 @@ public class EvenementControl implements Serializable{
 	}
 	
 	public String ajoutEvenement() {
+		if(nomEvenement.equals("") || imgs.size()==0){
+			return "";
+		}
 		Evenement el =new Evenement(nomEvenement);
 		//ejb.add(el);
 		//el.setImgsEvenement(imgs);
@@ -71,6 +74,7 @@ public class EvenementControl implements Serializable{
 		el.setImgsEvenement(imgs);
 		ejb.add(el);
 		nomEvenement="";
+		imgs.clear();
 		return "index.xhtml";
 	}
 	

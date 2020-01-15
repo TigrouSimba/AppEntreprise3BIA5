@@ -47,5 +47,11 @@ public class GestionImageEJB implements IGestionImageEJB {
 		// TODO Auto-generated method stub
 		return dao.add2(i);
 	}
+	
+	@Override
+	public List<ImgEntite> findAllImagesFromEvent(int id) {
+		// TODO Auto-generated method stub
+		return dao.findAllImagesFromEvent(id);
+	}
 
 }

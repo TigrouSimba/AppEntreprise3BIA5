@@ -23,6 +23,13 @@ public class ImageDAO {
 		return qSelectAll.getResultList();
 	}
 	
+	public List<ImgEntite> findAllImagesFromEvent(int id) {		
+		String requete="SELECT img FROM ImgEntite img join img.evenement e where e.id=:pId";
+		TypedQuery<ImgEntite>qSelectAll=em.createQuery(requete,ImgEntite.class);
+		qSelectAll.setParameter("pId", id);
+		return qSelectAll.getResultList();
+	}
+	
 	public ImgEntite findOccurence(ImgEntite img) {
 		String requete="select image FROM ImgEntite image where image.img=:pImage";
 		TypedQuery<ImgEntite>qFind=em.createQuery(requete, ImgEntite.class);
