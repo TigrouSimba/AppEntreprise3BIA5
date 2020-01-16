@@ -190,13 +190,27 @@ public class DemandeStageControl implements Serializable {
 	{
 		Utilisateur us = ejbVisiteur.findOccurence(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
 		DemandeStage da;
+		int emploie = 0;
+		if(estUnEmploi == true)
+		{
+			emploie = 1;
+			System.out.println(emploie+"emploie");
+		}
+		System.out.println("estEmploie"+estUnEmploi);
+		
+			
+		
 		if(id==0)
 		{
 			da = new DemandeStage(nom,contenu,new Date(dateJour, dateMois, dateAnne),mailEntreprise,entreprise,numero,us);
+			new DemandeStage( nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,
+					 durre, numero, 0, emploie, us);
 		}
 		else
 		{
 			da = new DemandeStage(id,nom,contenu,new Date(dateJour, dateMois, dateAnne),mailEntreprise,entreprise,numero,us);
+			new DemandeStage( nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,
+					 durre, numero, 0, emploie, us);
 		}
 		
 		System.out.println(da.toString());
