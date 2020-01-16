@@ -1,7 +1,9 @@
 package be.helha.aemt.control;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Vector;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -41,6 +43,7 @@ public class DemandeStageControl implements Serializable {
 	
 	private String numero;
 	
+	private String tri="";
 	
 	
 	private DemandeStage demandestage;
@@ -77,6 +80,7 @@ public class DemandeStageControl implements Serializable {
 		
 		
 		demandestage = new DemandeStage();
+		
 	}
 	
 	public DemandeStage getDemandestage() {
@@ -190,18 +194,28 @@ public class DemandeStageControl implements Serializable {
 	{
 		ejb.delete(item);
 	}
-	
+	public ArrayList<DemandeStage>query()
+	{
+		ArrayList<DemandeStage>listeTrier = new ArrayList<DemandeStage>();
+		Vector<DemandeStage>list =  (Vector<DemandeStage>) ejb.findAll();
+		for (DemandeStage demandeStage : list) {
+			if(demandeStage.getNom().startsWith(tri))
+			{
+				listeTrier.add(demandeStage);
+				System.out.println(tri);
+			}
+		}
+		
+		return listeTrier;
+	}
 
-	
-	
+
+	public String getTri() {
+		return tri;
+	}
 
 
-
-
-	
-	
-	
-	
-	
-
+	public void setTri(String tri) {
+		this.tri = tri;
+	}
 }

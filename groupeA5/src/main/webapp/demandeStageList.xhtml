@@ -17,6 +17,23 @@
 			<h1>Liste de stages</h1>
 			
 		</div>
+		<h:form>
+		<div class="row">
+				<div class="col col-4">
+					<h2>tri</h2>
+				</div>
+				<div class="col col-4">
+					<h:inputText class="form-control" value="#{demandeStageControl.tri}"></h:inputText>
+				</div>
+				<div class="col col-4">
+					<h:commandButton class="btn btn-success" value="trier" action="{demandeStageControl.query()}"></h:commandButton>
+				</div>
+				<div class="row">
+				
+				</div>
+			</div>
+		</h:form>
+			
 		
 		<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 65rem;">
 			<div class="card-body">
@@ -48,7 +65,7 @@
 		<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 35rem;">
 			<div class="card-body">
 			<h:form>		
-				<ui:repeat value="#{demandeStageControl.ejb.findAll()}" var="item">
+				<ui:repeat value="#{demandeStageControl.query()}" var="item">
 					<div class="row" >
 							
 							
