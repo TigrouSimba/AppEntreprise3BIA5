@@ -22,8 +22,7 @@ import javax.imageio.ImageIO;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 
-
-import be.helha.aemt.ejb.IGestionImageEJB;
+import be.helha.aemt.ejb.GestionImageEJB;
 import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.ImgEntite;
 
@@ -34,7 +33,7 @@ public class ImageControl implements Serializable{
 	private Part file;
 
 	@EJB
-	private IGestionImageEJB ejb;
+	private GestionImageEJB ejb;
 	
 	public ImageControl() {
 		
@@ -48,11 +47,11 @@ public class ImageControl implements Serializable{
 		this.file = file;
 	}
 
-	public IGestionImageEJB getEjb() {
+	public GestionImageEJB getEjb() {
 		return ejb;
 	}
 
-	public void setEjb(IGestionImageEJB ejb) {
+	public void setEjb(GestionImageEJB ejb) {
 		this.ejb = ejb;
 	}
 

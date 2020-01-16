@@ -11,48 +11,48 @@ import be.helha.aemt.entities.ImgEntite;
 import be.helha.aemt.entities.Utilisateur;
 
 @Stateless
-public class GestionEvenementEJB implements IGestionEvenementEJB {
+public class GestionEvenementEJB  {
 
 	@EJB 
 	private EvenementDAO dao;
 	
-	@Override
+	
 	public List<Evenement> findAll() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
 	
-	@Override
+	
 	public List<Evenement> findAllAccepter() {
 		// TODO Auto-generated method stub
 		return dao.findAllAccepter();
 	}
 	
-	@Override
+	
 	public List<Evenement> findAllEnCours() {
 		// TODO Auto-generated method stub
 		return dao.findAllEnCours();
 	}
 	
-	@Override
+	
 	public Evenement findOccurence(int id) {
 		// TODO Auto-generated method stub
 		return dao.findOccurence(id);
 	}
 
-	@Override
+	
 	public Evenement add(Evenement e) {
 		// TODO Auto-generated method stub
 		return dao.add(e);
 	}
 
-	@Override
+	
 	public Evenement modifier(Evenement e) {
 		// TODO Auto-generated method stub
 		return dao.modifier(e);
 	}
 	
-	@Override
+	
 	public void delete(Evenement e) {
 		dao.delete(e);
 	}

@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +18,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 
-import be.helha.aemt.ejb.IGestionEvenementEJB;
-import be.helha.aemt.ejb.IGestionImageEJB;
-import be.helha.aemt.ejb.IGestionVisiteurEJB;
+import be.helha.aemt.ejb.GestionEvenementEJB;
+import be.helha.aemt.ejb.GestionImageEJB;
+import be.helha.aemt.ejb.GestionVisiteurEJB;
 import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.ImgEntite;
 import be.helha.aemt.entities.Utilisateur;
@@ -35,29 +36,31 @@ public class EvenementControl implements Serializable{
 	private static final long serialVersionUID = 1L;	
 
 	@EJB
-	private IGestionEvenementEJB ejb;
+	private GestionEvenementEJB ejb;
 	
 	@EJB
-	private IGestionImageEJB ejbImg;
+	private GestionImageEJB ejbImg;
 	
 	@EJB
-	private IGestionVisiteurEJB ejbVisiteur;
+	private GestionVisiteurEJB ejbVisiteur;
 	
-	private String nomEvenement="",contenu="";
+	private String nomEvenement="",contenu="",nomModif,contenuModif,messageBienvenue;	
 	
 	private List<ImgEntite> imgs=new ArrayList<ImgEntite>();
 	
 	private Part img;
+	
+	private Evenement eventToModif;
 
 	public EvenementControl() {
 		
 	}
 
-	public IGestionEvenementEJB getEjb() {
+	public GestionEvenementEJB getEjb() {
 		return ejb;
 	}
 
-	public void setEjb(IGestionEvenementEJB ejb) {
+	public void setEjb(GestionEvenementEJB ejb) {
 		this.ejb = ejb;
 	}
 
@@ -94,30 +97,50 @@ public class EvenementControl implements Serializable{
 		return "index.xhtml?faces-redirect=true";
 	}
 	
+	public String modifEvenement() {
+		if(nomModif.equals("")){
+			return "index.xhtml?faces-redirect=true";
+		}
+		Utilisateur us = ejbVisiteur.findOccurence(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
+		
+		eventToModif.setNomEvenement(nomModif);
+		eventToModif.setContenu(contenuModif);
+		if(!eventToModif.getUser().getGroupName().equals("admin")) {
+			eventToModif.setAccepter(0);
+		}
+		
+		ejb.add(eventToModif);
+		nomModif="";
+		contenuModif="";
+		eventToModif=null;
+		return "index.xhtml?faces-redirect=true";
+	}
+	
 	public String accepterEvenement(Evenement e) {
 		e.setAccepter(1);
 		ejb.modifier(e);
 		return "index.xhtml";
 	}
 	
-	public void addtoList() { // no parameter
+	public void addtoList() { 
+	    imgs.add(createImg());
+	}
+
+	
+	public ImgEntite createImg() {
 		InputStream initialStream = null;
 	    byte[] buffer = null;
-	    //File targetFile = new File("targetFile.jpg");
 	    OutputStream outStream = null;
 		try {
 			initialStream = img.getInputStream();
 			buffer = new byte[initialStream.available()];
 			initialStream.read(buffer);
-			/*outStream = new FileOutputStream(targetFile);
-			outStream.write(buffer);*/
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	 
 		
-		ImgEntite ie=new ImgEntite(buffer);
-	    imgs.add(ie);
+		return new ImgEntite(buffer);
 	}
 
 	public List<ImgEntite> getImgs() {
@@ -136,19 +159,19 @@ public class EvenementControl implements Serializable{
 		this.img = img;
 	}
 
-	public IGestionImageEJB getEjbImg() {
+	public GestionImageEJB getEjbImg() {
 		return ejbImg;
 	}
 
-	public void setEjbImg(IGestionImageEJB ejbImg) {
+	public void setEjbImg(GestionImageEJB ejbImg) {
 		this.ejbImg = ejbImg;
 	}
 	
-	public IGestionVisiteurEJB getEjbVisiteur() {
+	public GestionVisiteurEJB getEjbVisiteur() {
 		return ejbVisiteur;
 	}
 
-	public void setEjbVisiteur(IGestionVisiteurEJB ejbVisiteur) {
+	public void setEjbVisiteur(GestionVisiteurEJB ejbVisiteur) {
 		this.ejbVisiteur = ejbVisiteur;
 	}
 
@@ -181,18 +204,69 @@ public class EvenementControl implements Serializable{
 		  String st,tmp = ""; 
 		  try {
 			while ((st = br.readLine()) != null) {
-			    tmp=st; 
-			    System.out.println(st);
+			    messageBienvenue=st; 
 			  }
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
 		
-		return tmp;
+		return messageBienvenue;
 	}
 
 	
+	public String isCreator(Evenement e) {
+		String nom=FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+		if(nom==null) {
+			return "false";
+		}
+		Utilisateur ul=ejbVisiteur.findOccurence(nom);
+		if(ul==null) {
+			return "false";
+		}
+		if (e.getUser().getLogin().equals(nom) || ul.getGroupName().equals("admin")) {
+			return "true";
+		}
+		return "false";
+	}
 	
+	public void changeToModif(Evenement e) {
+		nomModif=e.getNomEvenement();
+		contenuModif=e.getContenu();
+		eventToModif=e;
+	}
+
+	public String getNomModif() {
+		return nomModif;
+	}
+
+	public void setNomModif(String nomModif) {
+		this.nomModif = nomModif;
+	}
+
+	public String getContenuModif() {
+		return contenuModif;
+	}
+
+	public void setContenuModif(String contenuModif) {
+		this.contenuModif = contenuModif;
+	}
+
+	public String modifMessageBienvenue() {
+		PrintWriter prw = null;
+		try {
+			prw = new PrintWriter (getClass().getClassLoader().getResource("message.txt").getFile());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    prw.println(messageBienvenue);          
+	    prw.close();
+		return "index.xhtml?faces-redirect=true";
+	}
+
+	public void setMessageBienvenue(String messageBienvenue) {
+		this.messageBienvenue = messageBienvenue;
+	}
 	
 }

@@ -36,6 +36,8 @@ public class Utilisateur extends Visiteur implements Serializable{
 	private List<OffreEmploi> offresEmploi;
 	@OneToMany(mappedBy= "createurStage") 
 	private List<DemandeStage>demandeStage;
+	@OneToMany(mappedBy= "user") 
+	private List<Evenement>evenements;
 	
 	public Utilisateur() {
 		
@@ -84,7 +86,7 @@ public class Utilisateur extends Visiteur implements Serializable{
 
 
 	public Utilisateur(String login, String password, String email, String groupName, ImgEntite photo,
-			List<Annonce> annonces, List<OffreEmploi> offresEmploi, List<DemandeStage> demandeStage) {
+			List<Annonce> annonces, List<OffreEmploi> offresEmploi, List<DemandeStage> demandeStage,List<Evenement>evenements) {
 		super();
 		this.login = login;
 		this.password = password;
@@ -94,6 +96,7 @@ public class Utilisateur extends Visiteur implements Serializable{
 		this.annonces = annonces;
 		this.offresEmploi = offresEmploi;
 		this.demandeStage = demandeStage;
+		this.evenements=evenements;
 	}
 
 
@@ -166,82 +169,6 @@ public class Utilisateur extends Visiteur implements Serializable{
 		this.offresEmploi = offresEmploi;
 	}
 
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((annonces == null) ? 0 : annonces.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((groupName == null) ? 0 : groupName.hashCode());
-		//result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result + ((offresEmploi == null) ? 0 : offresEmploi.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((photo == null) ? 0 : photo.hashCode());
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Utilisateur other = (Utilisateur) obj;
-		if (annonces == null) {
-			if (other.annonces != null)
-				return false;
-		} else if (!annonces.equals(other.annonces))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (groupName == null) {
-			if (other.groupName != null)
-				return false;
-		} else if (!groupName.equals(other.groupName))
-			return false;
-		/*if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;*/
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		if (offresEmploi == null) {
-			if (other.offresEmploi != null)
-				return false;
-		} else if (!offresEmploi.equals(other.offresEmploi))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (photo == null) {
-			if (other.photo != null)
-				return false;
-		} else if (!photo.equals(other.photo))
-			return false;
-		return true;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Utilisateur [id=" + /*id +*/ ", login=" + login + ", password=" + password + ", email=" + email
-				+ ", groupName=" + groupName + ", photo=" + photo + ", annonces=" + annonces + ", offresEmploi="
-				+ offresEmploi + "]";
-	}
 	
 	public void ajoutAnnonce(Annonce annonce) {
 		annonces.add(annonce);
@@ -279,6 +206,101 @@ public class Utilisateur extends Visiteur implements Serializable{
         }  
   
         return hexString.toString();  
-    } 
+    }
+
+
+	public List<Evenement> getEvenements() {
+		return evenements;
+	}
+
+
+	public void setEvenements(List<Evenement> evenements) {
+		this.evenements = evenements;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((annonces == null) ? 0 : annonces.hashCode());
+		result = prime * result + ((demandeStage == null) ? 0 : demandeStage.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((evenements == null) ? 0 : evenements.hashCode());
+		result = prime * result + ((groupName == null) ? 0 : groupName.hashCode());
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((offresEmploi == null) ? 0 : offresEmploi.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((photo == null) ? 0 : photo.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Utilisateur other = (Utilisateur) obj;
+		if (annonces == null) {
+			if (other.annonces != null)
+				return false;
+		} else if (!annonces.equals(other.annonces))
+			return false;
+		if (demandeStage == null) {
+			if (other.demandeStage != null)
+				return false;
+		} else if (!demandeStage.equals(other.demandeStage))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (evenements == null) {
+			if (other.evenements != null)
+				return false;
+		} else if (!evenements.equals(other.evenements))
+			return false;
+		if (groupName == null) {
+			if (other.groupName != null)
+				return false;
+		} else if (!groupName.equals(other.groupName))
+			return false;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
+		if (offresEmploi == null) {
+			if (other.offresEmploi != null)
+				return false;
+		} else if (!offresEmploi.equals(other.offresEmploi))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (photo == null) {
+			if (other.photo != null)
+				return false;
+		} else if (!photo.equals(other.photo))
+			return false;
+		return true;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Utilisateur [login=" + login + ", password=" + password + ", email=" + email + ", groupName="
+				+ groupName + ", photo=" + photo + ", annonces=" + annonces + ", offresEmploi=" + offresEmploi
+				+ ", demandeStage=" + demandeStage + ", evenements=" + evenements + "]";
+	} 
+    
+    
 	
 }

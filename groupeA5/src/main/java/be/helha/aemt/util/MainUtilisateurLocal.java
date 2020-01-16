@@ -28,7 +28,7 @@ public class MainUtilisateurLocal {
 
 		Utilisateur ul=new Utilisateur("admin", "helha", "admin@gmail.com","admin");
 		Utilisateur ul2=new Utilisateur("us2", "a", "us2@gmail.com","user");
-		Utilisateur ul3=new Utilisateur("us3", "a", "us3@gmail.com","ancien");
+		Utilisateur ul3=new Utilisateur("ancien", "helha", "ancien@gmail.com","ancien");
 		
 		Visiteur v1=new Visiteur("192.193.194.195");
 		

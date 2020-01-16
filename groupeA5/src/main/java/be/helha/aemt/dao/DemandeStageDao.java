@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import be.helha.aemt.ejb.IGestionDemandeStageEJB;
 import be.helha.aemt.entities.DemandeStage;
 import be.helha.aemt.entities.Evenement;
 @Stateless

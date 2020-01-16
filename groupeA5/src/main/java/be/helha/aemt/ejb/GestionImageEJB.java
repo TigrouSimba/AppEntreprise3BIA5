@@ -13,42 +13,42 @@ import be.helha.aemt.entities.Utilisateur;
 import be.helha.aemt.entities.Visiteur;
 
 @Stateless
-public class GestionImageEJB implements IGestionImageEJB {
+public class GestionImageEJB {
 
 	@EJB 
 	private ImageDAO dao;
 	
-	@Override
+	
 	public List<ImgEntite> findAll() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
 
-	@Override
+	
 	public ImgEntite findOccurence(ImgEntite img) {
 		// TODO Auto-generated method stub
 		return dao.findOccurence(img);
 	}
 
-	@Override
+	
 	public ImgEntite add(ImgEntite i) {
 		// TODO Auto-generated method stub
 		return dao.add(i);
 	}
 	
-	@Override
+	
 	public List<ImgEntite> addList(List<ImgEntite> i) {
 		// TODO Auto-generated method stub
 		return dao.addList(i);
 	}
 
-	@Override
+	
 	public ImgEntite add2(ImgEntite i) {
 		// TODO Auto-generated method stub
 		return dao.add2(i);
 	}
 	
-	@Override
+	
 	public List<ImgEntite> findAllImagesFromEvent(int id) {
 		// TODO Auto-generated method stub
 		return dao.findAllImagesFromEvent(id);

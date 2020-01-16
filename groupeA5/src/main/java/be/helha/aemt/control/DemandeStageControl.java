@@ -15,11 +15,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 
-import be.helha.aemt.ejb.IGestionDemandeStageEJB;
-import be.helha.aemt.ejb.IGestionVisiteurEJB;
+
+
+import be.helha.aemt.ejb.GestionDemandeStageEJB;
+import be.helha.aemt.ejb.GestionVisiteurEJB;
 import be.helha.aemt.entities.DemandeStage;
 import be.helha.aemt.entities.Utilisateur;
 @SessionScoped
@@ -77,19 +80,19 @@ public class DemandeStageControl implements Serializable {
 	private DemandeStage demandestage;
 	
 	@EJB
-	private IGestionDemandeStageEJB ejb;
+	private GestionDemandeStageEJB ejb;
 	
 	@EJB
-	private IGestionVisiteurEJB ejbVisiteur;
+	private GestionVisiteurEJB ejbVisiteur;
 	
-	public IGestionDemandeStageEJB getEjb() {
+	public GestionDemandeStageEJB getEjb() {
 		return ejb;
 	}
 	
 
 	//Getteur et setteur
 
-	public void setEjb(IGestionDemandeStageEJB ejb) {
+	public void setEjb(GestionDemandeStageEJB ejb) {
 		this.ejb = ejb;
 	}
 	

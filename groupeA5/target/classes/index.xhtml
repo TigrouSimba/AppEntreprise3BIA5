@@ -21,6 +21,11 @@
 						<div class="card-body">#{evenementControl.getMessageBienvenue()}</div>
 					</div>
 				</div>
+				<h:form rendered="#{utilisateurControl.isAdmin() eq 'true'}">
+					Nouveau message de bienvenue : <h:inputTextarea value="#{evenementControl.messageBienvenue}" />
+					<h:commandButton value="Modifier" class="btn btn-primary" action="#{evenementControl.modifMessageBienvenue()}"/>
+												  
+				</h:form>
 				<div class="row">
 					<div class="col col-7">
 					<div class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
@@ -43,7 +48,12 @@
 														<f:param name="id" value="#{item.id}" />
 													</h:link>
 												</div>
-													<h:commandButton value="Supprimer" class="btn btn-danger" action="#{evenementControl.deleteEvent(item)}" rendered="#{utilisateurControl.isAdmin() eq 'true'}"/>
+													<h:commandButton value="Modifier" class="btn btn-primary" action="#{evenementControl.changeToModif(item)}" rendered="#{evenementControl.isCreator(item) eq 'true'}"/>
+												  
+												
+													<h:commandButton value="Supprimer" class="btn btn-danger" action="#{evenementControl.deleteEvent(item)}" rendered="#{evenementControl.isCreator(item) eq 'true'}"/>
+												
+												
 												
 											</div>
 										</div>
@@ -54,9 +64,10 @@
 						</ul>
 						<br/>
 					
-						<h4><b><em>Ajout d'un évènement</em></b></h4>
+						
 					
 					<h:form method="POST" rendered="#{utilisateurControl.isConnected() eq 'true'}" enctype="multipart/form-data">
+					<h4><b><em>Ajout d'un évènement</em></b></h4>
 					Nom de l'événement : <h:inputTextarea value="#{evenementControl.nomEvenement}" required="true"
 								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
 					<br/>
@@ -101,6 +112,29 @@
 				
 				<br />
 				
+					
+					<h:form method="POST" rendered="#{utilisateurControl.isConnected() eq 'true'}" enctype="multipart/form-data">
+					<h4><b><em>Modification d'un évènement</em></b></h4>
+					Nom de l'événement : <h:inputTextarea value="#{evenementControl.nomModif}" required="true"
+								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
+					<br/>
+					Contenu de l'évènement: <h:inputTextarea value="#{evenementControl.contenuModif}" required="true"
+								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
+					<ul style="list-style-type: none;">
+							
+								
+						</ul>
+					
+					<br/>
+					
+			
+					<h:commandButton
+						class="btn btn-primary"
+						type="submit" action="#{evenementControl.modifEvenement()}"
+						value="Enregistrer"></h:commandButton>
+				</h:form>
+				<br/>
+				
 				
 					</div>
 					</div>
@@ -121,9 +155,15 @@
 											<div
 												class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
 												<div class="card-body">
-													<img src="data:image/jpg;base64,#{imageControl.imageShow(myVarStatus.index)}" height="400" width="400"/>
+													<img src="data:image/jpg;base64,#{imageControl.imageShow(item.img.img)}" height="400" width="400"/>
 													<br/>
 													<i>"#{item.temoignage}"</i> - #{item.nom}
+													<br/>
+													<h:commandButton value="Modifier" class="btn btn-primary" action="#{portraitControl.changeToModif(item)}" rendered="#{utilisateurControl.isAdmin() eq 'true'}"/>
+												  
+												
+													<h:commandButton value="Supprimer" class="btn btn-danger" action="#{portraitControl.deletePortrait(item)}" rendered="#{utilisateurControl.isAdmin() eq 'true'}"/>
+												
 												</div>
 											</div>
 										</div>
@@ -135,9 +175,10 @@
 						
 					<br/>
 					
-						<h4><b><em>Ajout d'un portrait</em></b></h4>
+						
 						
 					<h:form method="POST" enctype="multipart/form-data" rendered="#{utilisateurControl.isAdmin() eq 'true'}">
+					<h4><b><em>Ajout d'un portrait</em></b></h4>
 					Témoignage : <h:inputTextarea value="#{portraitControl.temoignage}" required="true"
 								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
 					<br />
@@ -151,7 +192,25 @@
 						type="submit" action="#{portraitControl.ajoutPortrait()}"
 						value="Enregistrer"></h:commandButton>
 				</h:form>
-				
+				<br/>
+					
+						
+						
+					<h:form method="POST" enctype="multipart/form-data" rendered="#{utilisateurControl.isAdmin() eq 'true'}">
+					<h4><b><em>Modification d'un portrait</em></b></h4>
+					Témoignage : <h:inputTextarea value="#{portraitControl.temoignageModif}" required="true"
+								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
+					<br />
+					Nom de l'ancien : <h:inputText value="#{portraitControl.nomModif}" required="true"
+								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
+					<br />
+					Photo : <h:inputFile value="#{portraitControl.fileModif}" name="file" id="file" />
+					<br/>
+					<h:commandButton
+						class="btn btn-primary"
+						type="submit" action="#{portraitControl.modifPortrait()}"
+						value="Enregistrer"></h:commandButton>
+				</h:form>
 				
 					</div>
 				</div>
