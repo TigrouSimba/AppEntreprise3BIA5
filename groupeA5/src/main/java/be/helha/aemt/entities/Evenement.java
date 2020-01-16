@@ -25,7 +25,7 @@ public class Evenement implements Serializable{
 	private Integer id;
 	private String nomEvenement;
 	private Integer accepter;
-	@OneToMany(targetEntity=ImgEntite.class,mappedBy = "evenement",cascade= CascadeType.PERSIST)
+	@OneToMany(targetEntity=ImgEntite.class,mappedBy = "evenement",cascade= CascadeType.ALL)
 	private List<ImgEntite> imgsEvenement;
 	@OneToOne(targetEntity=Utilisateur.class,cascade= CascadeType.PERSIST)
 	private Utilisateur user;

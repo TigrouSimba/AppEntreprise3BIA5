@@ -41,9 +41,8 @@
 														<f:param name="id" value="#{item.id}" />
 													</h:link>
 												</div>
-												<h:form rendered="#{utilisateurControl.isAdmin() eq 'true'}">
-													<h:commandButton value="Supprimer" class="btn btn-danger" action="#{evenementControl.deleteEvent(item)}"/>
-												</h:form>
+													<h:commandButton value="Supprimer" class="btn btn-danger" action="#{evenementControl.deleteEvent(item)}" rendered="#{utilisateurControl.isAdmin() eq 'true'}"/>
+												
 											</div>
 										</div>
 									</li>

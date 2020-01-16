@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import be.helha.aemt.entities.Evenement;
@@ -47,6 +48,15 @@ public class EvenementDAO {
 	}
 	
 	public void delete(Evenement e) {
-		em.remove(em.merge(e));
+		String requete2="delete FROM ImgEntite img where img.evenement=:pEvent";
+		Query deleteQuery2=em.createQuery(requete2);
+		deleteQuery2.setParameter("pEvent",e);
+		deleteQuery2.executeUpdate();
+		
+		String requete="delete FROM Evenement event where event=:pEvent";
+		Query deleteQuery=em.createQuery(requete);
+		deleteQuery.setParameter("pEvent",e);
+		deleteQuery.executeUpdate();
+		//em.remove(em.merge(e));
 	}
 }
