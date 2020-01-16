@@ -7,8 +7,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import be.helha.aemt.ejb.IGestionOffreEmploiEJB;
-import be.helha.aemt.ejb.IGestionVisiteurEJB;
+import be.helha.aemt.ejb.GestionOffreEmploiEJB;
+import be.helha.aemt.ejb.GestionVisiteurEJB;
 import be.helha.aemt.entities.OffreEmploi;
 import be.helha.aemt.entities.Utilisateur;
 @SessionScoped
@@ -27,20 +27,20 @@ public class OffreEmploiControl implements Serializable {
 	
 	
 	@EJB
-	private IGestionOffreEmploiEJB ejb;
+	private GestionOffreEmploiEJB ejb;
 	
 	@EJB
-	private IGestionVisiteurEJB ejbVisiteur;
+	private GestionVisiteurEJB ejbVisiteur;
 
 	public OffreEmploiControl() {
 		
 	}
 	//Getteur des attributs
-	public IGestionOffreEmploiEJB getEjb() {
+	public GestionOffreEmploiEJB getEjb() {
 		return ejb;
 	}
 
-	public void setEjb(IGestionOffreEmploiEJB ejb) {
+	public void setEjb(GestionOffreEmploiEJB ejb) {
 		this.ejb = ejb;
 	}
 
@@ -90,10 +90,10 @@ public class OffreEmploiControl implements Serializable {
 		ejb.add(new OffreEmploi(nom, contenu, categorie, us));
 		System.out.println(us);
 	}
-	public IGestionVisiteurEJB getEjbVisiteur() {
+	public GestionVisiteurEJB getEjbVisiteur() {
 		return ejbVisiteur;
 	}
-	public void setEjbVisiteur(IGestionVisiteurEJB ejbVisiteur) {
+	public void setEjbVisiteur(GestionVisiteurEJB ejbVisiteur) {
 		this.ejbVisiteur = ejbVisiteur;
 	}
 	

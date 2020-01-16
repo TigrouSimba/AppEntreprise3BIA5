@@ -11,30 +11,30 @@ import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.Portrait;
 
 @Stateless
-public class GestionPortraitEJB implements IGestionPortraitEJB {
+public class GestionPortraitEJB {
 
 	@EJB 
 	private PortraitDAO dao;
 
-	@Override
+	
 	public List<Portrait> findAll() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
 
-	@Override
+	
 	public Portrait add(Portrait e) {
 		// TODO Auto-generated method stub
 		return dao.add(e);
 	}
 
-	@Override
+	
 	public Portrait modifier(Portrait e) {
 		// TODO Auto-generated method stub
 		return dao.modifier(e);
 	}
 	
-	@Override
+	
 	public void delete(Portrait e) {
 		// TODO Auto-generated method stub
 		dao.delete(e);

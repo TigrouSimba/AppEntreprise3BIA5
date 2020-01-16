@@ -7,8 +7,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedProperty;
 import javax.inject.Named;
 
-import be.helha.aemt.ejb.IGestionEvenementEJB;
-import be.helha.aemt.ejb.IGestionImageEJB;
+import be.helha.aemt.ejb.GestionEvenementEJB;
+import be.helha.aemt.ejb.GestionImageEJB;
 
 
 @SessionScoped
@@ -22,29 +22,29 @@ public class AssociationControl implements Serializable{
 	
 
 	@EJB
-	private IGestionEvenementEJB ejb;
+	private GestionEvenementEJB ejb;
 	
 	@EJB
-	private IGestionImageEJB ejbImg;
+	private GestionImageEJB ejbImg;
 	
 
 	public AssociationControl() {
 		
 	}
 
-	public IGestionEvenementEJB getEjb() {
+	public GestionEvenementEJB getEjb() {
 		return ejb;
 	}
 
-	public void setEjb(IGestionEvenementEJB ejb) {
+	public void setEjb(GestionEvenementEJB ejb) {
 		this.ejb = ejb;
 	}
 
-	public IGestionImageEJB getEjbImg() {
+	public GestionImageEJB getEjbImg() {
 		return ejbImg;
 	}
 
-	public void setEjbImg(IGestionImageEJB ejbImg) {
+	public void setEjbImg(GestionImageEJB ejbImg) {
 		this.ejbImg = ejbImg;
 	}
 

@@ -18,9 +18,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 
-import be.helha.aemt.ejb.IGestionEvenementEJB;
-import be.helha.aemt.ejb.IGestionImageEJB;
-import be.helha.aemt.ejb.IGestionVisiteurEJB;
+import be.helha.aemt.ejb.GestionEvenementEJB;
+import be.helha.aemt.ejb.GestionImageEJB;
+import be.helha.aemt.ejb.GestionVisiteurEJB;
 import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.ImgEntite;
 import be.helha.aemt.entities.Utilisateur;
@@ -36,13 +36,13 @@ public class EvenementControl implements Serializable{
 	private static final long serialVersionUID = 1L;	
 
 	@EJB
-	private IGestionEvenementEJB ejb;
+	private GestionEvenementEJB ejb;
 	
 	@EJB
-	private IGestionImageEJB ejbImg;
+	private GestionImageEJB ejbImg;
 	
 	@EJB
-	private IGestionVisiteurEJB ejbVisiteur;
+	private GestionVisiteurEJB ejbVisiteur;
 	
 	private String nomEvenement="",contenu="",nomModif,contenuModif,messageBienvenue;	
 	
@@ -56,11 +56,11 @@ public class EvenementControl implements Serializable{
 		
 	}
 
-	public IGestionEvenementEJB getEjb() {
+	public GestionEvenementEJB getEjb() {
 		return ejb;
 	}
 
-	public void setEjb(IGestionEvenementEJB ejb) {
+	public void setEjb(GestionEvenementEJB ejb) {
 		this.ejb = ejb;
 	}
 
@@ -159,19 +159,19 @@ public class EvenementControl implements Serializable{
 		this.img = img;
 	}
 
-	public IGestionImageEJB getEjbImg() {
+	public GestionImageEJB getEjbImg() {
 		return ejbImg;
 	}
 
-	public void setEjbImg(IGestionImageEJB ejbImg) {
+	public void setEjbImg(GestionImageEJB ejbImg) {
 		this.ejbImg = ejbImg;
 	}
 	
-	public IGestionVisiteurEJB getEjbVisiteur() {
+	public GestionVisiteurEJB getEjbVisiteur() {
 		return ejbVisiteur;
 	}
 
-	public void setEjbVisiteur(IGestionVisiteurEJB ejbVisiteur) {
+	public void setEjbVisiteur(GestionVisiteurEJB ejbVisiteur) {
 		this.ejbVisiteur = ejbVisiteur;
 	}
 

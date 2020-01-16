@@ -11,9 +11,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
+import be.helha.aemt.ejb.GestionEleveEJB;
 import be.helha.aemt.ejb.GestionVisiteurEJB;
-import be.helha.aemt.ejb.IGestionEleveEJB;
-import be.helha.aemt.ejb.IGestionVisiteurEJB;
 import be.helha.aemt.entities.Eleve;
 import be.helha.aemt.entities.Utilisateur;
 
@@ -27,10 +26,10 @@ public class UtilisateurControl implements Serializable{
 	private Eleve el;
 
 	@EJB
-	private IGestionVisiteurEJB ejb;
+	private GestionVisiteurEJB ejb;
 	
 	@EJB
-	private IGestionEleveEJB ejbEleve;
+	private GestionEleveEJB ejbEleve;
 
 	public UtilisateurControl() {
 		
@@ -100,19 +99,19 @@ public class UtilisateurControl implements Serializable{
 		return "login.xhtml";
 	}
 
-	public IGestionVisiteurEJB getEjb() {
+	public GestionVisiteurEJB getEjb() {
 		return ejb;
 	}
 
-	public void setEjb(IGestionVisiteurEJB ejb) {
+	public void setEjb(GestionVisiteurEJB ejb) {
 		this.ejb = ejb;
 	}
 	
-	public IGestionEleveEJB getEjbEleve() {
+	public GestionEleveEJB getEjbEleve() {
 		return ejbEleve;
 	}
 
-	public void setEjbEleve(IGestionEleveEJB ejbEleve) {
+	public void setEjbEleve(GestionEleveEJB ejbEleve) {
 		this.ejbEleve = ejbEleve;
 	}
 

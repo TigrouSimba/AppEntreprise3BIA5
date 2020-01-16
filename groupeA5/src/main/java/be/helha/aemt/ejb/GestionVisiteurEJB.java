@@ -11,24 +11,24 @@ import be.helha.aemt.entities.Utilisateur;
 import be.helha.aemt.entities.Visiteur;
 
 @Stateless
-public class GestionVisiteurEJB implements IGestionVisiteurEJB {
+public class GestionVisiteurEJB {
 
 	@EJB 
 	private VisiteurDAO dao;
 	
-	@Override
+	
 	public List<Visiteur> findAll() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
 
-	@Override
+	
 	public Utilisateur findOccurence(String pseudo) {
 		// TODO Auto-generated method stub
 		return dao.findOccurence(pseudo);
 	}
 
-	@Override
+	
 	public Utilisateur add(Utilisateur u) {
 		// TODO Auto-generated method stub
 		return dao.add(u);

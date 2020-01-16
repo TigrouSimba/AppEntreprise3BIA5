@@ -11,9 +11,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 
-import be.helha.aemt.ejb.IGestionEvenementEJB;
-import be.helha.aemt.ejb.IGestionImageEJB;
-import be.helha.aemt.ejb.IGestionPortraitEJB;
+import be.helha.aemt.ejb.GestionImageEJB;
+import be.helha.aemt.ejb.GestionPortraitEJB;
 import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.ImgEntite;
 import be.helha.aemt.entities.Portrait;
@@ -30,10 +29,10 @@ public class PortraitControl implements Serializable{
 	private static final long serialVersionUID = 1L;	
 
 	@EJB
-	private IGestionPortraitEJB ejb;
+	private GestionPortraitEJB ejb;
 	
 	@EJB
-	private IGestionImageEJB ejbImg;
+	private GestionImageEJB ejbImg;
 	
 	private String temoignage="",nom="",temoignageModif="",nomModif="";
 	
@@ -71,14 +70,14 @@ public class PortraitControl implements Serializable{
 		return new ImgEntite(buffer);
 	}
 
-	public IGestionPortraitEJB getEjb() {
+	public GestionPortraitEJB getEjb() {
 		return ejb;
 	}
 
 
 
 
-	public void setEjb(IGestionPortraitEJB ejb) {
+	public void setEjb(GestionPortraitEJB ejb) {
 		this.ejb = ejb;
 	}
 
@@ -112,11 +111,11 @@ public class PortraitControl implements Serializable{
 		this.file = file;
 	}
 
-	public IGestionImageEJB getEjbImg() {
+	public GestionImageEJB getEjbImg() {
 		return ejbImg;
 	}
 
-	public void setEjbImg(IGestionImageEJB ejbImg) {
+	public void setEjbImg(GestionImageEJB ejbImg) {
 		this.ejbImg = ejbImg;
 	}
 

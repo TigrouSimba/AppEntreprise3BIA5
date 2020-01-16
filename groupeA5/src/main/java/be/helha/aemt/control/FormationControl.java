@@ -6,7 +6,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import be.helha.aemt.ejb.IGestionFormationEJB;
+import be.helha.aemt.ejb.GestionFormationEJB;
 import be.helha.aemt.entities.Formation;
 
 
@@ -29,13 +29,13 @@ import be.helha.aemt.entities.Formation;
 		private Formation formation;
 		
 		@EJB
-		private IGestionFormationEJB ejb;
+		private GestionFormationEJB ejb;
 		
-		public IGestionFormationEJB getEjb() {
+		public GestionFormationEJB getEjb() {
 			return ejb;
 		}
 
-		public void setEjb(IGestionFormationEJB ejb) {
+		public void setEjb(GestionFormationEJB ejb) {
 			this.ejb = ejb;
 		}
 		

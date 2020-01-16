@@ -57,3 +57,11 @@ numero de gsm
 entreprise
 
 photo de profil pour eleve
+
+evenement visible par tout le monde
+
+evenement juste contenu
+
+annonce visible uniquement par ceux connecté
+
+déplacer evenement dans association et en créé un nouveau
