@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class EvenementControl implements Serializable{
 	@EJB
 	private IGestionVisiteurEJB ejbVisiteur;
 	
-	private String nomEvenement="",contenu="",nomModif,contenuModif;	
+	private String nomEvenement="",contenu="",nomModif,contenuModif,messageBienvenue;	
 	
 	private List<ImgEntite> imgs=new ArrayList<ImgEntite>();
 	
@@ -203,15 +204,14 @@ public class EvenementControl implements Serializable{
 		  String st,tmp = ""; 
 		  try {
 			while ((st = br.readLine()) != null) {
-			    tmp=st; 
-			    System.out.println(st);
+			    messageBienvenue=st; 
 			  }
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
 		
-		return tmp;
+		return messageBienvenue;
 	}
 
 	
@@ -252,6 +252,21 @@ public class EvenementControl implements Serializable{
 		this.contenuModif = contenuModif;
 	}
 
+	public String modifMessageBienvenue() {
+		PrintWriter prw = null;
+		try {
+			prw = new PrintWriter (getClass().getClassLoader().getResource("message.txt").getFile());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    prw.println(messageBienvenue);          
+	    prw.close();
+		return "index.xhtml?faces-redirect=true";
+	}
 
+	public void setMessageBienvenue(String messageBienvenue) {
+		this.messageBienvenue = messageBienvenue;
+	}
 	
 }

@@ -21,6 +21,11 @@
 						<div class="card-body">#{evenementControl.getMessageBienvenue()}</div>
 					</div>
 				</div>
+				<h:form rendered="#{utilisateurControl.isAdmin() eq 'true'}">
+					Nouveau message de bienvenue : <h:inputTextarea value="#{evenementControl.messageBienvenue}" />
+					<h:commandButton value="Modifier" class="btn btn-primary" action="#{evenementControl.modifMessageBienvenue()}"/>
+												  
+				</h:form>
 				<div class="row">
 					<div class="col col-7">
 					<div class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
