@@ -27,6 +27,39 @@ public class DemandeStage implements Serializable {
 	private String entreprise;
 	private String mailEntreprise;
 	private String Duree;
+	
+	private String numero;
+	private int isValide;
+	private int estUnEmploi;
+	@ManyToOne(targetEntity=Utilisateur.class,cascade= CascadeType.PERSIST)
+	private Utilisateur createurStage;
+	private String section ="";
+	
+	
+	public DemandeStage(String nom, String contenu, Date date, String entreprise, String mailEntreprise, String duree,
+			String numero, int isValide, int estUnEmploi, Utilisateur createurStage, String section) {
+		super();
+		this.nom = nom;
+		this.contenu = contenu;
+		this.date = date;
+		this.entreprise = entreprise;
+		this.mailEntreprise = mailEntreprise;
+		Duree = duree;
+		this.numero = numero;
+		this.isValide = isValide;
+		this.estUnEmploi = estUnEmploi;
+		this.createurStage = createurStage;
+		this.section = section;
+	}
+
+	public String getSection() {
+		return section;
+	}
+
+	public void setSection(String section) {
+		this.section = section;
+	}
+
 	public DemandeStage(String nom, String contenu, Date date, String entreprise, String mailEntreprise, String duree,
 			String numero, int isValide, int estUnEmploi, Utilisateur createurStage) {
 		super();
@@ -56,12 +89,8 @@ public class DemandeStage implements Serializable {
 		this.isValide = isValide;
 		this.estUnEmploi = estUnEmploi;
 		this.createurStage = createurStage;
+		
 	}
-	private String numero;
-	private int isValide;
-	private int estUnEmploi;
-	@ManyToOne(targetEntity=Utilisateur.class,cascade= CascadeType.PERSIST)
-	private Utilisateur createurStage;
 	
 	public DemandeStage(Integer id, String nom, String contenu, Date date, String entreprise, String mailEntreprise,
 			String numero, Utilisateur createurStage) {
@@ -102,6 +131,23 @@ public class DemandeStage implements Serializable {
 	}
 	//Getteur et setteur des differents attributs
 	
+	public DemandeStage(Integer id, String nom, String contenu, Date date, String entreprise, String mailEntreprise,
+			String duree, String numero, int isValide, int estUnEmploi, Utilisateur createurStage, String section) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.contenu = contenu;
+		this.date = date;
+		this.entreprise = entreprise;
+		this.mailEntreprise = mailEntreprise;
+		Duree = duree;
+		this.numero = numero;
+		this.isValide = isValide;
+		this.estUnEmploi = estUnEmploi;
+		this.createurStage = createurStage;
+		this.section = section;
+	}
+
 	public int getIsValide() {
 		return isValide;
 	}

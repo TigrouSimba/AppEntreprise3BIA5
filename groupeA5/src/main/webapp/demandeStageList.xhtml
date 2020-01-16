@@ -28,10 +28,13 @@
 				<div class="col col-4">
 					<h:commandButton class="btn btn-success" value="trier" action="{demandeStageControl.query()}"></h:commandButton>
 				</div>
-				<div class="row">
-				
-				</div>
 			</div>
+		<div class="row">
+			<div class="col col-10">
+				<h:inputText class="form-control" value="#{demandeStageControl.triSection}"></h:inputText>
+			</div>
+		</div>
+		
 		</h:form>
 			
 		
@@ -44,8 +47,8 @@
 					<div class="col col-auto">
 						<H2>#{demandeStageControl.demandestage.date}</H2>
 					</div>
-
 				</DIV>
+				
 				<div class="row">
 					<div class="col col-10">#{demandeStageControl.demandestage.contenu}</div>
 				</div>

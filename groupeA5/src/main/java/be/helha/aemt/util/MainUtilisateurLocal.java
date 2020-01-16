@@ -48,7 +48,7 @@ public class MainUtilisateurLocal {
 		OffreEmploi ofe1=new OffreEmploi("nomEmploi", "contenuEmploi", "categorieEmploi", ul);
 		
 		DemandeStage do1 = new DemandeStage( "String nom", "String contenu", new Date(2020, 06, 30), "String entreprise", "String mailEntreprise",
-				"String duree", "String numero", 0, 0, ul);
+				"String duree", "String numero", 0, 0, ul,"Section");
 		
 		ImgEntite img=new ImgEntite();
 		

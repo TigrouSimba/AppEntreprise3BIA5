@@ -56,7 +56,31 @@ public class DemandeStageControl implements Serializable {
 	
 	private boolean estUnEmploi;
 	
+	private String sections;
 	
+	private String triSection ="";
+	
+	
+	public String getTriSection() {
+		return triSection;
+	}
+
+
+	public String getSections() {
+		return sections;
+	}
+
+
+	public void setSections(String sections) {
+		this.sections = sections;
+	}
+
+
+	public void setTriSection(String triSection) {
+		this.triSection = triSection;
+	}
+
+
 	public String getDurre() {
 		return durre;
 	}
@@ -202,15 +226,14 @@ public class DemandeStageControl implements Serializable {
 		
 		if(id==0)
 		{
-			da = new DemandeStage(nom,contenu,new Date(dateJour, dateMois, dateAnne),mailEntreprise,entreprise,numero,us);
-			new DemandeStage( nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,
-					 durre, numero, 0, emploie, us);
+			da = new DemandeStage( nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,
+					 durre, numero, 0, emploie, us,sections);
 		}
 		else
 		{
 			da = new DemandeStage(id,nom,contenu,new Date(dateJour, dateMois, dateAnne),mailEntreprise,entreprise,numero,us);
 			new DemandeStage( nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,
-					 durre, numero, 0, emploie, us);
+					 durre, numero, 0, emploie, us,sections);
 		}
 		
 		System.out.println(da.toString());
@@ -246,8 +269,12 @@ public class DemandeStageControl implements Serializable {
 		for (DemandeStage demandeStage : list) {
 			if(demandeStage.getNom().startsWith(tri))
 			{
-				listeTrier.add(demandeStage);
-				System.out.println(tri);
+				if(demandeStage.getSection().startsWith(triSection))
+				{
+					listeTrier.add(demandeStage);
+					System.out.println(tri);
+				}
+				
 			}
 		}
 		CreerPdf();
