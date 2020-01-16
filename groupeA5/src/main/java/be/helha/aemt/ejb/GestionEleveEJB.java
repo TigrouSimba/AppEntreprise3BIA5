@@ -31,6 +31,11 @@ public class GestionEleveEJB {
 		// TODO Auto-generated method stub
 		return dao.findSections();
 	}
+	
+	public List<Eleve> findSections2(String sections, String option) {
+		// TODO Auto-generated method stub
+		return dao.findSections2(sections, option);
+	}
 
 	
 	public Eleve findOccurence(Eleve eleve) {

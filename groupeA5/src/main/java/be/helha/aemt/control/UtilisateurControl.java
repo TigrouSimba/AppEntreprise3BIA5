@@ -3,16 +3,21 @@ package be.helha.aemt.control;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 
 import be.helha.aemt.ejb.GestionEleveEJB;
 import be.helha.aemt.ejb.GestionVisiteurEJB;
+import be.helha.aemt.entities.DemandeStage;
 import be.helha.aemt.entities.Eleve;
 import be.helha.aemt.entities.Utilisateur;
 
@@ -24,6 +29,10 @@ public class UtilisateurControl implements Serializable{
 	private int annee;
 	private String sections="";
 	private Eleve el;
+	private String tri="";
+	private String tri2="";
+	private String tri3="";
+	private String option="";
 
 	@EJB
 	private GestionVisiteurEJB ejb;
@@ -75,6 +84,14 @@ public class UtilisateurControl implements Serializable{
 		this.sections = sections;
 	}
 
+	public String getOption() {
+		return option;
+	}
+
+	public void setOption(String option) {
+		this.option = option;
+	}
+
 	public Eleve getEl() {
 		return el;
 	}
@@ -89,6 +106,33 @@ public class UtilisateurControl implements Serializable{
 
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
+	}
+	
+	public String getTri() {
+		return tri;
+	}
+
+
+	public void setTri(String tri) {
+		this.tri = tri;
+	}
+	
+	public String getTri2() {
+		return tri2;
+	}
+
+
+	public void setTri2(String tri2) {
+		this.tri2 = tri2;
+	}
+	
+	public String getTri3() {
+		return tri3;
+	}
+
+
+	public void setTri3(String tri3) {
+		this.tri3 = tri3;
 	}
 
 	public String doList() {
@@ -121,6 +165,58 @@ public class UtilisateurControl implements Serializable{
 		final HttpServletRequest request = (HttpServletRequest) ec.getRequest();
 		request.getSession(false).invalidate(); // on invalide
 	     return "index.xhtml";
+	}
+	
+	public ArrayList<Eleve>query()
+	{
+		ArrayList<Eleve>listeTrier = new ArrayList<Eleve>();
+		Vector<Eleve>list =  (Vector<Eleve>) ejbEleve.findAllSections("Informatique de gestion");
+		for (Eleve eleve : list) {
+			if(eleve.getNom().startsWith(tri))
+			{
+				listeTrier.add(eleve);
+				System.out.println(tri);
+			}
+			
+		}
+		tri="";
+		return listeTrier;
+	}
+	
+	public ArrayList<Eleve>query2()
+	{
+		ArrayList<Eleve>listeTrier2 = new ArrayList<Eleve>();
+		Vector<Eleve>list =  (Vector<Eleve>) ejbEleve.findAllSections("Comptabilité");
+		for (Eleve eleve : list) {
+			if(eleve.getNom().startsWith(tri2))
+			{
+				listeTrier2.add(eleve);
+				System.out.println(tri2);
+			}
+			
+		}
+		tri2="";
+		return listeTrier2;
+	}
+	
+	public List<Eleve> findAllSections(String sections) {		
+		return ejbEleve.findSections2(sections,option);
+	}
+	
+	public ArrayList<Eleve>query3()
+	{
+		ArrayList<Eleve>listeTrier3 = new ArrayList<Eleve>();
+		Vector<Eleve>list =  (Vector<Eleve>) ejbEleve.findAllSections("Assistant de direction");
+		for (Eleve eleve : list) {
+			if(eleve.getNom().startsWith(tri3))
+			{
+				listeTrier3.add(eleve);
+				System.out.println(tri3);
+			}
+			
+		}
+		tri3="";
+		return listeTrier3;
 	}
 	
 	public String register() {
