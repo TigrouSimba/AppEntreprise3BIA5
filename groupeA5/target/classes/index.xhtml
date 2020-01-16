@@ -18,11 +18,13 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
-						<div class="card-body">Bienvenue aux élèves !</div>
+						<div class="card-body">#{evenementControl.getMessageBienvenue()}</div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col col-5">
+					<div class="col col-7">
+					<div class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
+						<div class="card-body">
 						<h3>
 							<b><em>Evénements</em></b>
 						</h3>
@@ -55,11 +57,11 @@
 						<h4><b><em>Ajout d'un évènement</em></b></h4>
 					
 					<h:form method="POST" rendered="#{utilisateurControl.isConnected() eq 'true'}" enctype="multipart/form-data">
-					Nom de l'évènement: <h:inputText value="#{evenementControl.nomEvenement}" required="true"
-								requiredMessage="Le champ ne peut pas être vide"/>
+					Nom de l'événement : <h:inputTextarea value="#{evenementControl.nomEvenement}" required="true"
+								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
 					<br/>
 					Contenu de l'évènement: <h:inputTextarea value="#{evenementControl.contenu}" required="true"
-								requiredMessage="Le champ ne peut pas être vide"/>
+								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
 					<ul style="list-style-type: none;">
 							
 								<ui:repeat value="#{evenementControl.imgs}" var="item">
@@ -101,7 +103,11 @@
 				
 				
 					</div>
+					</div>
+					</div>
 					<div class="col col-5">
+					<div class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
+						<div class="card-body">
 						<h3>
 							<b><em>Portraits</em></b>
 						</h3>
@@ -115,7 +121,7 @@
 											<div
 												class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
 												<div class="card-body">
-													<img src="data:image/jpg;base64,#{imageControl.imageShow(myVarStatus.index)}" height="200" width="200"/>
+													<img src="data:image/jpg;base64,#{imageControl.imageShow(myVarStatus.index)}" height="400" width="400"/>
 													<br/>
 													<i>"#{item.temoignage}"</i> - #{item.nom}
 												</div>
@@ -132,11 +138,11 @@
 						<h4><b><em>Ajout d'un portrait</em></b></h4>
 						
 					<h:form method="POST" enctype="multipart/form-data" rendered="#{utilisateurControl.isAdmin() eq 'true'}">
-					Témoignage : <h:inputText value="#{portraitControl.temoignage}" required="true"
-								requiredMessage="Le champ ne peut pas être vide"/>
+					Témoignage : <h:inputTextarea value="#{portraitControl.temoignage}" required="true"
+								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
 					<br />
 					Nom de l'ancien : <h:inputText value="#{portraitControl.nom}" required="true"
-								requiredMessage="Le champ ne peut pas être vide"/>
+								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
 					<br />
 					Photo : <h:inputFile value="#{portraitControl.file}" name="file" id="file" />
 					<br/>
@@ -149,7 +155,8 @@
 				
 					</div>
 				</div>
-				
+				</div>
+				</div>
 			</div>
 		</div>
 	</div>
