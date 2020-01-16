@@ -31,7 +31,7 @@ public class GestionPortraitEJB implements IGestionPortraitEJB {
 	@Override
 	public Portrait modifier(Portrait e) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.modifier(e);
 	}
 	
 	@Override
