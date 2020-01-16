@@ -43,11 +43,13 @@ public class EvenementControl implements Serializable{
 	@EJB
 	private IGestionVisiteurEJB ejbVisiteur;
 	
-	private String nomEvenement="",contenu="";
+	private String nomEvenement="",contenu="",nomModif,contenuModif;	
 	
 	private List<ImgEntite> imgs=new ArrayList<ImgEntite>();
 	
 	private Part img;
+	
+	private Evenement eventToModif;
 
 	public EvenementControl() {
 		
@@ -94,30 +96,50 @@ public class EvenementControl implements Serializable{
 		return "index.xhtml?faces-redirect=true";
 	}
 	
+	public String modifEvenement() {
+		if(nomModif.equals("")){
+			return "index.xhtml?faces-redirect=true";
+		}
+		Utilisateur us = ejbVisiteur.findOccurence(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
+		
+		eventToModif.setNomEvenement(nomModif);
+		eventToModif.setContenu(contenuModif);
+		if(!eventToModif.getUser().getGroupName().equals("admin")) {
+			eventToModif.setAccepter(0);
+		}
+		
+		ejb.add(eventToModif);
+		nomModif="";
+		contenuModif="";
+		eventToModif=null;
+		return "index.xhtml?faces-redirect=true";
+	}
+	
 	public String accepterEvenement(Evenement e) {
 		e.setAccepter(1);
 		ejb.modifier(e);
 		return "index.xhtml";
 	}
 	
-	public void addtoList() { // no parameter
+	public void addtoList() { 
+	    imgs.add(createImg());
+	}
+
+	
+	public ImgEntite createImg() {
 		InputStream initialStream = null;
 	    byte[] buffer = null;
-	    //File targetFile = new File("targetFile.jpg");
 	    OutputStream outStream = null;
 		try {
 			initialStream = img.getInputStream();
 			buffer = new byte[initialStream.available()];
 			initialStream.read(buffer);
-			/*outStream = new FileOutputStream(targetFile);
-			outStream.write(buffer);*/
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	 
 		
-		ImgEntite ie=new ImgEntite(buffer);
-	    imgs.add(ie);
+		return new ImgEntite(buffer);
 	}
 
 	public List<ImgEntite> getImgs() {
@@ -193,6 +215,43 @@ public class EvenementControl implements Serializable{
 	}
 
 	
+	public String isCreator(Evenement e) {
+		String nom=FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+		if(nom==null) {
+			return "false";
+		}
+		Utilisateur ul=ejbVisiteur.findOccurence(nom);
+		if(ul==null) {
+			return "false";
+		}
+		if (e.getUser().getLogin().equals(nom) || ul.getGroupName().equals("admin")) {
+			return "true";
+		}
+		return "false";
+	}
 	
+	public void changeToModif(Evenement e) {
+		nomModif=e.getNomEvenement();
+		contenuModif=e.getContenu();
+		eventToModif=e;
+	}
+
+	public String getNomModif() {
+		return nomModif;
+	}
+
+	public void setNomModif(String nomModif) {
+		this.nomModif = nomModif;
+	}
+
+	public String getContenuModif() {
+		return contenuModif;
+	}
+
+	public void setContenuModif(String contenuModif) {
+		this.contenuModif = contenuModif;
+	}
+
+
 	
 }

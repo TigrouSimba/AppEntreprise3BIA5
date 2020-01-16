@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -27,7 +28,7 @@ public class Evenement implements Serializable{
 	private Integer accepter;
 	@OneToMany(targetEntity=ImgEntite.class,mappedBy = "evenement",cascade= CascadeType.ALL)
 	private List<ImgEntite> imgsEvenement;
-	@OneToOne(targetEntity=Utilisateur.class,cascade= CascadeType.PERSIST)
+	@ManyToOne(targetEntity=Utilisateur.class,cascade= CascadeType.PERSIST)
 	private Utilisateur user;
 	
 	public Evenement() {

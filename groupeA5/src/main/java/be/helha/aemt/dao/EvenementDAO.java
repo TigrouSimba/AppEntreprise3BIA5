@@ -46,7 +46,7 @@ public class EvenementDAO {
 	}
 	
 	public Evenement add(Evenement e) {
-		em.persist(e);
+		em.merge(e);
 		return e;
 	}
 	

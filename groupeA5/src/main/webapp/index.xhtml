@@ -43,7 +43,12 @@
 														<f:param name="id" value="#{item.id}" />
 													</h:link>
 												</div>
+													<h:commandButton value="Modifier" class="btn btn-primary" action="#{evenementControl.changeToModif(item)}" rendered="#{evenementControl.isCreator(item) eq 'true'}"/>
+												  
+												
 													<h:commandButton value="Supprimer" class="btn btn-danger" action="#{evenementControl.deleteEvent(item)}" rendered="#{utilisateurControl.isAdmin() eq 'true'}"/>
+												
+												
 												
 											</div>
 										</div>
@@ -100,6 +105,28 @@
 				</h:form>
 				
 				<br />
+				<h4><b><em>Modification d'un évènement</em></b></h4>
+					
+					<h:form method="POST" rendered="#{utilisateurControl.isConnected() eq 'true'}" enctype="multipart/form-data">
+					Nom de l'événement : <h:inputTextarea value="#{evenementControl.nomModif}" required="true"
+								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
+					<br/>
+					Contenu de l'évènement: <h:inputTextarea value="#{evenementControl.contenuModif}" required="true"
+								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
+					<ul style="list-style-type: none;">
+							
+								
+						</ul>
+					
+					<br/>
+					
+			
+					<h:commandButton
+						class="btn btn-primary"
+						type="submit" action="#{evenementControl.modifEvenement()}"
+						value="Enregistrer"></h:commandButton>
+				</h:form>
+				<br/>
 				
 				
 					</div>
