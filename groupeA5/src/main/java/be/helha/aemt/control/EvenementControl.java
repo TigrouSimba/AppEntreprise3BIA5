@@ -39,7 +39,7 @@ public class EvenementControl implements Serializable{
 	@EJB
 	private IGestionVisiteurEJB ejbVisiteur;
 	
-	private String nomEvenement="";
+	private String nomEvenement="",contenu="";
 	
 	private List<ImgEntite> imgs=new ArrayList<ImgEntite>();
 	
@@ -71,7 +71,7 @@ public class EvenementControl implements Serializable{
 		}
 		Utilisateur us = ejbVisiteur.findOccurence(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
 		
-		Evenement el =new Evenement(nomEvenement,0,us);
+		Evenement el =new Evenement(nomEvenement,contenu,0,us);
 		if(us.getGroupName().equals("admin")) {
 			el.setAccepter(1);
 		}
@@ -85,6 +85,7 @@ public class EvenementControl implements Serializable{
 		el.setImgsEvenement(imgs);
 		ejb.add(el);
 		nomEvenement="";
+		contenu="";
 		imgs.clear();
 		return "index.xhtml?faces-redirect=true";
 	}
@@ -151,6 +152,14 @@ public class EvenementControl implements Serializable{
 		ejb.delete(event);
 		return "index.xhtml?faces-redirect=true";
 		
+	}
+
+	public String getContenu() {
+		return contenu;
+	}
+
+	public void setContenu(String contenu) {
+		this.contenu = contenu;
 	}
 	
 	

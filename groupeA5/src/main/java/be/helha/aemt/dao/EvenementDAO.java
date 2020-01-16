@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 
 import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.ImgEntite;
+import be.helha.aemt.entities.Utilisateur;
 
 @Stateless
 @LocalBean
@@ -35,6 +36,13 @@ public class EvenementDAO {
 		String requete="SELECT eve FROM Evenement eve where eve.accepter=0";
 		TypedQuery<Evenement>qSelectAll=em.createQuery(requete,Evenement.class);
 		return qSelectAll.getResultList();
+	}
+	
+	public Evenement findOccurence(int id) {
+		String requete="select eve FROM Evenement eve where eve.id=:pId";
+		TypedQuery<Evenement>qFind=em.createQuery(requete, Evenement.class);
+		qFind.setParameter("pId", id);		
+		return qFind.getSingleResult();
 	}
 	
 	public Evenement add(Evenement e) {

@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import be.helha.aemt.dao.EvenementDAO;
 import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.ImgEntite;
+import be.helha.aemt.entities.Utilisateur;
 
 @Stateless
 public class GestionEvenementEJB implements IGestionEvenementEJB {
@@ -31,6 +32,12 @@ public class GestionEvenementEJB implements IGestionEvenementEJB {
 	public List<Evenement> findAllEnCours() {
 		// TODO Auto-generated method stub
 		return dao.findAllEnCours();
+	}
+	
+	@Override
+	public Evenement findOccurence(int id) {
+		// TODO Auto-generated method stub
+		return dao.findOccurence(id);
 	}
 
 	@Override

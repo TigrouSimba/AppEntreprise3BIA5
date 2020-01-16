@@ -41,7 +41,7 @@ public class MainUtilisateurLocal {
 		
 		Annonce an1=new Annonce("nomAnnonce", "contenuAnnonce",  new Date(), ul);
 		
-		Evenement en1=new Evenement("nomEvenement",1,ul);
+		Evenement en1=new Evenement("nomEvenement","contenu",1,ul);
 		
 		Formation fo1=new Formation("nomFormation", "lienFormation");
 		

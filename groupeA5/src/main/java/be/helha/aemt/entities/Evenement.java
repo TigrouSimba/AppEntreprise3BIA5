@@ -23,7 +23,7 @@ public class Evenement implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String nomEvenement;
+	private String nomEvenement,contenu;
 	private Integer accepter;
 	@OneToMany(targetEntity=ImgEntite.class,mappedBy = "evenement",cascade= CascadeType.ALL)
 	private List<ImgEntite> imgsEvenement;
@@ -34,8 +34,9 @@ public class Evenement implements Serializable{
 		
 	}
 
-	public Evenement(String nomEvenement,int accepter,Utilisateur user) {
+	public Evenement(String nomEvenement,String contenu,int accepter,Utilisateur user) {
 		this.nomEvenement = nomEvenement;
+		this.contenu=contenu;
 		this.accepter=accepter;
 		this.user=user;
 		imgsEvenement =new ArrayList<ImgEntite>();
@@ -55,6 +56,14 @@ public class Evenement implements Serializable{
 
 	public void setNomEvenement(String nomEvenement) {
 		this.nomEvenement = nomEvenement;
+	}
+
+	public String getContenu() {
+		return contenu;
+	}
+
+	public void setContenu(String contenu) {
+		this.contenu = contenu;
 	}
 
 	public List<ImgEntite> getImgsEvenement() {
@@ -90,9 +99,11 @@ public class Evenement implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((accepter == null) ? 0 : accepter.hashCode());
+		result = prime * result + ((contenu == null) ? 0 : contenu.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((imgsEvenement == null) ? 0 : imgsEvenement.hashCode());
 		result = prime * result + ((nomEvenement == null) ? 0 : nomEvenement.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -110,6 +121,11 @@ public class Evenement implements Serializable{
 				return false;
 		} else if (!accepter.equals(other.accepter))
 			return false;
+		if (contenu == null) {
+			if (other.contenu != null)
+				return false;
+		} else if (!contenu.equals(other.contenu))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -125,14 +141,20 @@ public class Evenement implements Serializable{
 				return false;
 		} else if (!nomEvenement.equals(other.nomEvenement))
 			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Evenement [id=" + id + ", nomEvenement=" + nomEvenement + ", accepter=" + accepter + ", imgsEvenement="
-				+ imgsEvenement + "]";
+		return "Evenement [id=" + id + ", nomEvenement=" + nomEvenement + ", contenu=" + contenu + ", accepter="
+				+ accepter + ", imgsEvenement=" + imgsEvenement + ", user=" + user + "]";
 	}
+
 	
 	
 
