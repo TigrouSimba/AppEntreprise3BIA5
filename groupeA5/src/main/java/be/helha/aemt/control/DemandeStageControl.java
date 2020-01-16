@@ -265,7 +265,7 @@ public class DemandeStageControl implements Serializable {
 	public ArrayList<DemandeStage>query()
 	{
 		ArrayList<DemandeStage>listeTrier = new ArrayList<DemandeStage>();
-		Vector<DemandeStage>list =  (Vector<DemandeStage>) ejb.findAll();
+		Vector<DemandeStage>list =  (Vector<DemandeStage>) ejb.findAllAccepte();
 		for (DemandeStage demandeStage : list) {
 			if(demandeStage.getNom().startsWith(tri))
 			{
@@ -286,6 +286,8 @@ public class DemandeStageControl implements Serializable {
 		
 		try {
 			PDDocument doc = new PDDocument();
+			PDPage page = new PDPage();
+			
 			doc.addPage(new PDPage());
 			doc.save("test.pdf");
 			doc.close();

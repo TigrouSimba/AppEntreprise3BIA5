@@ -20,6 +20,10 @@ public class GestionDemandeStageEJB {
 		System.out.println("test");
 		return dao.findAll();
 	}
+	public List<DemandeStage>findAllAccepte()
+	{
+		return dao.findAllAccept();
+	}
 	
 	public void Add(DemandeStage post) {
 		// TODO Auto-generated method stub

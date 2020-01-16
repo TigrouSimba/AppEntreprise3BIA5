@@ -18,7 +18,13 @@ public class DemandeStageDao  {
 	private EntityManager em;
 	
 	public List<DemandeStage> findAll(){
-		String requete ="SELECT eve FROM DemandeStage eve";
+		String requete ="\"SELECT eve FROM DemandeStage eve Where eve.IsValide = 0";
+		TypedQuery<DemandeStage>qSelectAll=em.createQuery(requete,DemandeStage.class);
+		return qSelectAll.getResultList();
+	}
+	public List<DemandeStage>findAllAccept()
+	{
+		String requete ="SELECT eve FROM DemandeStage eve Where eve.isValide = 1";
 		TypedQuery<DemandeStage>qSelectAll=em.createQuery(requete,DemandeStage.class);
 		return qSelectAll.getResultList();
 	}
