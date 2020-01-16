@@ -1,5 +1,6 @@
 package be.helha.aemt.control;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,6 +14,9 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
 
 import be.helha.aemt.ejb.IGestionDemandeStageEJB;
 import be.helha.aemt.ejb.IGestionVisiteurEJB;
@@ -45,7 +49,31 @@ public class DemandeStageControl implements Serializable {
 	
 	private String tri="";
 	
+	private String durre;
 	
+	private boolean estUnEmploi;
+	
+	
+	public String getDurre() {
+		return durre;
+	}
+
+
+	public void setDurre(String durre) {
+		this.durre = durre;
+	}
+
+
+	public boolean isEstUnEmploi() {
+		return estUnEmploi;
+	}
+
+
+	public void setEstUnEmploi(boolean estUnEmploi) {
+		this.estUnEmploi = estUnEmploi;
+	}
+
+
 	private DemandeStage demandestage;
 	
 	@EJB
@@ -205,8 +233,23 @@ public class DemandeStageControl implements Serializable {
 				System.out.println(tri);
 			}
 		}
-		
+		CreerPdf();
 		return listeTrier;
+	}
+	
+	public void CreerPdf()
+	{
+		
+		try {
+			PDDocument doc = new PDDocument();
+			doc.addPage(new PDPage());
+			doc.save("test.pdf");
+			doc.close();
+			System.out.println("pdf creer");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

@@ -26,9 +26,40 @@ public class DemandeStage implements Serializable {
 	private Date date;
 	private String entreprise;
 	private String mailEntreprise;
+	private String Duree;
+	public DemandeStage(String nom, String contenu, Date date, String entreprise, String mailEntreprise, String duree,
+			String numero, int isValide, int estUnEmploi, Utilisateur createurStage) {
+		super();
+		this.nom = nom;
+		this.contenu = contenu;
+		this.date = date;
+		this.entreprise = entreprise;
+		this.mailEntreprise = mailEntreprise;
+		Duree = duree;
+		this.numero = numero;
+		this.isValide = isValide;
+		this.estUnEmploi = estUnEmploi;
+		this.createurStage = createurStage;
+	}
+
+	public DemandeStage(Integer id, String nom, String contenu, Date date, String entreprise, String mailEntreprise,
+			String duree, String numero, int isValide, int estUnEmploi, Utilisateur createurStage) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.contenu = contenu;
+		this.date = date;
+		this.entreprise = entreprise;
+		this.mailEntreprise = mailEntreprise;
+		Duree = duree;
+		this.numero = numero;
+		this.isValide = isValide;
+		this.estUnEmploi = estUnEmploi;
+		this.createurStage = createurStage;
+	}
 	private String numero;
 	private int isValide;
-	
+	private int estUnEmploi;
 	@ManyToOne(targetEntity=Utilisateur.class,cascade= CascadeType.PERSIST)
 	private Utilisateur createurStage;
 	
@@ -141,6 +172,22 @@ public class DemandeStage implements Serializable {
 
 	public void setContenu(String contenu) {
 		this.contenu = contenu;
+	}
+
+	public String getDuree() {
+		return Duree;
+	}
+
+	public void setDuree(String duree) {
+		Duree = duree;
+	}
+
+	public int getEstUnEmploi() {
+		return estUnEmploi;
+	}
+
+	public void setEstUnEmploi(int estUnEmploi) {
+		this.estUnEmploi = estUnEmploi;
 	}
 
 	public DemandeStage() {
