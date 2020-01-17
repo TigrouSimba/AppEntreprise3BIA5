@@ -31,7 +31,7 @@ public class OffreEmploiControl implements Serializable {
 	
 	@EJB
 	private GestionVisiteurEJB ejbVisiteur;
-
+	//Constructeur
 	public OffreEmploiControl() {
 		
 	}
@@ -39,7 +39,7 @@ public class OffreEmploiControl implements Serializable {
 	public GestionOffreEmploiEJB getEjb() {
 		return ejb;
 	}
-
+	//Permet de changer la valeur de l'attribut ejb
 	public void setEjb(GestionOffreEmploiEJB ejb) {
 		this.ejb = ejb;
 	}
@@ -47,15 +47,15 @@ public class OffreEmploiControl implements Serializable {
 	public String getNom() {
 		return nom;
 	}
-
+	//Permet de changer la valeur de l'attribut nom
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
+	//Permet de recuperer la valeur de l'attribut contenu
 	public String getContenu() {
 		return contenu;
 	}
-
+	//Permet de changer la valeur de l'attribut Contenu
 	public void setContenu(String contenu) {
 		this.contenu = contenu;
 	}
@@ -63,15 +63,15 @@ public class OffreEmploiControl implements Serializable {
 	public String getCategorie() {
 		return categorie;
 	}
-
+	//Permet de changer la valeur de l'attribut categorie
 	public void setCategorie(String categorie) {
 		this.categorie = categorie;
 	}
-
+	//Permet de recuperer la valeur de l'attribut id
 	public int getId() {
 		return id;
 	}
-
+	//Permet de changer la valeur de l'attribut id
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -90,9 +90,11 @@ public class OffreEmploiControl implements Serializable {
 		ejb.add(new OffreEmploi(nom, contenu, categorie, us));
 		System.out.println(us);
 	}
+	//Permet de recuperer la valeur de l'attribut ejb
 	public GestionVisiteurEJB getEjbVisiteur() {
 		return ejbVisiteur;
 	}
+	//Permet de changer la valeur de l'attribut ejb
 	public void setEjbVisiteur(GestionVisiteurEJB ejbVisiteur) {
 		this.ejbVisiteur = ejbVisiteur;
 	}

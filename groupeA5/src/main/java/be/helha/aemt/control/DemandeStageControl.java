@@ -272,6 +272,7 @@ public class DemandeStageControl implements Serializable {
 		demandestage=ejb.findById(id);
 		System.out.println(demandestage.toString());
 	}
+	//Permet de garder en memoire les attribut de demande de Stage
 	public String Modifier(DemandeStage item)
 	{
 		nom = item.getNom();
@@ -285,10 +286,12 @@ public class DemandeStageControl implements Serializable {
 		id=item.getId();
 		return "DemandeStageGenerator.xhtml";
 	}
+	//Permet de supprimer les demandes
 	public void supprimer(DemandeStage item)
 	{
 		ejb.delete(item);
 	}
+	//Permet de recuper les données et le querry
 	public ArrayList<DemandeStage>query()
 	{
 		int affiche = 0;
@@ -326,7 +329,7 @@ public class DemandeStageControl implements Serializable {
 		AfficherEmploi = afficherEmploi;
 	}
 
-
+	//Permet de creer un pdf avec les demande de stage
 	public void CreerPdf()
 	{
 		

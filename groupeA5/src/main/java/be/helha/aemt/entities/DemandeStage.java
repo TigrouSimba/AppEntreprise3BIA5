@@ -93,11 +93,11 @@ public class DemandeStage implements Serializable {
 	public String getSection() {
 		return section;
 	}
-	
+	//contructeur
 	public void setSection(String section) {
 		this.section = section;
 	}
-
+	//Constructeur
 	public DemandeStage(String nom, String contenu, Date date, String entreprise, String mailEntreprise, String duree,
 			String numero, int isValide, int estUnEmploi, Utilisateur createurStage) {
 		super();
@@ -112,7 +112,7 @@ public class DemandeStage implements Serializable {
 		this.estUnEmploi = estUnEmploi;
 		this.createurStage = createurStage;
 	}
-
+	//Constructeur
 	public DemandeStage(Integer id, String nom, String contenu, Date date, String entreprise, String mailEntreprise,
 			String duree, String numero, int isValide, int estUnEmploi, Utilisateur createurStage) {
 		super();
@@ -129,7 +129,7 @@ public class DemandeStage implements Serializable {
 		this.createurStage = createurStage;
 		
 	}
-	
+	//Constructeur
 	public DemandeStage(Integer id, String nom, String contenu, Date date, String entreprise, String mailEntreprise,
 			String numero, Utilisateur createurStage) {
 		super();
@@ -148,7 +148,7 @@ public class DemandeStage implements Serializable {
 	
 
 	
-
+	//Constructeur
 	public DemandeStage(String nom, String contenu, Date date, String entreprise, String mailEntreprise, String numero,
 			Utilisateur createurStage) {
 		super();
@@ -160,7 +160,7 @@ public class DemandeStage implements Serializable {
 		this.numero = numero;
 		this.createurStage = createurStage;
 	}
-
+	//Constructeur
 	public DemandeStage(Integer id, String nom, String contenu) {
 		super();
 		this.id = id;
