@@ -32,18 +32,34 @@ public class AssociationControl implements Serializable{
 		
 	}
 
+	/**
+	 * 
+	 * @return la valeur de ejb
+	 */
 	public GestionEvenementEJB getEjb() {
 		return ejb;
 	}
 
+	/**
+	 * change la valeur de ejb par celui passe en parametre
+	 * @param ejb la valeur qui doit remplacer celle actuelle
+	 */
 	public void setEjb(GestionEvenementEJB ejb) {
 		this.ejb = ejb;
 	}
 
+	/**
+	 * 
+	 * @return la valeur de ejbImg
+	 */
 	public GestionImageEJB getEjbImg() {
 		return ejbImg;
 	}
 
+	/**
+	 * change la valeur de ejbImg par celui passe en parametre
+	 * @param ejbImg la valeur qui doit remplacer celle actuelle
+	 */
 	public void setEjbImg(GestionImageEJB ejbImg) {
 		this.ejbImg = ejbImg;
 	}

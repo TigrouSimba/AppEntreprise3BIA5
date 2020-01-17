@@ -15,12 +15,19 @@ public class GestionEleveEJB {
 	@EJB 
 	private EleveDAO dao;
 	
-	
+	/**
+	 * requete permettant de recuperer tous les anciens
+	 * @return une liste d'ancien
+	 */
 	public List<Eleve> findAll() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
 	
+	/**
+	 * requete permettant de recuperer tous les anciens non accepter par l'admin
+	 * @return une liste d'ancien
+	 */
 	public List<Eleve> findAllNotAccepted() {
 		// TODO Auto-generated method stub
 		return dao.findAllNotAccepted();
@@ -43,12 +50,20 @@ public class GestionEleveEJB {
 		return dao.findSections2(sections, option);
 	}
 
-	
+	/**
+	 * requete permettant de recuperer un ancien grace a son id
+	 * @return une ancien
+	 */
 	public Eleve findOccurence(Eleve eleve) {
 		// TODO Auto-generated method stub
 		return dao.findOccurence(eleve);
 	}
 	
+	/**
+	 * permet d'ajouter un ancien dans la base de donnees
+	 * @param u l'ancien a ajouter
+	 * @return l'ancien
+	 */
 	public Eleve add(Eleve u) {
 		// TODO Auto-generated method stub
 		return dao.add(u);

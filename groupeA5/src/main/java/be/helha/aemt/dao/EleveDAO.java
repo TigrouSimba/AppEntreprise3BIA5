@@ -19,17 +19,26 @@ public class EleveDAO {
 	@PersistenceContext(unitName = "gAVisiteurJTA")
 	private EntityManager em;
 	
+	/**
+	 * requete permettant de recuperer tous les anciens
+	 * @return une liste d'ancien
+	 */
 	public List<Eleve> findAll() {		
 		String requete="SELECT el FROM Eleve el";
 		TypedQuery<Eleve>qSelectAll=em.createQuery(requete,Eleve.class);
 		return qSelectAll.getResultList();
 	}
 	
+	/**
+	 * requete permettant de recuperer tous les anciens non accepter par l'admin
+	 * @return une liste d'ancien
+	 */
 	public List<Eleve> findAllNotAccepted() {		
 		String requete="SELECT el FROM Eleve el where el.accepter=0";
 		TypedQuery<Eleve>qSelectAll=em.createQuery(requete,Eleve.class);
 		return qSelectAll.getResultList();
 	}
+	
 	
 	public List<Eleve> findAllSections(String sections) {		
 		String requete="SELECT el FROM Eleve el where el.sections=:pSections order by el.annee desc";
@@ -64,6 +73,10 @@ public class EleveDAO {
         return qSelectAll.getResultList();
     }
 	
+	/**
+	 * requete permettant de recuperer un ancien grace a son id
+	 * @return une ancien
+	 */
 	public Eleve findOccurence(Eleve eleve) {
 		String requete="select el FROM Eleve el where el.nom=:pNom and "
 				+ "el.prenom=:pPrenom and el.annee=:pAnnee";
@@ -75,6 +88,11 @@ public class EleveDAO {
 		return req.size()==0?null:req.get(0);
 	}
 	
+	/**
+	 * permet d'ajouter un ancien dans la base de donnees
+	 * @param u l'ancien a ajouter
+	 * @return l'ancien
+	 */
 	public Eleve add(Eleve u) {
 		em.merge(u);
 		return u;	
