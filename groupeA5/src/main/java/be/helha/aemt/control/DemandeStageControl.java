@@ -241,12 +241,16 @@ public class DemandeStageControl implements Serializable {
 		if(id==0)
 		{
 			da = new DemandeStage( nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,durre, numero, accepter, emploie, us,sections,nomPersonneRes);
+			System.out.println(da.getDate().toString());
+			System.out.println(dateJour+" "+dateMois+" "+dateAnne);
 		}
 		else
 		{
-			da = new DemandeStage(id,nom,contenu,new Date(dateJour, dateMois, dateAnne),mailEntreprise,entreprise,numero,us);
-			new DemandeStage( nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,
+			da = new DemandeStage(id,nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,
 					 durre, numero, accepter, emploie, us,sections,nomPersonneRes);
+			System.out.println(da.getDate().toString());
+			System.out.println(dateJour+dateMois+dateAnne);
+			
 		}
 		
 		System.out.println(da.toString());
@@ -293,7 +297,7 @@ public class DemandeStageControl implements Serializable {
 			affiche = 1;
 		}
 		ArrayList<DemandeStage>listeTrier = new ArrayList<DemandeStage>();
-		Vector<DemandeStage>list =  (Vector<DemandeStage>) ejb.findAll();
+		Vector<DemandeStage>list =  (Vector<DemandeStage>) ejb.findAllAccepte();
 		for (DemandeStage demandeStage : list) {
 			if(demandeStage.getNom().startsWith(tri))
 			{
@@ -309,7 +313,7 @@ public class DemandeStageControl implements Serializable {
 				
 			}
 		}
-		CreerPdf();
+	
 		return listeTrier;
 	}
 	//Permet de changer la valeur de l'attribut estAfficher
