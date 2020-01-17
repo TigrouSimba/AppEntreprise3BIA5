@@ -31,13 +31,11 @@ import be.helha.aemt.entities.Utilisateur;
 public class UtilisateurControl implements Serializable{
 
 	private String nom="",prenom="",mdp="",message="",description="",email="";
+	private String nom2="",prenom2="";
 	private int annee;
 	private Part file;
 	private String sections="";
 	private Eleve el;
-	private String tri="";
-	private String tri2="";
-	private String tri3="";
 	private String option="";
 
 	@EJB
@@ -72,6 +70,22 @@ public class UtilisateurControl implements Serializable{
 	 */
 	public String getPrenom() {
 		return prenom;
+	}
+
+	public String getNom2() {
+		return nom2;
+	}
+
+	public void setNom2(String nom2) {
+		this.nom2 = nom2;
+	}
+
+	public String getPrenom2() {
+		return prenom2;
+	}
+
+	public void setPrenom2(String prenom2) {
+		this.prenom2 = prenom2;
 	}
 
 	/**
@@ -177,54 +191,6 @@ public class UtilisateurControl implements Serializable{
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
-	
-	/**
-	 * 
-	 * @return la valeur de tri
-	 */
-	public String getTri() {
-		return tri;
-	}
-
-	/**
-	 * change la valeur de tri par celui passe en parametre
-	 * @param tri la valeur qui doit remplacer celle actuelle
-	 */
-	public void setTri(String tri) {
-		this.tri = tri;
-	}
-	
-	/**
-	 * 
-	 * @return la valeur de tri2
-	 */
-	public String getTri2() {
-		return tri2;
-	}
-
-	/**
-	 * change la valeur de tri2 par celui passe en parametre
-	 * @param tri2 la valeur qui doit remplacer celle actuelle
-	 */
-	public void setTri2(String tri2) {
-		this.tri2 = tri2;
-	}
-	
-	/**
-	 * 
-	 * @return la valeur de tri3
-	 */
-	public String getTri3() {
-		return tri3;
-	}
-
-	/**
-	 * change la valeur de tri3 par celui passe en parametre
-	 * @param tri3 la valeur qui doit remplacer celle actuelle
-	 */
-	public void setTri3(String tri3) {
-		this.tri3 = tri3;
-	}
 
 	/**
 	 * 
@@ -318,45 +284,12 @@ public class UtilisateurControl implements Serializable{
 	     return "index.xhtml?faces-redirect=true";
 	}
 	
-	/**
-	 * recupere une liste d'eleve
-	 * @return une liste d'eleve
-	 */
-	public ArrayList<Eleve>query()
-	{
-		ArrayList<Eleve>listeTrier = new ArrayList<Eleve>();
-		Vector<Eleve>list =  (Vector<Eleve>) ejbEleve.findAllSections("Informatique de gestion");
-		for (Eleve eleve : list) {
-			if(eleve.getNom().startsWith(tri))
-			{
-				listeTrier.add(eleve);
-				System.out.println(tri);
-			}
-			
-		}
-		tri="";
-		return listeTrier;
+	public String afficherUtilisateur(Eleve item) {
+		nom2 = item.getNom();
+		prenom2 = item.getPrenom();
+		return "informations.xhtml";
 	}
 	
-	/**
-	 * recupere une liste d'eleve
-	 * @return une liste d'eleve
-	 */
-	public ArrayList<Eleve>query2()
-	{
-		ArrayList<Eleve>listeTrier2 = new ArrayList<Eleve>();
-		Vector<Eleve>list =  (Vector<Eleve>) ejbEleve.findAllSections("Comptabilité");
-		for (Eleve eleve : list) {
-			if(eleve.getNom().startsWith(tri2))
-			{
-				listeTrier2.add(eleve);
-				System.out.println(tri2);
-			}
-			
-		}
-		tri2="";
-		return listeTrier2;
-	}
 	
 	/**
 	 * recupere une liste de toutes les sections
@@ -364,26 +297,6 @@ public class UtilisateurControl implements Serializable{
 	 */
 	public List<Eleve> findAllSections(String sections) {		
 		return ejbEleve.findSections2(sections,option);
-	}
-	
-	/**
-	 * recupere une liste d'eleve
-	 * @return une liste d'eleve
-	 */
-	public ArrayList<Eleve>query3()
-	{
-		ArrayList<Eleve>listeTrier3 = new ArrayList<Eleve>();
-		Vector<Eleve>list =  (Vector<Eleve>) ejbEleve.findAllSections("Assistant de direction");
-		for (Eleve eleve : list) {
-			if(eleve.getNom().startsWith(tri3))
-			{
-				listeTrier3.add(eleve);
-				System.out.println(tri3);
-			}
-			
-		}
-		tri3="";
-		return listeTrier3;
 	}
 	
 	/**

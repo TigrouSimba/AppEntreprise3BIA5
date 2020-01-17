@@ -88,6 +88,14 @@ public class EleveDAO {
 		return req.size()==0?null:req.get(0);
 	}
 	
+	public Eleve afficherUtilisateur(Eleve eleve) {
+		String requete="select el FROM Eleve el where el=:pEl";
+		TypedQuery<Eleve>afficherQuery=em.createQuery(requete, Eleve.class);
+		afficherQuery.setParameter("pEl",eleve);
+		List<Eleve>req=afficherQuery.getResultList();
+		return req.size()==0?null:req.get(0);
+	}
+	
 	/**
 	 * permet d'ajouter un ancien dans la base de donnees
 	 * @param u l'ancien a ajouter

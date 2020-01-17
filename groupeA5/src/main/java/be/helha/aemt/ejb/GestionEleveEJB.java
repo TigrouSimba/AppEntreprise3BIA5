@@ -49,6 +49,11 @@ public class GestionEleveEJB {
 		// TODO Auto-generated method stub
 		return dao.findSections2(sections, option);
 	}
+	
+	public Eleve afficherUtilisateur(Eleve eleve) {
+		// TODO Auto-generated method stub
+		return dao.afficherUtilisateur(eleve);
+	}
 
 	/**
 	 * requete permettant de recuperer un ancien grace a son id

@@ -26,102 +26,6 @@
 			
 		</div>
 
-<!--  	
-		<nav>
-		  <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
-		    <a class="nav-item nav-link active" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-home" aria-selected="true">Informatique de gestion</a>
-		    <a class="nav-item nav-link" id="nav-comptabilite-tab" data-toggle="tab" href="#nav-compta" role="tab" aria-controls="nav-profile" aria-selected="false">Comptabilité</a>
-		    <a class="nav-item nav-link" id="nav-assistant-tab" data-toggle="tab" href="#nav-assistant" role="tab" aria-controls="nav-contact" aria-selected="false">Assistant de direction</a>
-		  </div>
-		</nav>
-		<script>
-		  $(function () {
-			    $('#nav-tab li:last-child a').tab('show')
-			  })
-			</script>    
-			<form>	
-		
-		<br></br><br></br>
-		
-		<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 35rem;">
-		
-			<div class="card-body">
-			<div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-				
-			<div class="col col-4">
-					<h:inputText class="form-control" value="#{utilisateurControl.tri}"></h:inputText>
-				</div>
-				<div class="col col-4">
-					<h:commandButton class="btn btn-success" value="trier" action="{utilisateurControl.query()}"></h:commandButton>
-				</div>	
-				<ui:repeat value="#{utilisateurControl.query()}" var="item">
-					<div class="row" >	
-						<div class="col col-3">
-							#{item.nom}
-						</div>		
-						<div class="col col-3">
-							#{item.prenom}
-						</div>	
-						<div class="col col-3">
-							#{item.annee}
-						</div>			
-					</div>
-				</ui:repeat>
-			
-			</div>
-			
-			<div class="tab-pane fade" id="nav-compta" role="tabpanel" aria-labelledby="nav-comptabilite-tab">
-			
-			<div class="col col-4">
-					<h:inputText class="form-control" value="#{utilisateurControl.tri}"></h:inputText>
-				</div>
-				<div class="col col-4">
-					<h:commandButton class="btn btn-success" value="trier" action="{utilisateurControl.query2()}"></h:commandButton>
-				</div>		
-				<ui:repeat value="#{utilisateurControl.query2()}" var="item">
-					<div class="row" >	
-						<div class="col col-3">
-							#{item.nom}
-						</div>		
-						<div class="col col-3">
-							#{item.prenom}
-						</div>	
-						<div class="col col-3">
-							#{item.annee}
-						</div>			
-					</div>
-				</ui:repeat>
-			
-			</div>
-			
-			<div class="tab-pane fade" id="nav-assistant" role="tabpanel" aria-labelledby="nav-assistant-tab">
-			
-			<div class="col col-4">
-					<h:inputText class="form-control" value="#{utilisateurControl.tri}"></h:inputText>
-				</div>
-				<div class="col col-4">
-					<h:commandButton class="btn btn-success" value="trier" action="{utilisateurControl.query3()}"></h:commandButton>
-				</div>	
-				<ui:repeat value="#{utilisateurControl.query3()}" var="item">
-					<div class="row" >	
-						<div class="col col-3">
-							#{item.nom}
-						</div>		
-						<div class="col col-3">
-							#{item.prenom}
-						</div>	
-						<div class="col col-3">
-							#{item.annee}
-						</div>			
-					</div>
-				</ui:repeat>
-			
-			</div>
-			
-			</div>
-		</div>
-		</form>	
-	  --> 
 	<h:form>	  
 	  	<label for="search" style="margin-left: 10px; margin-right:5px;margin-top: 5px;float: left;">Rechercher un élève : </label>
    	 	<h:inputText type="submit" class="form-control mr-sm-2" style="max-width: 200px; float: left; margin-top: -3px;" id="search" placeholder="Votre recherche" value="#{utilisateurControl.option}"></h:inputText>
@@ -137,31 +41,42 @@
 		
 		<div class="tab-content" id="nav-myTab">
 		  <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-			  <h:form>	
+			  	
 			  	<b:dataTable value="#{utilisateurControl.findAllSections('Informatique de gestion')}" var="o" id="tableInfo" auto-update="true">
 	                <b:dataTableColumn value="#{o.nom}"  label="Nom"/>
 	                <b:dataTableColumn value="#{o.prenom}" label="Prénom"/> 
-	                <b:dataTableColumn value="#{o.annee}" label="Année de diplomation"/> 
+	                <b:dataTableColumn value="#{o.annee}" label="Année de diplomation"/>
+	                <b:dataTableColumn>
+				
+		<!--  				<a href="informations.xhtml" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" action="#{utilisateurControl.afficherUtilisateur(o)}">Primary link</a>-->
+						<b:commandButton class="btn btn-primary" value="Afficher le profil" label="Afficher" action="#{utilisateurControl.afficherUtilisateur(o)}"/>
+					</b:dataTableColumn>
 	            </b:dataTable>   
-	           </h:form>                        
+	                                
 		  </div>
 		  <div class="tab-pane fade" id="nav-compta" role="tabpanel" aria-labelledby="nav-compta-tab">
-			  <h:form>		
+			  
 			  	<b:dataTable value="#{utilisateurControl.findAllSections('Comptabilité')}" var="o" id="tableCompta" auto-update="true">
 	                <b:dataTableColumn value="#{o.nom}"  label="Nom"/>
 	                <b:dataTableColumn value="#{o.prenom}" label="Prénom"/> 
 	                <b:dataTableColumn value="#{o.annee}" label="Année de diplomation"/> 
+	                <b:dataTableColumn>
+						<b:commandButton class="btn btn-primary" value="Afficher le profil" label="Afficher" action="#{utilisateurControl.afficherUtilisateur(o)}"/>
+					</b:dataTableColumn>
 	            </b:dataTable>
-	           </h:form>	                           
+	         	                           
 		  </div>
 		  <div class="tab-pane fade" id="nav-assistant" role="tabpanel" aria-labelledby="nav-assistant-tab" >
-			  <h:form>		
+			  	
 			  	<b:dataTable value="#{utilisateurControl.findAllSections('Assistant de direction')}" var="o" id="tableAssistant" auto-update="true">
 	                <b:dataTableColumn value="#{o.nom}"  label="Nom"/>
 	                <b:dataTableColumn value="#{o.prenom}" label="Prénom"/> 
 	                <b:dataTableColumn value="#{o.annee}" label="Année de diplomation"/> 
+	                <b:dataTableColumn>
+						<b:commandButton class="btn btn-primary" value="Afficher le profil" label="Afficher" action="#{utilisateurControl.afficherUtilisateur(o)}"/>
+					</b:dataTableColumn>
 	            </b:dataTable>
-               </h:form>	           
+                          
 		    </div>
 	 	  </div>	
 	 	  	
