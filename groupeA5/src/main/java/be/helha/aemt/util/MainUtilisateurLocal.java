@@ -34,12 +34,12 @@ public class MainUtilisateurLocal {
 		
 		ImgEntite img=new ImgEntite();
 		
-		Eleve el=new Eleve("Nya", "Corentin","corentin@gmailcom","description",2020, "Informatique de gestion",img,0,"a");
-		Eleve el2=new Eleve("Opese", "Kevin","Kevin@gmailcom","description", 2020, "Informatique de gestion",img,0,"a");
-		Eleve el3=new Eleve("Nicole", "Catherine","Catherine@gmailcom","description", 2021, "Comptabilité",img,0,"a");
-		Eleve el4=new Eleve("Gérard", "Hubert","Hubert@gmailcom","description", 2017, "Assistant de direction",img,0,"a");
-		Eleve el5=new Eleve("Chevalier", "Pierre","pechevalier@hotmail.be","description", 2018, "Informatique de gestion",img,0,"a");
-		Eleve el6=new Eleve("Vincent", "Hubert","Hubert2@gmailcom","description", 2022, "Informatique de gestion",img,0,"a");
+		Eleve el=new Eleve("Nya", "Corentin","corentin@gmailcom","description",2020, "Informatique de gestion",img,1,"a");
+		Eleve el2=new Eleve("Opese", "Kevin","Kevin@gmailcom","description", 2020, "Informatique de gestion",img,1,"a");
+		Eleve el3=new Eleve("Nicole", "Catherine","Catherine@gmailcom","description", 2021, "Comptabilité",img,1,"a");
+		Eleve el4=new Eleve("Gérard", "Hubert","Hubert@gmailcom","description", 2017, "Assistant de direction",img,1,"a");
+		Eleve el5=new Eleve("Chevalier", "Pierre","pechevalier@hotmail.be","description", 2018, "Informatique de gestion",img,1,"a");
+		Eleve el6=new Eleve("Vincent", "Hubert","Hubert2@gmailcom","description", 2022, "Informatique de gestion",img,1,"a");
 		
 		Annonce an1=new Annonce("nomAnnonce", "contenuAnnonce", 1,ul);
 		

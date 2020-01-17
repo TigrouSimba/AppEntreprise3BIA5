@@ -70,12 +70,12 @@ public class EleveDAO {
         Query qSelectAll;
         String requete;
         if(option == null || option.contentEquals("")) {
-            requete ="SELECT eleve from Eleve eleve where eleve.sections =:sections";
+            requete ="SELECT eleve from Eleve eleve where eleve.sections =:sections and eleve.accepter=1";
             qSelectAll=em.createQuery(requete);
             qSelectAll.setParameter("sections", sections );
         }
         else {
-            requete ="SELECT eleve from Eleve eleve where eleve.sections =:sections and (eleve.nom like :option or eleve.prenom like :option)";
+            requete ="SELECT eleve from Eleve eleve where eleve.sections =:sections and eleve.accepter=1 and (eleve.nom like :option or eleve.prenom like :option)";
             qSelectAll=em.createQuery(requete);
             qSelectAll.setParameter("sections", sections );
             qSelectAll.setParameter("option", "%" + option + "%" );

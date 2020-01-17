@@ -361,4 +361,10 @@ public class DemandeStageControl implements Serializable {
 	public void setTri(String tri) {
 		this.tri = tri;
 	}
+	
+	public String accepterStage(DemandeStage ds) {
+		ds.setIsValide(1);
+		ejb.Add(ds);
+		return "admin.xhtml?faces-redirect=true";
+	}
 }
