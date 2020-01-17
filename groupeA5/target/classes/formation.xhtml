@@ -14,7 +14,7 @@
      <div id="nav"/>
 	<div class="card bg-light border-dark shadow-sm bg-white rounded" style="width: 45rem;">
   <div class="card-body">
-     <h:form method="POST">
+     
     
     <em><b>Formations</b></em>
     
@@ -36,6 +36,7 @@
 		     </div>
 		</ui:repeat>
 	</ul>
+	<h:form method="POST" rendered="#{utilisateurControl.isAdmin() eq 'true'}">
 	<div class="row">
 				<label for="newInputNom">Nouveau nom de la formation :</label>
 			</div>
@@ -59,7 +60,7 @@
       </h:form>
     
 
-    <h:form method="POST">
+    <h:form method="POST" rendered="#{utilisateurControl.isAdmin() eq 'true'}">
 			<div class="row">
 				<label for="inputNom">Nom de la formation :</label>
 			</div>
