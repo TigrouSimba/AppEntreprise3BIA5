@@ -21,6 +21,11 @@ public class GestionEleveEJB {
 		return dao.findAll();
 	}
 	
+	public List<Eleve> findAllNotAccepted() {
+		// TODO Auto-generated method stub
+		return dao.findAllNotAccepted();
+	}
+	
 	
 	public List<Eleve> findAllSections(String sections) {
 		// TODO Auto-generated method stub

@@ -27,9 +27,7 @@ public class Utilisateur extends Visiteur implements Serializable{
 	private Integer id;*/
 	private String login;
 	private String password;
-	private String email;
 	private String groupName;
-	private ImgEntite photo;
 	@OneToMany(mappedBy = "user")
 	private List<Annonce> annonces;
 	@OneToMany(mappedBy = "createurEmploi")
@@ -44,21 +42,6 @@ public class Utilisateur extends Visiteur implements Serializable{
 	}
 	
 	
-	public Utilisateur(String login, String password, String email,String groupName) {
-		this.login = login;
-		try {
-			this.password = toHexString(getSHA(password));
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//this.password=password;
-		this.email = email;
-		this.groupName=groupName;
-		annonces=new ArrayList<Annonce>();
-		offresEmploi=new ArrayList<OffreEmploi>();
-	}
-	
 	public Utilisateur(String login, String password, String groupName) {
 		this.login = login;
 		try {
@@ -67,11 +50,14 @@ public class Utilisateur extends Visiteur implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//this.password=password;
-		
 		this.groupName=groupName;
 		annonces=new ArrayList<Annonce>();
 		offresEmploi=new ArrayList<OffreEmploi>();
+	}
+
+	public Utilisateur(String login, String groupName) {
+		this.login = login;
+		this.groupName = groupName;
 	}
 
 
@@ -85,14 +71,12 @@ public class Utilisateur extends Visiteur implements Serializable{
 	}*/
 
 
-	public Utilisateur(String login, String password, String email, String groupName, ImgEntite photo,
+	public Utilisateur(String login, String password, String groupName, 
 			List<Annonce> annonces, List<OffreEmploi> offresEmploi, List<DemandeStage> demandeStage,List<Evenement>evenements) {
 		super();
 		this.login = login;
 		this.password = password;
-		this.email = email;
 		this.groupName = groupName;
-		this.photo = photo;
 		this.annonces = annonces;
 		this.offresEmploi = offresEmploi;
 		this.demandeStage = demandeStage;
@@ -120,16 +104,7 @@ public class Utilisateur extends Visiteur implements Serializable{
 	}
 
 
-	public String getEmail() {
-		return email;
-	}
-
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
+	
 	public String getGroupName() {
 		return groupName;
 	}
@@ -140,16 +115,7 @@ public class Utilisateur extends Visiteur implements Serializable{
 	}
 
 
-	public ImgEntite getPhoto() {
-		return photo;
-	}
-
-
-	public void setPhoto(ImgEntite photo) {
-		this.photo = photo;
-	}
-
-
+	
 	public List<Annonce> getAnnonces() {
 		return annonces;
 	}
@@ -222,16 +188,14 @@ public class Utilisateur extends Visiteur implements Serializable{
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + ((annonces == null) ? 0 : annonces.hashCode());
 		result = prime * result + ((demandeStage == null) ? 0 : demandeStage.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((evenements == null) ? 0 : evenements.hashCode());
 		result = prime * result + ((groupName == null) ? 0 : groupName.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((offresEmploi == null) ? 0 : offresEmploi.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((photo == null) ? 0 : photo.hashCode());
 		return result;
 	}
 
@@ -240,7 +204,7 @@ public class Utilisateur extends Visiteur implements Serializable{
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -254,11 +218,6 @@ public class Utilisateur extends Visiteur implements Serializable{
 			if (other.demandeStage != null)
 				return false;
 		} else if (!demandeStage.equals(other.demandeStage))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
 			return false;
 		if (evenements == null) {
 			if (other.evenements != null)
@@ -285,22 +244,18 @@ public class Utilisateur extends Visiteur implements Serializable{
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (photo == null) {
-			if (other.photo != null)
-				return false;
-		} else if (!photo.equals(other.photo))
-			return false;
 		return true;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Utilisateur [login=" + login + ", password=" + password + ", email=" + email + ", groupName="
-				+ groupName + ", photo=" + photo + ", annonces=" + annonces + ", offresEmploi=" + offresEmploi
-				+ ", demandeStage=" + demandeStage + ", evenements=" + evenements + "]";
-	} 
-    
-    
+		return "Utilisateur [login=" + login + ", password=" + password + ", groupName=" + groupName + ", annonces="
+				+ annonces + ", offresEmploi=" + offresEmploi + ", demandeStage=" + demandeStage + ", evenements="
+				+ evenements + "]";
+	}
+
+
+	
 	
 }

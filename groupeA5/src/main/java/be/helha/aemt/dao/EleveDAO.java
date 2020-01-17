@@ -25,6 +25,12 @@ public class EleveDAO {
 		return qSelectAll.getResultList();
 	}
 	
+	public List<Eleve> findAllNotAccepted() {		
+		String requete="SELECT el FROM Eleve el where el.accepter=0";
+		TypedQuery<Eleve>qSelectAll=em.createQuery(requete,Eleve.class);
+		return qSelectAll.getResultList();
+	}
+	
 	public List<Eleve> findAllSections(String sections) {		
 		String requete="SELECT el FROM Eleve el where el.sections=:pSections order by el.annee desc";
 		TypedQuery<Eleve>qSelectAllSections=em.createQuery(requete,Eleve.class);

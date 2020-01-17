@@ -241,7 +241,7 @@ public class UtilisateurControl implements Serializable{
 	}
 	
 	public String register() {
-		el=new Eleve(nom,prenom,email,description,annee,sections,createImg(file),0);
+		el=new Eleve(nom,prenom,email,description,annee,sections,createImg(file),0,mdp);
 		if(ejb.findOccurence(email)!=null) {
 			setMessage("L'utilisateur existe déjà");
 			setNom("");
@@ -309,6 +309,15 @@ public class UtilisateurControl implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String accepterEleve(Eleve e) {
+		e.setAccepter(1);
+		ejbEleve.add(e);
+		Utilisateur ul=new Utilisateur(e.getEmail(),"ancien");
+		ul.setPassword(e.getMdp());
+		ejb.add(ul);
+		return "admin.xhtml?faces-redirect=true";
 	}
 	
 	

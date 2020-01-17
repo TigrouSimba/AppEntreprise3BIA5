@@ -1,6 +1,10 @@
 package be.helha.aemt.entities;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -25,12 +29,13 @@ public class Eleve implements Serializable{
 	private int accepter;
 	@OneToOne(targetEntity=ImgEntite.class,cascade= CascadeType.PERSIST)
 	private ImgEntite img;
+	private String mdp;
 	
 	public Eleve() {
 		
 	}
 
-	public Eleve(String nom, String prenom, String email,String description,int annee, String sections,ImgEntite img,int accepter) {
+	public Eleve(String nom, String prenom, String email,String description,int annee, String sections,ImgEntite img,int accepter,String mdp) {
 	
 		this.nom = nom;
 		this.prenom = prenom;
@@ -40,6 +45,12 @@ public class Eleve implements Serializable{
 		this.sections=sections;
 		this.img = img;
 		this.accepter=accepter;
+		try {
+			this.mdp = toHexString(getSHA(mdp));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Integer getId() {
@@ -113,6 +124,14 @@ public class Eleve implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
 
 	@Override
 	public int hashCode() {
@@ -124,6 +143,7 @@ public class Eleve implements Serializable{
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((img == null) ? 0 : img.hashCode());
+		result = prime * result + ((mdp == null) ? 0 : mdp.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
 		result = prime * result + ((sections == null) ? 0 : sections.hashCode());
@@ -163,6 +183,11 @@ public class Eleve implements Serializable{
 				return false;
 		} else if (!img.equals(other.img))
 			return false;
+		if (mdp == null) {
+			if (other.mdp != null)
+				return false;
+		} else if (!mdp.equals(other.mdp))
+			return false;
 		if (nom == null) {
 			if (other.nom != null)
 				return false;
@@ -185,9 +210,36 @@ public class Eleve implements Serializable{
 	public String toString() {
 		return "Eleve [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", description="
 				+ description + ", annee=" + annee + ", sections=" + sections + ", accepter=" + accepter + ", img="
-				+ img + "]";
+				+ img + ", mdp=" + mdp + "]";
 	}
-	
-	
+
+	//pour crypter en sha256
+		public static byte[] getSHA(String input) throws NoSuchAlgorithmException 
+	    {  
+	        // Static getInstance method is called with hashing SHA  
+	        MessageDigest md = MessageDigest.getInstance("SHA-256");  
+	  
+	        // digest() method called  
+	        // to calculate message digest of an input  
+	        // and return array of byte 
+	        return md.digest(input.getBytes(StandardCharsets.UTF_8));  
+	    } 
+	    
+	    public static String toHexString(byte[] hash) 
+	    { 
+	        // Convert byte array into signum representation  
+	        BigInteger number = new BigInteger(1, hash);  
+	  
+	        // Convert message digest into hex value  
+	        StringBuilder hexString = new StringBuilder(number.toString(16));  
+	  
+	        // Pad with leading zeros 
+	        while (hexString.length() < 32)  
+	        {  
+	            hexString.insert(0, '0');  
+	        }  
+	  
+	        return hexString.toString();  
+	    }
 
 }

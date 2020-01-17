@@ -26,20 +26,20 @@ public class MainUtilisateurLocal {
 		
 		EntityManager em=emf.createEntityManager();
 
-		Utilisateur ul=new Utilisateur("admin", "helha", "admin@gmail.com","admin");
-		Utilisateur ul2=new Utilisateur("us2", "a", "us2@gmail.com","user");
-		Utilisateur ul3=new Utilisateur("ancien", "helha", "ancien@gmail.com","ancien");
+		Utilisateur ul=new Utilisateur("admin", "helha","admin");
+		Utilisateur ul2=new Utilisateur("us2@gmail.com", "a", "user");
+		Utilisateur ul3=new Utilisateur("ancien", "helha", "ancien");
 		
-		Visiteur v1=new Visiteur("192.193.194.195");
+		Visiteur v1=new Visiteur();
 		
 		ImgEntite img=new ImgEntite();
 		
-		Eleve el=new Eleve("Nya", "Corentin","corentin@gmailcom","description",2020, "Informatique de gestion",img,0);
-		Eleve el2=new Eleve("Opese", "Kevin","Kevin@gmailcom","description", 2020, "Informatique de gestion",img,0);
-		Eleve el3=new Eleve("Nicole", "Catherine","Catherine@gmailcom","description", 2021, "Comptabilité",img,0);
-		Eleve el4=new Eleve("Gérard", "Hubert","Hubert@gmailcom","description", 2017, "Assistant de direction",img,0);
-		Eleve el5=new Eleve("Chevalier", "Pierre","Pierre@gmailcom","description", 2018, "Informatique de gestion",img,0);
-		Eleve el6=new Eleve("Vincent", "Hubert","Hubert2@gmailcom","description", 2022, "Informatique de gestion",img,0);
+		Eleve el=new Eleve("Nya", "Corentin","corentin@gmailcom","description",2020, "Informatique de gestion",img,0,"a");
+		Eleve el2=new Eleve("Opese", "Kevin","Kevin@gmailcom","description", 2020, "Informatique de gestion",img,0,"a");
+		Eleve el3=new Eleve("Nicole", "Catherine","Catherine@gmailcom","description", 2021, "Comptabilité",img,0,"a");
+		Eleve el4=new Eleve("Gérard", "Hubert","Hubert@gmailcom","description", 2017, "Assistant de direction",img,0,"a");
+		Eleve el5=new Eleve("Chevalier", "Pierre","Pierre@gmailcom","description", 2018, "Informatique de gestion",img,0,"a");
+		Eleve el6=new Eleve("Vincent", "Hubert","Hubert2@gmailcom","description", 2022, "Informatique de gestion",img,0,"a");
 		
 		Annonce an1=new Annonce("nomAnnonce", "contenuAnnonce", 1,ul);
 		

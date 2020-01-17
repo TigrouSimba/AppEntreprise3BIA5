@@ -16,8 +16,97 @@
 	<div class="container-fluid">
 		<div class="card bg-light border-dark shadow-sm bg-white rounded">
 			<div class="card-body">
+			
 			<div class="row">
-					<div class="col col-5">
+				<h3>
+					<b><em>Comptes</em></b>
+				</h3>
+				<table class="table">
+				  <thead class="thead-dark">
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Nom</th>
+				      <th scope="col">Prénom</th>
+				      <th scope="col">Email</th>
+				      <th scope="col">Section</th>
+				      <th scope="col">Année de diplomation</th>
+				      <th scope="col">Description</th>
+				      <th scope="col">Photo</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	<h:form>
+						<ui:repeat value="#{utilisateurControl.ejbEleve.findAllNotAccepted()}" var="item" varStatus="myVarStatus">
+						
+						    <tr>
+						      <th scope="row">#{myVarStatus.index+1}</th>
+						      <td>#{item.nom}</td>
+						      <td>#{item.prenom}</td>
+						      <td>#{item.email}</td>
+						      <td>#{item.sections}</td>
+						      <td>#{item.annee}</td>
+						      <td>#{item.description}</td>
+						      <td>
+						      	<!--  <img src="data:image/jpg;base64,#{imageControl.imageShow(item.img.img)}" height="50" width="50"/>-->
+						      </td>
+						      <td>
+						      	<h:commandButton
+										class="btn btn-lg btn-primary btn-block text-uppercase"
+										type="submit" action="#{utilisateurControl.accepterEleve(item)}"
+										value="Enregistrer"></h:commandButton>
+						      </td>
+						    </tr>
+				   		</ui:repeat>
+				   	</h:form>
+				  </tbody>
+				</table>
+					
+				
+			</div>
+			<br/>
+			<div class="row">
+						<h3>
+							<b><em>Annonces</em></b>
+						</h3>
+						<table class="table">
+						  <thead class="thead-dark">
+						    <tr>
+						      <th scope="col">#</th>
+						      <th scope="col">Email</th>
+						      <th scope="col">Nom de l'annonce</th>
+						      <th scope="col">Validation</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<h:form>
+								<ui:repeat value="#{annonceControl.ejb.findAllNotAccepted()}" var="item" varStatus="myVarStatus">
+								
+								    <tr>
+								      <th scope="row">#{myVarStatus.index+1}</th>
+								      <td>#{item.user.login}</td>
+								      <td>
+								      	<h:link value="#{item.nomEvenement}" outcome="association.xhtml">
+											<f:param name="nom" value="#{item.nomEvenement}" />
+											<f:param name="id" value="#{item.id}" />
+										</h:link>
+								      </td>
+								      <td>
+								      	<h:commandButton
+												class="btn btn-lg btn-primary btn-block text-uppercase"
+												type="submit" action="#{annonceControl.accepterEvenement(item)}"
+												value="Enregistrer"></h:commandButton>
+								      </td>
+								    </tr>
+						   		</ui:repeat>
+						   	</h:form>
+						  </tbody>
+						</table>
+						
+					
+				</div>
+				
+				<br/>
+				<div class="row">
 						<h3>
 							<b><em>Evènements</em></b>
 						</h3>
@@ -27,21 +116,22 @@
 						      <th scope="col">#</th>
 						      <th scope="col">Email</th>
 						      <th scope="col">Nom de l'événement</th>
+						      <th scope="col">Contenu de l'événement</th>
 						      <th scope="col">Validation</th>
 						    </tr>
 						  </thead>
 						  <tbody>
 						  	<h:form>
-								<ui:repeat value="#{evenementControl.ejb.findAllEnCours()}" var="item" varStatus="myVarStatus">
+								<ui:repeat value="#{evenementControl.ejb.findAllNotAccepted()}" var="item" varStatus="myVarStatus">
 								
 								    <tr>
 								      <th scope="row">#{myVarStatus.index+1}</th>
-								      <td>#{item.user.email}</td>
+								      <td>#{item.user.login}</td>
 								      <td>
-								      	<h:link value="#{item.nomEvenement}" outcome="association.xhtml">
-											<f:param name="nom" value="#{item.nomEvenement}" />
-											<f:param name="id" value="#{item.id}" />
-										</h:link>
+								      	#{item.nomEvenement}
+								      </td>
+								      <td>
+								      	#{item.contenu}
 								      </td>
 								      <td>
 								      	<h:commandButton
@@ -54,69 +144,10 @@
 						   	</h:form>
 						  </tbody>
 						</table>
-						<!--  <ul>
-							<h:form>
-								<ui:repeat value="#{evenementControl.ejb.findAllEnCours()}" var="item">
-									<li>
-								
-										<div class="row">
-										<div class="col col-5">
-											<div
-												class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
-												<div class="card-body">
-													<h:link value="#{item.nomEvenement}"
-														outcome="association.xhtml">
-														<f:param name="nom" value="#{item.nomEvenement}" />
-													</h:link>
-												</div>
-											</div>
-											</div>
-											<div class="col col-auto">
-											<h:commandButton
-												class="btn btn-lg btn-primary btn-block text-uppercase"
-												type="submit" action="#{evenementControl.accepterEvenement(item)}"
-												value="Enregistrer"></h:commandButton>
-												</div>
-												
-										</div>
-									</li>
-								</ui:repeat>
-							</h:form>
-
-						</ul>
-						-->
-					</div>
+						
 					
 				</div>
-				<!--  <h:form method="POST" enctype="multipart/form-data">
-					File: <h:inputFile value="#{imageControl.file}" name="file" id="file" />
-					<br />
-					<h:commandButton
-						class="btn btn-lg btn-primary btn-block text-uppercase"
-						type="submit" action="#{imageControl.ajoutImage()}"
-						value="Enregistrer"></h:commandButton>
-				</h:form>
-				<br/>
-				<h:form>
-								<ui:repeat value="#{imageControl.ejb.findAll()}" var="item" varStatus="myVarStatus">
-									<li>
-										<div class="row">
-											<div
-												class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
-												<div class="card-body">
-													
-													<img src="data:image/jpg;base64,#{imageControl.imageShow(myVarStatus.index)}" height="200" width="200"/>
-													
-													
-												</div>
-											</div>
-										</div>
-										
-									</li>
-								</ui:repeat>
-							</h:form>
-							
-							-->
+				
 			</div>
 		</div>
 	</div>
