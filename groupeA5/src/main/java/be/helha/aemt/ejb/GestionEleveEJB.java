@@ -33,23 +33,37 @@ public class GestionEleveEJB {
 		return dao.findAllNotAccepted();
 	}
 	
-	
+	/**
+	 * recupere une liste d'anciens grace a une section
+	 * @return une liste d'anciens
+	 */
 	public List<Eleve> findAllSections(String sections) {
 		// TODO Auto-generated method stub
 		return dao.findAllSections(sections);
 	}
 	
-	
+	/**
+	 * requete permettant de recuperer une liste d'anciens grace a un tri
+	 * @return une liste de sections
+	 */
 	public List<Eleve> findSections() {
 		// TODO Auto-generated method stub
 		return dao.findSections();
 	}
 	
+	/**
+	 * requete permettant de recuperer une liste d'anciens grace a un tri
+	 * @return une liste ancien
+	 */
 	public List<Eleve> findSections2(String sections, String option) {
 		// TODO Auto-generated method stub
 		return dao.findSections2(sections, option);
 	}
 	
+	/**
+	 * requete permettant de recuperer un ancien grace a une div
+	 * @return un ancien
+	 */
 	public Eleve afficherUtilisateur(Eleve eleve) {
 		// TODO Auto-generated method stub
 		return dao.afficherUtilisateur(eleve);
@@ -57,7 +71,7 @@ public class GestionEleveEJB {
 
 	/**
 	 * requete permettant de recuperer un ancien grace a son id
-	 * @return une ancien
+	 * @return un ancien
 	 */
 	public Eleve findOccurence(Eleve eleve) {
 		// TODO Auto-generated method stub

@@ -41,19 +41,27 @@ public class EleveDAO {
 	
 	
 	public List<Eleve> findAllSections(String sections) {		
-		String requete="SELECT el FROM Eleve el where el.sections=:pSections order by el.annee desc";
+		String requete="SELECT el FROM Eleve el where el.sections=:pSections order by el.annee asc";
 		TypedQuery<Eleve>qSelectAllSections=em.createQuery(requete,Eleve.class);
 		qSelectAllSections.setParameter("pSections", sections);	
 		List<Eleve>req=qSelectAllSections.getResultList();
 		return req.size()==0?null:req;
 	}
 	
+	/**
+	 * requete permettant d'afficher chaque section une seule fois
+	 * @return une liste de sections
+	 */
 	public List<Eleve> findSections() {		
 		String requete="SELECT distinct el.sections FROM Eleve el";
 		TypedQuery<Eleve>qSelectSections=em.createQuery(requete,Eleve.class);
 		return qSelectSections.getResultList();
 	}
 	
+	/**
+	 * requete permettant de recuperer une liste d'ancien grace a un tri
+	 * @return une liste d'ancien
+	 */
 	public List<Eleve> findSections2(String sections, String option){
         boolean valide = true;
         Query qSelectAll;
@@ -75,7 +83,7 @@ public class EleveDAO {
 	
 	/**
 	 * requete permettant de recuperer un ancien grace a son id
-	 * @return une ancien
+	 * @return un ancien
 	 */
 	public Eleve findOccurence(Eleve eleve) {
 		String requete="select el FROM Eleve el where el.nom=:pNom and "
@@ -88,6 +96,10 @@ public class EleveDAO {
 		return req.size()==0?null:req.get(0);
 	}
 	
+	/**
+	 * requete permettant de recuperer un ancien grace a une div
+	 * @return un ancien
+	 */
 	public Eleve afficherUtilisateur(Eleve eleve) {
 		String requete="select el FROM Eleve el where el=:pEl";
 		TypedQuery<Eleve>afficherQuery=em.createQuery(requete, Eleve.class);
