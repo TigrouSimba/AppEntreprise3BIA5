@@ -30,7 +30,7 @@ public class Utilisateur extends Visiteur implements Serializable{
 	private String email;
 	private String groupName;
 	private ImgEntite photo;
-	@OneToMany(mappedBy = "createurAnnonce")
+	@OneToMany(mappedBy = "user")
 	private List<Annonce> annonces;
 	@OneToMany(mappedBy = "createurEmploi")
 	private List<OffreEmploi> offresEmploi;

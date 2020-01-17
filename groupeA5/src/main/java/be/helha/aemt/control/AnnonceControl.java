@@ -18,9 +18,11 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 
+import be.helha.aemt.ejb.GestionAnnonceEJB;
 import be.helha.aemt.ejb.GestionEvenementEJB;
 import be.helha.aemt.ejb.GestionImageEJB;
 import be.helha.aemt.ejb.GestionVisiteurEJB;
+import be.helha.aemt.entities.Annonce;
 import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.ImgEntite;
 import be.helha.aemt.entities.Utilisateur;
@@ -28,7 +30,7 @@ import be.helha.aemt.entities.Utilisateur;
 
 @SessionScoped
 @Named //permet d'utiliser les controller dans les pages html
-public class EvenementControl implements Serializable{
+public class AnnonceControl implements Serializable{
 	
 	/**
 	 * 
@@ -36,24 +38,31 @@ public class EvenementControl implements Serializable{
 	private static final long serialVersionUID = 1L;	
 
 	@EJB
-	private GestionEvenementEJB ejb;
+	private GestionAnnonceEJB ejb;
+	
+	@EJB
+	private GestionImageEJB ejbImg;
 	
 	@EJB
 	private GestionVisiteurEJB ejbVisiteur;
 	
-	private String nomEvenement="",contenu="",nomModif,contenuModif,messageBienvenue;	
+	private String nomEvenement="",contenu="",nomModif,contenuModif;	
 	
-	private Evenement eventToModif;
+	private List<ImgEntite> imgs=new ArrayList<ImgEntite>();
+	
+	private Part img;
+	
+	private Annonce eventToModif;
 
-	public EvenementControl() {
+	public AnnonceControl() {
 		
 	}
 
-	public GestionEvenementEJB getEjb() {
+	public GestionAnnonceEJB getEjb() {
 		return ejb;
 	}
 
-	public void setEjb(GestionEvenementEJB ejb) {
+	public void setEjb(GestionAnnonceEJB ejb) {
 		this.ejb = ejb;
 	}
 
@@ -67,24 +76,32 @@ public class EvenementControl implements Serializable{
 	
 	public String ajoutEvenement() {
 		if(nomEvenement.equals("")){
-			return "index.xhtml?faces-redirect=true";
+			return "annonce.xhtml?faces-redirect=true";
 		}
 		Utilisateur us = ejbVisiteur.findOccurence(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
 		
-		Evenement el =new Evenement(nomEvenement,contenu,0,us);
+		Annonce el =new Annonce(nomEvenement,contenu,0,us);
 		if(us.getGroupName().equals("admin")) {
 			el.setAccepter(1);
 		}
-	
+		//ejb.add(el);
+		//el.setImgsEvenement(imgs);
+		for (ImgEntite imgEntite : imgs) {
+			imgEntite.setAnnonce(el);
+			//ejbImg.add2(imgEntite);
+		}
+		//ejbImg.addList(imgs);
+		el.setImgsEvenement(imgs);
 		ejb.add(el);
 		nomEvenement="";
 		contenu="";
-		return "index.xhtml?faces-redirect=true";
+		imgs.clear();
+		return "annonce.xhtml?faces-redirect=true";
 	}
 	
 	public String modifEvenement() {
 		if(nomModif.equals("")){
-			return "index.xhtml?faces-redirect=true";
+			return "annonce.xhtml?faces-redirect=true";
 		}
 		Utilisateur us = ejbVisiteur.findOccurence(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
 		
@@ -98,15 +115,59 @@ public class EvenementControl implements Serializable{
 		nomModif="";
 		contenuModif="";
 		eventToModif=null;
-		return "index.xhtml?faces-redirect=true";
+		return "annonce.xhtml?faces-redirect=true";
 	}
 	
-	public String accepterEvenement(Evenement e) {
+	public String accepterEvenement(Annonce e) {
 		e.setAccepter(1);
 		ejb.add(e);
-		return "index.xhtml";
+		return "annonce.xhtml";
+	}
+	
+	public void addtoList() { 
+	    imgs.add(createImg());
 	}
 
+	
+	public ImgEntite createImg() {
+		InputStream initialStream = null;
+	    byte[] buffer = null;
+	    OutputStream outStream = null;
+		try {
+			initialStream = img.getInputStream();
+			buffer = new byte[initialStream.available()];
+			initialStream.read(buffer);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	 
+		
+		return new ImgEntite(buffer);
+	}
+
+	public List<ImgEntite> getImgs() {
+		return imgs;
+	}
+
+	public void setImgs(List<ImgEntite> imgs) {
+		this.imgs = imgs;
+	}
+
+	public Part getImg() {
+		return img;
+	}
+
+	public void setImg(Part img) {
+		this.img = img;
+	}
+
+	public GestionImageEJB getEjbImg() {
+		return ejbImg;
+	}
+
+	public void setEjbImg(GestionImageEJB ejbImg) {
+		this.ejbImg = ejbImg;
+	}
 	
 	public GestionVisiteurEJB getEjbVisiteur() {
 		return ejbVisiteur;
@@ -116,9 +177,9 @@ public class EvenementControl implements Serializable{
 		this.ejbVisiteur = ejbVisiteur;
 	}
 
-	public String deleteEvent(Evenement event) {
+	public String deleteEvent(Annonce event) {
 		ejb.delete(event);
-		return "index.xhtml?faces-redirect=true";
+		return "annonce.xhtml?faces-redirect=true";
 		
 	}
 
@@ -129,34 +190,8 @@ public class EvenementControl implements Serializable{
 	public void setContenu(String contenu) {
 		this.contenu = contenu;
 	}
-
-	public String getMessageBienvenue() {
-		File file = new File(
-				getClass().getClassLoader().getResource("message.txt").getFile()
-			);	
-		  BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(file));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		  
-		  String st,tmp = ""; 
-		  try {
-			while ((st = br.readLine()) != null) {
-			    messageBienvenue=st; 
-			  }
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
-		
-		return messageBienvenue;
-	}
-
 	
-	public String isCreator(Evenement e) {
+	public String isCreator(Annonce e) {
 		String nom=FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
 		if(nom==null) {
 			return "false";
@@ -171,7 +206,7 @@ public class EvenementControl implements Serializable{
 		return "false";
 	}
 	
-	public void changeToModif(Evenement e) {
+	public void changeToModif(Annonce e) {
 		nomModif=e.getNomEvenement();
 		contenuModif=e.getContenu();
 		eventToModif=e;
@@ -193,21 +228,6 @@ public class EvenementControl implements Serializable{
 		this.contenuModif = contenuModif;
 	}
 
-	public String modifMessageBienvenue() {
-		PrintWriter prw = null;
-		try {
-			prw = new PrintWriter (getClass().getClassLoader().getResource("message.txt").getFile());
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    prw.println(messageBienvenue);          
-	    prw.close();
-		return "index.xhtml?faces-redirect=true";
-	}
 
-	public void setMessageBienvenue(String messageBienvenue) {
-		this.messageBienvenue = messageBienvenue;
-	}
 	
 }

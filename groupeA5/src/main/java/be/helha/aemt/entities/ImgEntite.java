@@ -32,8 +32,6 @@ public class ImgEntite implements Serializable{
 	private byte[] img;
 	@ManyToOne(targetEntity=Annonce.class,cascade= CascadeType.PERSIST)
 	private Annonce annonce;
-	@ManyToOne(targetEntity=Evenement.class,cascade= CascadeType.PERSIST)
-	private Evenement evenement;
 	
 	public ImgEntite() {
 		
@@ -45,23 +43,16 @@ public class ImgEntite implements Serializable{
 		this.annonce = annonce;
 	}
 
-	public ImgEntite(File img, Evenement evenement) {
-		
-		//this.img = img;
-		//this.img=new File(img.getPath()+ File.separator+img.getName());
-		this.evenement = evenement;
-	}
-
 	public ImgEntite(byte[] img) {
 		
 		this.img = img;
 		
 	}
 	
-	public ImgEntite(byte[] img, Evenement evenement) {
+	public ImgEntite(byte[] img, Annonce annonce) {
 		
 		this.img = img;
-		this.evenement = evenement;
+		this.annonce = annonce;
 	}
 
 	public Integer getId() {
@@ -100,20 +91,12 @@ public class ImgEntite implements Serializable{
 		this.annonce = annonce;
 	}
 
-	public Evenement getEvenement() {
-		return evenement;
-	}
-
-	public void setEvenement(Evenement evenement) {
-		this.evenement = evenement;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((annonce == null) ? 0 : annonce.hashCode());
-		result = prime * result + ((evenement == null) ? 0 : evenement.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((img == null) ? 0 : img.hashCode());
 		return result;
@@ -133,11 +116,6 @@ public class ImgEntite implements Serializable{
 				return false;
 		} else if (!annonce.equals(other.annonce))
 			return false;
-		if (evenement == null) {
-			if (other.evenement != null)
-				return false;
-		} else if (!evenement.equals(other.evenement))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -153,7 +131,7 @@ public class ImgEntite implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Image [id=" + id + ", img=" + img + ", annonce=" + annonce + ", evenement=" + evenement + "]";
+		return "Image [id=" + id + ", img=" + img + ", annonce=" + annonce + "]";
 	}
 	
 	

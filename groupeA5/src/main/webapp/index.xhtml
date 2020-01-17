@@ -35,18 +35,15 @@
 						</h3>
 						<ul style="list-style-type: none;">
 							<h:form>
-								<ui:repeat value="#{evenementControl.ejb.findAllAccepter()}" var="item">
+								<ui:repeat value="#{evenementControl.ejb.findAllAccepted()}" var="item">
 									<li>
 										<div class="row">
 											<div
 												class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
 												<div class="card-body">
-													<!-- <h:link outcome="association.xhtml" value="#{item.nomEvenement}" />-->
-													<h:link value="#{item.nomEvenement}"
-														outcome="association.xhtml">
-														<f:param name="nom" value="#{item.nomEvenement}" />
-														<f:param name="id" value="#{item.id}" />
-													</h:link>
+													<b><em>#{item.nomEvenement}</em></b>
+													<br/>
+													#{item.contenu}
 												</div>
 													<h:commandButton value="Modifier" class="btn btn-primary" action="#{evenementControl.changeToModif(item)}" rendered="#{evenementControl.isCreator(item) eq 'true'}"/>
 												  
@@ -73,23 +70,6 @@
 					<br/>
 					Contenu de l'évènement: <h:inputTextarea value="#{evenementControl.contenu}" required="true"
 								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
-					<ul style="list-style-type: none;">
-							
-								<ui:repeat value="#{evenementControl.imgs}" var="item">
-									<li>
-										<div class="row">
-											<div
-												class="card border-dark shadow-sm p-1 mb-3 bg-white rounded">
-												<div class="card-body">
-													<img src="data:image/jpg;base64,#{imageControl.imageShow(item.img)}" height="200" width="200"/>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ui:repeat>
-							
-
-						</ul>
 					
 					<br/>
 					
@@ -100,19 +80,7 @@
 						value="Enregistrer"></h:commandButton>
 				</h:form>
 				<br/>
-				<h:form enctype="multipart/form-data" rendered="#{utilisateurControl.isConnected() eq 'true'}">
-					Photo : <h:inputFile value="#{evenementControl.img}">
-					<!--  <f:ajax listener="#{evenementControl.addtoList()}" immediate="true" render="@form" /> -->
-            
-					</h:inputFile>
-					<h:commandButton
-						    value="Ajouter l'image"
-						    action="#{evenementControl.addtoList()}"/>
-				</h:form>
 				
-				<br />
-				
-					
 					<h:form method="POST" rendered="#{utilisateurControl.isConnected() eq 'true'}" enctype="multipart/form-data">
 					<h4><b><em>Modification d'un évènement</em></b></h4>
 					Nom de l'événement : <h:inputTextarea value="#{evenementControl.nomModif}" required="true"
@@ -120,10 +88,6 @@
 					<br/>
 					Contenu de l'évènement: <h:inputTextarea value="#{evenementControl.contenuModif}" required="true"
 								requiredMessage="Le champ ne peut pas être vide" style="width:60%;"/>
-					<ul style="list-style-type: none;">
-							
-								
-						</ul>
 					
 					<br/>
 					

@@ -24,7 +24,7 @@ public class ImageDAO {
 	}
 	
 	public List<ImgEntite> findAllImagesFromEvent(int id) {		
-		String requete="SELECT img FROM ImgEntite img join img.evenement e where e.id=:pId";
+		String requete="SELECT img FROM ImgEntite img join img.annonce e where e.id=:pId";
 		TypedQuery<ImgEntite>qSelectAll=em.createQuery(requete,ImgEntite.class);
 		qSelectAll.setParameter("pId", id);
 		return qSelectAll.getResultList();

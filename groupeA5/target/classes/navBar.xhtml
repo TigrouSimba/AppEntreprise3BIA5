@@ -32,6 +32,11 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="index.xhtml">Accueil</a>
 				</li>
+				<h:form rendered="#{utilisateurControl.isConnected() eq 'true'}">
+					<li class="nav-item">
+						<a class="nav-link" href="annonce.xhtml">Annonces</a>
+					</li>
+				</h:form>
 				<li class="nav-item"><a class="nav-link" href="annuaire.xhtml">Annuaire</a>
 				</li>
 				

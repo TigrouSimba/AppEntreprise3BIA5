@@ -26,8 +26,6 @@ public class Evenement implements Serializable{
 	private Integer id;
 	private String nomEvenement,contenu;
 	private Integer accepter;
-	@OneToMany(targetEntity=ImgEntite.class,mappedBy = "evenement",cascade= CascadeType.ALL)
-	private List<ImgEntite> imgsEvenement;
 	@ManyToOne(targetEntity=Utilisateur.class,cascade= CascadeType.PERSIST)
 	private Utilisateur user;
 	
@@ -40,7 +38,6 @@ public class Evenement implements Serializable{
 		this.contenu=contenu;
 		this.accepter=accepter;
 		this.user=user;
-		imgsEvenement =new ArrayList<ImgEntite>();
 	}
 
 	public Integer getId() {
@@ -67,18 +64,6 @@ public class Evenement implements Serializable{
 		this.contenu = contenu;
 	}
 
-	public List<ImgEntite> getImgsEvenement() {
-		return imgsEvenement;
-	}
-
-	public void setImgsEvenement(List<ImgEntite> imgsEvenement) {
-		this.imgsEvenement = imgsEvenement;
-	}
-	
-	public void ajoutImage(ImgEntite img) {
-		imgsEvenement.add(img);
-	}
-
 	public Integer getAccepter() {
 		return accepter;
 	}
@@ -102,7 +87,6 @@ public class Evenement implements Serializable{
 		result = prime * result + ((accepter == null) ? 0 : accepter.hashCode());
 		result = prime * result + ((contenu == null) ? 0 : contenu.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((imgsEvenement == null) ? 0 : imgsEvenement.hashCode());
 		result = prime * result + ((nomEvenement == null) ? 0 : nomEvenement.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
@@ -132,11 +116,6 @@ public class Evenement implements Serializable{
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (imgsEvenement == null) {
-			if (other.imgsEvenement != null)
-				return false;
-		} else if (!imgsEvenement.equals(other.imgsEvenement))
-			return false;
 		if (nomEvenement == null) {
 			if (other.nomEvenement != null)
 				return false;
@@ -153,7 +132,7 @@ public class Evenement implements Serializable{
 	@Override
 	public String toString() {
 		return "Evenement [id=" + id + ", nomEvenement=" + nomEvenement + ", contenu=" + contenu + ", accepter="
-				+ accepter + ", imgsEvenement=" + imgsEvenement + ", user=" + user + "]";
+				+ accepter + ", user=" + user + "]";
 	}
 
 	

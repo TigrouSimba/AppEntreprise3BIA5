@@ -39,7 +39,7 @@ public class MainUtilisateurLocal {
 		Eleve el5=new Eleve("Chevalier", "Pierre", 2018, "Informatique de gestion");
 		Eleve el6=new Eleve("Vincent", "Hubert", 2022, "Informatique de gestion");
 		
-		Annonce an1=new Annonce("nomAnnonce", "contenuAnnonce",  new Date(), ul);
+		Annonce an1=new Annonce("nomAnnonce", "contenuAnnonce", 1,ul);
 		
 		Evenement en1=new Evenement("nomEvenement","contenu",1,ul);
 		

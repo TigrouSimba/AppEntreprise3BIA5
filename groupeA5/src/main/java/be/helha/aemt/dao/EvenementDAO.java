@@ -26,13 +26,13 @@ public class EvenementDAO {
 		return qSelectAll.getResultList();
 	}
 
-	public List<Evenement> findAllAccepter() {		
+	public List<Evenement> findAllAccepted() {		
 		String requete="SELECT eve FROM Evenement eve where eve.accepter=1";
 		TypedQuery<Evenement>qSelectAll=em.createQuery(requete,Evenement.class);
 		return qSelectAll.getResultList();
 	}
 	
-	public List<Evenement> findAllEnCours() {		
+	public List<Evenement> findAllNotAccepted() {		
 		String requete="SELECT eve FROM Evenement eve where eve.accepter=0";
 		TypedQuery<Evenement>qSelectAll=em.createQuery(requete,Evenement.class);
 		return qSelectAll.getResultList();
@@ -50,17 +50,7 @@ public class EvenementDAO {
 		return e;
 	}
 	
-	public Evenement modifier(Evenement e) {
-		em.merge(e);
-		return e;
-	}
-	
-	public void delete(Evenement e) {
-		String requete2="delete FROM ImgEntite img where img.evenement=:pEvent";
-		Query deleteQuery2=em.createQuery(requete2);
-		deleteQuery2.setParameter("pEvent",e);
-		deleteQuery2.executeUpdate();
-		
+	public void delete(Evenement e) {		
 		String requete="delete FROM Evenement event where event=:pEvent";
 		Query deleteQuery=em.createQuery(requete);
 		deleteQuery.setParameter("pEvent",e);
