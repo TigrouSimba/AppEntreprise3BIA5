@@ -16,7 +16,7 @@ public class DemandeStageDao  {
 
 	@PersistenceContext(unitName = "gAVisiteurJTA")
 	private EntityManager em;
-	
+	//Recuperer les demande de Stage non accepter
 	public List<DemandeStage> findAll(){
 
 		String requete ="SELECT eve FROM DemandeStage eve Where eve.isValide = 0";
@@ -25,17 +25,19 @@ public class DemandeStageDao  {
 		TypedQuery<DemandeStage>qSelectAll=em.createQuery(requete,DemandeStage.class);
 		return qSelectAll.getResultList();
 	}
+	//Recuperer les demande de Stage  accepter
 	public List<DemandeStage>findAllAccept()
 	{
 		String requete ="SELECT eve FROM DemandeStage eve Where eve.isValide = 1";
 		TypedQuery<DemandeStage>qSelectAll=em.createQuery(requete,DemandeStage.class);
 		return qSelectAll.getResultList();
 	}
-	
+	//Ajouter les demande de stage
 	public void Add(DemandeStage post) {
 		// TODO Auto-generated method stub
 		em.merge(post);	
 	}
+	//Supprime les demandes
 	public void delete(DemandeStage del)
 	{
 		if (!em.contains(del)) {
@@ -44,6 +46,7 @@ public class DemandeStageDao  {
 		em.remove(del);
 		
 	}
+	//Trouver une demande par Id
 	public DemandeStage findById(int id)
 	{
 		String requete ="SELECT eve FROM DemandeStage eve Where eve.id =:pId";

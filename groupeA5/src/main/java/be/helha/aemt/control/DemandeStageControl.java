@@ -18,8 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
-
-
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
+import org.apache.pdfbox.pdmodel.font.PDType1CFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import be.helha.aemt.ejb.GestionDemandeStageEJB;
 import be.helha.aemt.ejb.GestionVisiteurEJB;
@@ -64,32 +66,32 @@ public class DemandeStageControl implements Serializable {
 	
 	private boolean AfficherEmploi;
 	
-	
+	//Retoune la valeur de l'attribut TriSelection
 	public String getTriSection() {
 		return triSection;
 	}
 
-
+	//Retoune la valeur de l'attribut Section
 	public String getSections() {
 		return sections;
 	}
 
-
+	//Permet de changer la valeur de l'attribut Section
 	public void setSections(String sections) {
 		this.sections = sections;
 	}
 
-
+	//Permet de changer la valeur de l'attribut triSection
 	public void setTriSection(String triSection) {
 		this.triSection = triSection;
 	}
 
-
+	//Retoune la valeur de l'attribut Durée
 	public String getDurre() {
 		return durre;
 	}
 
-
+	//Permet de changer la valeur de l'attribut Duree
 	public void setDurre(String durre) {
 		this.durre = durre;
 	}
@@ -99,7 +101,7 @@ public class DemandeStageControl implements Serializable {
 		return estUnEmploi;
 	}
 
-
+	//Permet de changer la valeur de l'attribut est un emploi
 	public void setEstUnEmploi(boolean estUnEmploi) {
 		this.estUnEmploi = estUnEmploi;
 	}
@@ -113,6 +115,7 @@ public class DemandeStageControl implements Serializable {
 	@EJB
 	private GestionVisiteurEJB ejbVisiteur;
 	
+	//Retoune la valeur de l'attribut Ejb
 	public GestionDemandeStageEJB getEjb() {
 		return ejb;
 	}
@@ -123,92 +126,93 @@ public class DemandeStageControl implements Serializable {
 	public void setEjb(GestionDemandeStageEJB ejb) {
 		this.ejb = ejb;
 	}
-	
+	//Retoune la valeur de l'attribut Nom
 	public String getNom() {
 		return nom;
 	}
 
 
-
+	//Permet de changer la valeur de l'attribut Nom
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
-
+	//Constructeur
 	public DemandeStageControl() {
 		
 		
 		demandestage = new DemandeStage();
 		
 	}
-	
+	//Retoune la valeur de l'attribut DemandeStage
 	public DemandeStage getDemandestage() {
 		return demandestage;
 	}
-
+	//Permet de changer la valeur de l'attribut DemandeStage
 	public void setDemandestage(DemandeStage demandestage) {
 		this.demandestage = demandestage;
 	}
+	//Retoune la valeur de l'attribut Contenu
 	public String getContenu() {
 		return contenu;
 	}
-
+	//Permet de changer la valeur de l'attribut Contenu
 	public void setContenu(String contenu) {
 		this.contenu = contenu;
 	}
-
+	//Retoune la valeur de l'attribut DateJour
 	public int getDateJour() {
 		return dateJour;
 	}
-
+	//Permet de changer la valeur de l'attribut DateJour
 	public void setDateJour(int dateJour) {
 		this.dateJour = dateJour;
 	}
-
+	//Retoune la valeur de l'attribut DateMois
 	public int getDateMois() {
 		return dateMois;
 	}
-
+	//Permet de changer la valeur de l'attribut dateMois
 	public void setDateMois(int dateMois) {
 		this.dateMois = dateMois;
 	}
-
+	//Retoune la valeur de l'attribut d'annee
 	public int getDateAnne() {
 		return dateAnne;
 	}
-
+	//Permet de changer la valeur de l'attribut Dateanne
 	public void setDateAnne(int dateAnne) {
 		this.dateAnne = dateAnne;
 	}
-
+	//Retoune la valeur de l'attribut id
 	public int getId() {
 		return id;
 	}
-
+	//Permet de changer la valeur de l'attribut id
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	//Retoune la valeur de l'attribut entreprise
 	public String getEntreprise() {
 		return entreprise;
 	}
-
+	//Permet de changer la valeur de l'attribut entreprise
 	public void setEntreprise(String entreprise) {
 		this.entreprise = entreprise;
 	}
-
+	//Retoune la valeur de l'attribut MailEntreprise
 	public String getMailEntreprise() {
 		return mailEntreprise;
 	}
-
+	//Permet de changer la valeur de l'attribut Mail
 	public void setMailEntreprise(String mailEntreprise) {
 		this.mailEntreprise = mailEntreprise;
 	}
-
+	//Retoune la valeur de l'attribut Numero
 	public String getNumero() {
 		return numero;
 	}
-
+	//Permet de changer la valeur de l'attribut Numero
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
@@ -219,24 +223,30 @@ public class DemandeStageControl implements Serializable {
 		Utilisateur us = ejbVisiteur.findOccurence(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
 		DemandeStage da;
 		int emploie = 0;
+		int accepter =0;
+		
 		if(estUnEmploi == true)
 		{
 			emploie = 1;
 			System.out.println(emploie+"emploie");
 		}
 		System.out.println("estEmploie"+estUnEmploi);
+		if(us.getGroupName().equals("admin"))
+		{
+			accepter =1;
+		}
 		
 			
 		
 		if(id==0)
 		{
-			da = new DemandeStage( nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,durre, numero, 0, emploie, us,sections,nomPersonneRes);
+			da = new DemandeStage( nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,durre, numero, accepter, emploie, us,sections,nomPersonneRes);
 		}
 		else
 		{
 			da = new DemandeStage(id,nom,contenu,new Date(dateJour, dateMois, dateAnne),mailEntreprise,entreprise,numero,us);
 			new DemandeStage( nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,
-					 durre, numero, 0, emploie, us,sections,nomPersonneRes);
+					 durre, numero, accepter, emploie, us,sections,nomPersonneRes);
 		}
 		
 		System.out.println(da.toString());
@@ -246,7 +256,7 @@ public class DemandeStageControl implements Serializable {
 		return nomPersonneRes;
 	}
 
-
+	//Permet de changer la valeur de l'attribut NomPersonneRes
 	public void setNomPersonneRes(String nomPersonneRes) {
 		this.nomPersonneRes = nomPersonneRes;
 	}
@@ -302,12 +312,12 @@ public class DemandeStageControl implements Serializable {
 		CreerPdf();
 		return listeTrier;
 	}
-	
+	//Permet de changer la valeur de l'attribut estAfficher
 	public boolean isAfficherEmploi() {
 		return AfficherEmploi;
 	}
 
-
+	//Permet de changer la valeur de l'attribut estAfficher
 	public void setAfficherEmploi(boolean afficherEmploi) {
 		AfficherEmploi = afficherEmploi;
 	}
@@ -319,8 +329,13 @@ public class DemandeStageControl implements Serializable {
 		try {
 			PDDocument doc = new PDDocument();
 			PDPage page = new PDPage();
-			
-			doc.addPage(new PDPage());
+			PDPageContentStream content = new PDPageContentStream(doc, page);
+			content.beginText();
+			content.setFont(PDType1Font.TIMES_BOLD, 26);
+			content.showText(demandestage.getNom()+""+demandestage.getContenu()+"<br>"+demandestage.getDuree()+"<br>"+demandestage.getEntreprise()+"<br>"+demandestage.getMailEntreprise()+"<br>");
+			content.endText();
+			content.close();
+			doc.addPage(page);
 			doc.save("test.pdf");
 			doc.close();
 			System.out.println("pdf creer");
@@ -330,12 +345,12 @@ public class DemandeStageControl implements Serializable {
 		}
 	}
 
-
+	//Retoune la valeur de l'attribut tri
 	public String getTri() {
 		return tri;
 	}
 
-
+	//Permet de changer la valeur de l'attribut Tri
 	public void setTri(String tri) {
 		this.tri = tri;
 	}
