@@ -31,7 +31,7 @@ import be.helha.aemt.entities.Utilisateur;
 public class UtilisateurControl implements Serializable{
 
 	private String nom="",prenom="",mdp="",message="",description="",email="";
-	private String nom2="",prenom2="";
+	private String nom2="",prenom2="",description2="",email2="";
 	private int annee;
 	private Part file;
 	private String sections="";
@@ -287,6 +287,38 @@ public class UtilisateurControl implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	/**
+	 * 
+	 * @return la valeur de description2
+	 */
+	public String getDescription2() {
+		return description2;
+	}
+	
+	/**
+	 * change la valeur de description2 par celui passe en parametre
+	 * @param description2 la valeur qui doit remplacer celle actuelle
+	 */
+	public void setDescription2(String description2) {
+		this.description2 = description2;
+	}
+	
+	/**
+	 * 
+	 * @return la valeur de email2
+	 */
+	public String getEmail2() {
+		return email2;
+	}
+	
+	/**
+	 * change la valeur de email2 par celui passe en parametre
+	 * @param email2 la valeur qui doit remplacer celle actuelle
+	 */
+	public void setEmail2(String email2) {
+		this.email2 = email2;
+	}
 
 	/**
 	 * permet a l'utilisateur de se deconnecter en invalidant la session
@@ -307,6 +339,8 @@ public class UtilisateurControl implements Serializable{
 	public String afficherUtilisateur(Eleve item) {
 		nom2 = item.getNom();
 		prenom2 = item.getPrenom();
+		description2 = item.getDescription();
+		email2 = item.getEmail();
 		return "informations.xhtml";
 	}
 	

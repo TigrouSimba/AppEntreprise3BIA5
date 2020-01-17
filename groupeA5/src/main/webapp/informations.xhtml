@@ -16,17 +16,31 @@
 	<div class="container-fluid">
 		<div class="card bg-light border-dark shadow-sm bg-white rounded">
 			<div class="card-body">
-				    <div class="row">
-
-						
+				    	<h1><em><b>Informations</b></em></h1>
+						<br></br>
+						<div class="row">
 								<div class="col col-auto">
-						     	   #{utilisateurControl.nom2} #{utilisateurControl.prenom2}
-						     	   </div> 
-						    
+						     	<h4>   #{utilisateurControl.nom2} #{utilisateurControl.prenom2}</h4>
+						     	  </div> 
+						 </div>
+						 <br></br>
+						<h3><u><em><b>Description</b></em></u></h3>
+						 <br></br>
+						 <div class="row">
+						     	 <div class="col col-auto">  
+						     	   #{utilisateurControl.description2}
+						 		</div> 
 
-				     </div>
+				    	 </div>
+				    	 <br></br>
+				    	 <div class="row">
+						     	 <div class="col col-auto">  
+						     	  Adresse mail : <a href="mailto:#{utilisateurControl.email2}">#{utilisateurControl.email2}</a>
+						 		</div> 
+
+				    	 </div>
+				    </div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

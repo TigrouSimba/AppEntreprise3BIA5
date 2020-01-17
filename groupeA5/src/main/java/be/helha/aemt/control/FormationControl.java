@@ -31,44 +31,84 @@ import be.helha.aemt.entities.Formation;
 		@EJB
 		private GestionFormationEJB ejb;
 		
+		/**
+		 * 
+		 * @return la valeur de ejb
+		 */
 		public GestionFormationEJB getEjb() {
 			return ejb;
 		}
-
+		
+		/**
+		 * change la valeur de ejb par celui passe en parametre
+		 * @param ejb la valeur qui doit remplacer celle actuelle
+		 */
 		public void setEjb(GestionFormationEJB ejb) {
 			this.ejb = ejb;
 		}
 		
 		//Getteur et setteur
 		
+		/**
+		 * 
+		 * @return la valeur de nomFormation
+		 */
 		public String getNomFormation() {
 			return nomFormation;
 		}
-
+		
+		/**
+		 * change la valeur de nomFormation par celui passe en parametre
+		 * @param nomFormation la valeur qui doit remplacer celle actuelle
+		 */
 		public void setNomFormation(String nomFormation) {
 			this.nomFormation = nomFormation;
 		}
 		
+		/**
+		 * 
+		 * @return la valeur de lienFormation
+		 */
 		public String getLienFormation() {
 			return lienFormation;
 		}
-
+		
+		/**
+		 * change la valeur de lienFormation par celui passe en parametre
+		 * @param lienFormation la valeur qui doit remplacer celle actuelle
+		 */
 		public void setLienFormation(String lienFormation) {
 			this.lienFormation = lienFormation;
 		}
-
+		
+		/**
+		 * 
+		 * @return la valeur de newNomFormation
+		 */
 		public String getNewNomFormation() {
 			return newNomFormation;
 		}
-
+		
+		/**
+		 * change la valeur de newNomFormation par celui passe en parametre
+		 * @param newNomFormation la valeur qui doit remplacer celle actuelle
+		 */
 		public void setNewNomFormation(String newNomFormation) {
 			this.newNomFormation = newNomFormation;
 		}
-
+		
+		/**
+		 * 
+		 * @return la valeur de newLienFormation
+		 */
 		public String getNewLienFormation() {
 			return newLienFormation;
 		}
-
+		
+		/**
+		 * change la valeur de newLienFormation par celui passe en parametre
+		 * @param newLienFormation la valeur qui doit remplacer celle actuelle
+		 */
 		public void setNewLienFormation(String newLienFormation) {
 			this.newLienFormation = newLienFormation;
 		}
@@ -78,6 +118,10 @@ import be.helha.aemt.entities.Formation;
 		}
 		
 		//Methode
+		/**
+		 * permet d'ajouter une formation dans la base de données
+		 * @return la formation
+		 */
 		public void postFormation()
 		{
 			Formation form = new Formation(nomFormation,lienFormation);
@@ -87,6 +131,11 @@ import be.helha.aemt.entities.Formation;
 			lienFormation="";
 		}
 		
+		/**
+		 * permet de modifier une formation dans la base de données
+		 * @param formation la formation a modifier
+		 * @return la formation
+		 */
 		public void updateFormation(Formation formation)
 		{
 			formation.setLienFormation(newLienFormation);
@@ -97,6 +146,11 @@ import be.helha.aemt.entities.Formation;
 			
 		}
 		
+		/**
+		 * permet de supprimer une formation de la base de donnees
+		 * @param formation la formation a supprimer
+		 * @return la formation
+		 */
 		public void removeFormation(Formation formation)
 		{
 			ejb.remove(formation);

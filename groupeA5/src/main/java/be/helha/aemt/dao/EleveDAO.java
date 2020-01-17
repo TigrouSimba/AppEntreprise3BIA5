@@ -39,7 +39,10 @@ public class EleveDAO {
 		return qSelectAll.getResultList();
 	}
 	
-	
+	/**
+	 * requete permettant d'afficher une liste d'ancien en fonction d'une section
+	 * @return une liste d'anciens
+	 */
 	public List<Eleve> findAllSections(String sections) {		
 		String requete="SELECT el FROM Eleve el where el.sections=:pSections order by el.annee asc";
 		TypedQuery<Eleve>qSelectAllSections=em.createQuery(requete,Eleve.class);
