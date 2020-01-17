@@ -58,22 +58,154 @@ public class AnnonceControl implements Serializable{
 		
 	}
 
+	/**
+	 * 
+	 * @return la valeur de ejb
+	 */
 	public GestionAnnonceEJB getEjb() {
 		return ejb;
 	}
 
+	/**
+	 * change la valeur de ejb par celui passe en parametre
+	 * @param ejb la valeur qui doit remplacer celle actuelle
+	 */
 	public void setEjb(GestionAnnonceEJB ejb) {
 		this.ejb = ejb;
 	}
 
+	/**
+	 * 
+	 * @return la valeur de nomEvenement
+	 */
 	public String getNomEvenement() {
 		return nomEvenement;
 	}
 
+	/**
+	 * change la valeur de nomEvenement par celui passe en parametre
+	 * @param nomEvenement la valeur qui doit remplacer celle actuelle
+	 */
 	public void setNomEvenement(String nomEvenement) {
 		this.nomEvenement = nomEvenement;
 	}
 	
+	/**
+	 * 
+	 * @return la valeur de imgs
+	 */
+	public List<ImgEntite> getImgs() {
+		return imgs;
+	}
+
+	/**
+	 * change la valeur de imgs par celui passe en parametre
+	 * @param imgs la valeur qui doit remplacer celle actuelle
+	 */
+	public void setImgs(List<ImgEntite> imgs) {
+		this.imgs = imgs;
+	}
+
+	/**
+	 * 
+	 * @return la valeur de img
+	 */
+	public Part getImg() {
+		return img;
+	}
+
+	/**
+	 * change la valeur de img par celui passe en parametre
+	 * @param img la valeur qui doit remplacer celle actuelle
+	 */
+	public void setImg(Part img) {
+		this.img = img;
+	}
+
+	/**
+	 * 
+	 * @return la valeur de ejbImg
+	 */
+	public GestionImageEJB getEjbImg() {
+		return ejbImg;
+	}
+
+	/**
+	 * change la valeur de ejbImg par celui passe en parametre
+	 * @param ejbImg la valeur qui doit remplacer celle actuelle
+	 */
+	public void setEjbImg(GestionImageEJB ejbImg) {
+		this.ejbImg = ejbImg;
+	}
+	
+	/**
+	 * 
+	 * @return la valeur de ejbVisiteur
+	 */
+	public GestionVisiteurEJB getEjbVisiteur() {
+		return ejbVisiteur;
+	}
+
+	/**
+	 * change la valeur de ejbVisiteur par celui passe en parametre
+	 * @param ejbVisiteur la valeur qui doit remplacer celle actuelle
+	 */
+	public void setEjbVisiteur(GestionVisiteurEJB ejbVisiteur) {
+		this.ejbVisiteur = ejbVisiteur;
+	}
+	
+	/**
+	 * 
+	 * @return la valeur de contenu
+	 */
+	public String getContenu() {
+		return contenu;
+	}
+
+	/**
+	 * change la valeur de contenu par celui passe en parametre
+	 * @param contenu la valeur qui doit remplacer celle actuelle
+	 */
+	public void setContenu(String contenu) {
+		this.contenu = contenu;
+	}
+	
+	/**
+	 * 
+	 * @return la valeur de nomModif
+	 */
+	public String getNomModif() {
+		return nomModif;
+	}
+
+	/**
+	 * change la valeur de nomModif par celui passe en parametre
+	 * @param nomModif la valeur qui doit remplacer celle actuelle
+	 */
+	public void setNomModif(String nomModif) {
+		this.nomModif = nomModif;
+	}
+
+	/**
+	 * 
+	 * @return la valeur de contenuModif
+	 */
+	public String getContenuModif() {
+		return contenuModif;
+	}
+
+	/**
+	 * change la valeur de contenuModif par celui passe en parametre
+	 * @param contenuModif la valeur qui doit remplacer celle actuelle
+	 */
+	public void setContenuModif(String contenuModif) {
+		this.contenuModif = contenuModif;
+	}
+	
+	/**
+	 * permet d'ajouter une annonce dans la base de données
+	 * @return la page d'accueil
+	 */
 	public String ajoutEvenement() {
 		if(nomEvenement.equals("")){
 			return "annonce.xhtml?faces-redirect=true";
@@ -99,6 +231,10 @@ public class AnnonceControl implements Serializable{
 		return "annonce.xhtml?faces-redirect=true";
 	}
 	
+	/**
+	 * permet de modifier une annonce dans la base de données
+	 * @return la page d'accueil
+	 */
 	public String modifEvenement() {
 		if(nomModif.equals("")){
 			return "annonce.xhtml?faces-redirect=true";
@@ -118,19 +254,32 @@ public class AnnonceControl implements Serializable{
 		return "annonce.xhtml?faces-redirect=true";
 	}
 	
+	/**
+	 * permet de changer une valeur d'une annonce pour qu'elle soit considere comme accepter par l'admin
+	 * @param e l'annonce a accepter
+	 * @return la page d'annonce
+	 */
 	public String accepterEvenement(Annonce e) {
 		e.setAccepter(1);
 		ejb.add(e);
-		return "annonce.xhtml";
+		return "annonce.xhtml?faces-redirect=true";
 	}
 	
+	/**
+	 * permet d'ajouter une image dans la liste des images de l'annonce
+	 */
 	public void addtoList() { 
 	    imgs.add(createImg());
 	}
 
-	
+	/**
+	 * permet de creer une image a partir d'un fichier importer depuis la page internet
+	 * @return une ImgEntite contenant l'image
+	 */
 	public ImgEntite createImg() {
 		InputStream initialStream = null;
+		//pour etre envoyer sur le serveur, l'image doit etre recuperer en type Part depuis la page
+		//internet et envoyer en type byte[] pour etre reconnu en blob dans la base de donnees
 	    byte[] buffer = null;
 	    OutputStream outStream = null;
 		try {
@@ -145,52 +294,22 @@ public class AnnonceControl implements Serializable{
 		return new ImgEntite(buffer);
 	}
 
-	public List<ImgEntite> getImgs() {
-		return imgs;
-	}
-
-	public void setImgs(List<ImgEntite> imgs) {
-		this.imgs = imgs;
-	}
-
-	public Part getImg() {
-		return img;
-	}
-
-	public void setImg(Part img) {
-		this.img = img;
-	}
-
-	public GestionImageEJB getEjbImg() {
-		return ejbImg;
-	}
-
-	public void setEjbImg(GestionImageEJB ejbImg) {
-		this.ejbImg = ejbImg;
-	}
-	
-	public GestionVisiteurEJB getEjbVisiteur() {
-		return ejbVisiteur;
-	}
-
-	public void setEjbVisiteur(GestionVisiteurEJB ejbVisiteur) {
-		this.ejbVisiteur = ejbVisiteur;
-	}
-
+	/**
+	 * permet de supprimer une annonce de la base de donnees
+	 * @param event l'annonce a supprimer
+	 * @return la page des annonces
+	 */
 	public String deleteEvent(Annonce event) {
 		ejb.delete(event);
 		return "annonce.xhtml?faces-redirect=true";
 		
 	}
 
-	public String getContenu() {
-		return contenu;
-	}
-
-	public void setContenu(String contenu) {
-		this.contenu = contenu;
-	}
-	
+	/**
+	 * permet de savoir si l'annonce actuelle est creer par l'utilisateur connecter
+	 * @param e l'annonce
+	 * @return "true" s'il est le createur sinon "false"
+	 */
 	public String isCreator(Annonce e) {
 		String nom=FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
 		if(nom==null) {
@@ -206,28 +325,16 @@ public class AnnonceControl implements Serializable{
 		return "false";
 	}
 	
+	/**
+	 * permet de donner les valeurs de l'annonce a modifier dans les champs correspondants
+	 * @param e l'annonce a modifier
+	 */
 	public void changeToModif(Annonce e) {
 		nomModif=e.getNomEvenement();
 		contenuModif=e.getContenu();
 		eventToModif=e;
 	}
 
-	public String getNomModif() {
-		return nomModif;
-	}
-
-	public void setNomModif(String nomModif) {
-		this.nomModif = nomModif;
-	}
-
-	public String getContenuModif() {
-		return contenuModif;
-	}
-
-	public void setContenuModif(String contenuModif) {
-		this.contenuModif = contenuModif;
-	}
-
-
+	
 	
 }

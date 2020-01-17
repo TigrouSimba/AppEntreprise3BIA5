@@ -18,12 +18,20 @@ public class UtilisateurDAO {
 	@PersistenceContext(unitName = "gAVisiteurJTA")
 	private EntityManager em;
 	
+	/**
+	 * requete permettant de recuperer tous les utilisateurs
+	 * @return une liste d'utilisateurs
+	 */
 	public List<Utilisateur> findAll() {		
 		String requete="SELECT utilisateur FROM Utilisateur utilisateur";
 		TypedQuery<Utilisateur>qSelectAll=em.createQuery(requete,Utilisateur.class);
 		return qSelectAll.getResultList();
 	}
 	
+	/**
+	 * requete permettant de recuperer un utilisateur grace a son id
+	 * @return un utilisateur
+	 */
 	public Utilisateur findOccurence(String pseudo) {
 		String requete="select ul FROM Utilisateur ul where ul.login=:pLogin";
 		TypedQuery<Utilisateur>qFind=em.createQuery(requete, Utilisateur.class);

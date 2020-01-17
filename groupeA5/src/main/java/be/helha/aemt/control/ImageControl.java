@@ -39,22 +39,42 @@ public class ImageControl implements Serializable{
 		
 	}
 
+	/**
+	 * 
+	 * @return la valeur de file
+	 */
 	public Part getFile() {
 		return file;
 	}
 
+	/**
+	 * change la valeur de file par celui passe en parametre
+	 * @param file la valeur qui doit remplacer celle actuelle
+	 */
 	public void setFile(Part file) {
 		this.file = file;
 	}
 
+	/**
+	 * 
+	 * @return la valeur de ejb
+	 */
 	public GestionImageEJB getEjb() {
 		return ejb;
 	}
 
+	/**
+	 * change la valeur de ejb par celui passe en parametre
+	 * @param ejb la valeur qui doit remplacer celle actuelle
+	 */
 	public void setEjb(GestionImageEJB ejb) {
 		this.ejb = ejb;
 	}
 
+	/**
+	 * permet d'ajouter une image dans la base de données
+	 * @return une "ImgEntite"
+	 */
 	public ImgEntite ajoutImage() {		
 	    InputStream initialStream = null;
 	    byte[] buffer = null;
@@ -81,23 +101,21 @@ public class ImageControl implements Serializable{
 
 	}
 	
-
+	/**
+	 * permet d'encoder une image pour qu'elle soit affichable sur la page internet
+	 * @param index l'index de l'image dans la base de données
+	 * @return l'image encodee
+	 */
 	public String imageShow(int index) {
-		
-	    /*byte[] buffer = null;	 
-	    try {			
-	    	InputStream initialStream = new FileInputStream(ejb.findAll().get(index).getImg());
-			buffer = new byte[initialStream.available()];
-			initialStream.read(buffer);
-			initialStream.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		
 		return Base64.getEncoder().encodeToString(ejb.findAll().get(index).getImg());		
 	}
 	
+	/**
+	 * permet d'encoder une image pour qu'elle soit affichable sur la page internet
+	 * @param img une image en format byte[] brut
+	 * @return l'image encodee
+	 */
 	public String imageShow(byte[] img) {
 		return Base64.getEncoder().encodeToString(img);
 	}
