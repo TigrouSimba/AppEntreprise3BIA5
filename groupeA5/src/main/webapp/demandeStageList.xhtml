@@ -19,16 +19,27 @@
 		</div>
 		<h:form>
 		<div class="row">
-				<div class="col col-4">
+				<div class="col col-3">
 					<h2>tri</h2>
 				</div>
-				<div class="col col-4">
+				<div class="col col-3">
 					<h:inputText class="form-control" value="#{demandeStageControl.tri}"></h:inputText>
 				</div>
-				<div class="col col-4">
-					<h:commandButton class="btn btn-success" value="trier" action="{demandeStageControl.query()}"></h:commandButton>
+				<div class="col col-2">
+					<h:commandButton class="btn btn-success" value="trier" action="#{demandeStageControl.query()}"></h:commandButton>
+				</div>
+				<div class="col col-2">
+					est un emploi
+				</div>
+				<div class="col col-2">
+					<h:selectBooleanCheckbox class="form-control" value="#{demandeStageControl.afficherEmploi}"></h:selectBooleanCheckbox>
 				</div>
 			</div>
+		<div class="row">
+			<div class="col col-10">
+				<LABEL>Section</LABEL>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col col-10">
 				<h:inputText class="form-control" value="#{demandeStageControl.triSection}"></h:inputText>
@@ -61,6 +72,12 @@
 				</div>
 				<div class="row">
 					<div class="col col-10">#{demandeStageControl.demandestage.numero}</div>
+				</div>
+				<div class="row">
+					<div class="col col-10">#{demandeStageControl.demandestage.section}</div>
+				</div>
+				<div class="row">
+					<div class="col col-10">#{demandeStageControl.demandestage.nomPersoRes}</div>
 				</div>
 			</div>
 		</div>

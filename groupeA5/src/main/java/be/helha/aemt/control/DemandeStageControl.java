@@ -60,6 +60,10 @@ public class DemandeStageControl implements Serializable {
 	
 	private String triSection ="";
 	
+	private String nomPersonneRes;
+	
+	private boolean AfficherEmploi;
+	
 	
 	public String getTriSection() {
 		return triSection;
@@ -226,19 +230,28 @@ public class DemandeStageControl implements Serializable {
 		
 		if(id==0)
 		{
-			da = new DemandeStage( nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,
-					 durre, numero, 0, emploie, us,sections);
+			da = new DemandeStage( nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,durre, numero, 0, emploie, us,sections,nomPersonneRes);
 		}
 		else
 		{
 			da = new DemandeStage(id,nom,contenu,new Date(dateJour, dateMois, dateAnne),mailEntreprise,entreprise,numero,us);
 			new DemandeStage( nom, contenu, new Date(dateAnne, dateMois, dateJour), mailEntreprise, entreprise,
-					 durre, numero, 0, emploie, us,sections);
+					 durre, numero, 0, emploie, us,sections,nomPersonneRes);
 		}
 		
 		System.out.println(da.toString());
 		ejb.Add(da);
 	}
+	public String getNomPersonneRes() {
+		return nomPersonneRes;
+	}
+
+
+	public void setNomPersonneRes(String nomPersonneRes) {
+		this.nomPersonneRes = nomPersonneRes;
+	}
+
+
 	//Permet l'affichage du stage et de son contenu
 	public void selectAffichage(int id)
 	{
@@ -264,15 +277,24 @@ public class DemandeStageControl implements Serializable {
 	}
 	public ArrayList<DemandeStage>query()
 	{
+		int affiche = 0;
+		if(AfficherEmploi == true)
+		{
+			affiche = 1;
+		}
 		ArrayList<DemandeStage>listeTrier = new ArrayList<DemandeStage>();
-		Vector<DemandeStage>list =  (Vector<DemandeStage>) ejb.findAllAccepte();
+		Vector<DemandeStage>list =  (Vector<DemandeStage>) ejb.findAll();
 		for (DemandeStage demandeStage : list) {
 			if(demandeStage.getNom().startsWith(tri))
 			{
 				if(demandeStage.getSection().startsWith(triSection))
 				{
-					listeTrier.add(demandeStage);
-					System.out.println(tri);
+					if(demandeStage.getEstUnEmploi() == affiche)
+					{
+						listeTrier.add(demandeStage);
+						System.out.println(tri);
+					}
+					
 				}
 				
 			}
@@ -281,6 +303,16 @@ public class DemandeStageControl implements Serializable {
 		return listeTrier;
 	}
 	
+	public boolean isAfficherEmploi() {
+		return AfficherEmploi;
+	}
+
+
+	public void setAfficherEmploi(boolean afficherEmploi) {
+		AfficherEmploi = afficherEmploi;
+	}
+
+
 	public void CreerPdf()
 	{
 		

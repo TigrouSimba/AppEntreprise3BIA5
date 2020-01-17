@@ -16,7 +16,7 @@
 	<div class="card card-signin my-5 bg-light">
 	<DIV class="card-body ">
 		<div class="row">
-			<h1>Création d'une demande de stage</h1>
+			<h1>Création d'une demande </h1>
 		</div>
 		<h:form>
 			<div class="row">
@@ -44,6 +44,14 @@
 			</div>
 			<div class="row">
 				<div class="col col-6">
+				Emploi
+				</div>
+				<div class="col col-6">
+				la duréé
+				</div>
+			</div>
+			<div class="row">
+				<div class="col col-6">
 					<h:selectBooleanCheckbox value = "#{demandeStageControl.estUnEmploi}" id = "estUnEmploi" /> 
 					#{demandeStageControl.estUnEmploi}
 				</div>
@@ -52,14 +60,12 @@
 				</div>
 			</div>
 			<div class="row">
-				<h:inputText class="form-control" value="#{demandeStageControl.sections}"></h:inputText>
-			</div>
-			
-			<div class="row">
-				<h2>Entreprise</h2>
+				<div class="col col-6"><LABEL><h2>Section</h2></LABEL></div>
+				<div class="col col-6"><h:inputText class="form-control" value="#{demandeStageControl.sections}"></h:inputText></div>
 			</div>
 			<div class="row">
-				 <h:inputText class="form-control form-text" type="text" id="Entreprise" value="#{demandeStageControl.entreprise}"></h:inputText>
+				<DIV class="col col-6"><h2>Entreprise</h2></DIV>
+				<div class="col col-6"><h:inputText class="form-control form-text" type="text" id="Entreprise" value="#{demandeStageControl.entreprise}"></h:inputText></div>
 			</div>
 			<div class="row">
 				<h2>Contenu</h2>
@@ -85,6 +91,13 @@
 					<h:inputText class="form-control" value="#{demandeStageControl.numero}"></h:inputText>
 				</LABEL>
 			</DIV>
+			
+			<div class="row">
+				<h2>Nom de la personne de reference</h2>
+			</div>
+			<div class="row">
+				<h:inputText class="form-control" value="#{demandeStageControl.nomPersonneRes}"></h:inputText>
+			</div>
 			
 			<DIV class="row">
 				<h:commandButton  action="#{demandeStageControl.postDemandeStage()}" class="btn btn-success btn-lg" value="Envoyer une lettre de motivation"></h:commandButton>
