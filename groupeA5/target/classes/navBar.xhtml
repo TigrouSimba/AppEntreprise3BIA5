@@ -37,9 +37,11 @@
 						<a class="nav-link" href="annonce.xhtml">Annonces</a>
 					</li>
 				</h:form>
+				<h:form rendered="#{utilisateurControl.isConnected() eq 'true'}">
 				<li class="nav-item"><a class="nav-link" href="annuaire.xhtml">Annuaire</a>
 				</li>
-				
+				</h:form>
+				<h:form rendered="#{utilisateurControl.isConnected() eq 'true'}">
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -50,7 +52,8 @@
 						<a class="dropdown-item" href="demandeStageList.xhtml">Liste
 							de stages</a>
 					</div></li>
-					
+				</h:form>
+				<h:form rendered="#{utilisateurControl.isConnected() eq 'true'}">
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -62,11 +65,12 @@
 						d'emplois</a>
 					</div></li>
 			
-				
+				</h:form>
+				<h:form rendered="#{utilisateurControl.isConnected() eq 'true'}">
 				<li class="nav-item"><a class="nav-link" href="formation.xhtml">Formations
 						continues</a></li>
+				</h:form>
 				
-
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
