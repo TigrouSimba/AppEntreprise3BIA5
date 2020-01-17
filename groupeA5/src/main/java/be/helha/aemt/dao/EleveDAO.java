@@ -68,4 +68,9 @@ public class EleveDAO {
 		List<Eleve>req=qFind.getResultList();
 		return req.size()==0?null:req.get(0);
 	}
+	
+	public Eleve add(Eleve u) {
+		em.merge(u);
+		return u;	
+	}
 }

@@ -1,5 +1,8 @@
 package be.helha.aemt.control;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,19 +17,22 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 
 import be.helha.aemt.ejb.GestionEleveEJB;
 import be.helha.aemt.ejb.GestionVisiteurEJB;
 import be.helha.aemt.entities.DemandeStage;
 import be.helha.aemt.entities.Eleve;
+import be.helha.aemt.entities.ImgEntite;
 import be.helha.aemt.entities.Utilisateur;
 
 @SessionScoped
 @Named //permet d'utiliser les controller dans les pages html
 public class UtilisateurControl implements Serializable{
 
-	private String nom="",prenom="",mdp="",message="";
+	private String nom="",prenom="",mdp="",message="",description="",email="";
 	private int annee;
+	private Part file;
 	private String sections="";
 	private Eleve el;
 	private String tri="";
@@ -164,7 +170,7 @@ public class UtilisateurControl implements Serializable{
 		ExternalContext ec = context.getExternalContext();
 		final HttpServletRequest request = (HttpServletRequest) ec.getRequest();
 		request.getSession(false).invalidate(); // on invalide
-	     return "index.xhtml";
+	     return "index.xhtml?faces-redirect=true";
 	}
 	
 	public ArrayList<Eleve>query()
@@ -219,31 +225,43 @@ public class UtilisateurControl implements Serializable{
 		return listeTrier3;
 	}
 	
+	public ImgEntite createImg(Part fichier) {
+		InputStream initialStream = null;
+	    byte[] buffer = null;
+	    OutputStream outStream = null;
+		try {
+			initialStream = fichier.getInputStream();
+			buffer = new byte[initialStream.available()];
+			initialStream.read(buffer);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	    	 
+		return new ImgEntite(buffer);
+	}
+	
 	public String register() {
-		el=new Eleve(nom,prenom,annee,sections);
-		if(ejbEleve.findOccurence(el)==null) {
-			setMessage("L'utilisateur n'existe pas");
-			setNom("");
-			setPrenom("");
-			setAnnee(0);
-			//return "inscription.xhtml"; 
-			return "";
-		}
-		else if(ejb.findOccurence(nom+prenom+annee)!=null) {
+		el=new Eleve(nom,prenom,email,description,annee,sections,createImg(file),0);
+		if(ejb.findOccurence(email)!=null) {
 			setMessage("L'utilisateur existe déjà");
 			setNom("");
 			setPrenom("");
+			setEmail("");
+			setDescription("");
 			setAnnee(0);
-			//return "inscription.xhtml";
-			return "";
+			setSections("");
+			return "inscription.xhtml?faces-redirect=true";
 		}
-		Utilisateur ul=new Utilisateur(nom+prenom+annee,mdp,"ancien");
+		//Utilisateur ul=new Utilisateur(nom+prenom+annee,mdp,"ancien");
 		setMessage("");
 		setNom("");
 		setPrenom("");
-		setAnnee(0);		
-		ejb.add(ul);
-		return "index.xhtml";
+		setEmail("");
+		setDescription("");
+		setAnnee(0);
+		setSections("");		
+		ejbEleve.add(el);
+		return "index.xhtml?faces-redirect=true";
 	}
 	
 	public String isConnected() {
@@ -267,6 +285,30 @@ public class UtilisateurControl implements Serializable{
 			return "true";
 		}
 		return "false";
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Part getFile() {
+		return file;
+	}
+
+	public void setFile(Part file) {
+		this.file = file;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

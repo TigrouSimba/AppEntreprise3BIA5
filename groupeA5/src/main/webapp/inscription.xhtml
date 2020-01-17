@@ -17,7 +17,7 @@
 				<div class="card card-signin my-5">
 					<div class="card-body">
 						<h5 class="card-title text-center">Inscription</h5>
-						<h:form method="POST">
+						<h:form method="POST" enctype="multipart/form-data">
 
 							<label for="inputNom">Nom :</label>
 							<h:inputText value="#{utilisateurControl.nom}" id="inputNom"
@@ -30,6 +30,18 @@
 								id="inputPrenom" class="form-control" required="true"
 								requiredMessage="Le champ ne peut pas être vide"></h:inputText>
 							<br />
+							
+							<label for="inputMail">Adresse email :</label>
+							<h:inputText value="#{utilisateurControl.email}"
+								id="inputEmail" class="form-control" required="true"
+								requiredMessage="Le champ ne peut pas être vide"></h:inputText>
+							<br />
+							
+							<label for="inputSection">Section :</label>
+							<h:inputText value="#{utilisateurControl.sections}"
+								id="inputSection" class="form-control" required="true"
+								requiredMessage="Le champ ne peut pas être vide"></h:inputText>
+							<br />
 
 							<label for="inputAnnee">Année de diplomation :</label>
 							<h:inputText
@@ -39,13 +51,23 @@
 								requiredMessage="Le champ ne peut pas être vide"></h:inputText>
 							<br />
 
+							<label for="inputDesc">Description :</label>
+							<h:inputTextarea
+								value="#{utilisateurControl.description}" id="inputDesc"
+								class="form-control"></h:inputTextarea>
+							<br />
+							
 							<label for="inputMdp">Mot de passe :</label>
 							<h:inputSecret value="#{utilisateurControl.mdp}" id="inputMdp"
 								class="form-control" required="true"
 								requiredMessage="Le champ ne peut pas être vide"></h:inputSecret>
 							<br />
 
-
+							<label for="inputPic">Photo de profil :</label>
+							<h:inputFile value="#{utilisateurControl.file}" id="inputPic" class="form-control"/>
+							
+							<br />
+							
 							<h:commandButton
 								class="btn btn-lg btn-primary btn-block text-uppercase"
 								type="submit" action="#{utilisateurControl.register()}"

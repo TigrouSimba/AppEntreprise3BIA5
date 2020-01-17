@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 
 import be.helha.aemt.dao.EleveDAO;
 import be.helha.aemt.entities.Eleve;
+import be.helha.aemt.entities.Utilisateur;
 
 @Stateless
 public class GestionEleveEJB {
@@ -41,6 +42,11 @@ public class GestionEleveEJB {
 	public Eleve findOccurence(Eleve eleve) {
 		// TODO Auto-generated method stub
 		return dao.findOccurence(eleve);
+	}
+	
+	public Eleve add(Eleve u) {
+		// TODO Auto-generated method stub
+		return dao.add(u);
 	}
 
 	

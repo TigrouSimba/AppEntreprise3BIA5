@@ -32,12 +32,14 @@ public class MainUtilisateurLocal {
 		
 		Visiteur v1=new Visiteur("192.193.194.195");
 		
-		Eleve el=new Eleve("Nya", "Corentin", 2020, "Informatique de gestion");
-		Eleve el2=new Eleve("Opese", "Kevin", 2020, "Informatique de gestion");
-		Eleve el3=new Eleve("Nicole", "Catherine", 2021, "Comptabilité");
-		Eleve el4=new Eleve("Gérard", "Hubert", 2017, "Assistant de direction");
-		Eleve el5=new Eleve("Chevalier", "Pierre", 2018, "Informatique de gestion");
-		Eleve el6=new Eleve("Vincent", "Hubert", 2022, "Informatique de gestion");
+		ImgEntite img=new ImgEntite();
+		
+		Eleve el=new Eleve("Nya", "Corentin","corentin@gmailcom","description",2020, "Informatique de gestion",img,0);
+		Eleve el2=new Eleve("Opese", "Kevin","Kevin@gmailcom","description", 2020, "Informatique de gestion",img,0);
+		Eleve el3=new Eleve("Nicole", "Catherine","Catherine@gmailcom","description", 2021, "Comptabilité",img,0);
+		Eleve el4=new Eleve("Gérard", "Hubert","Hubert@gmailcom","description", 2017, "Assistant de direction",img,0);
+		Eleve el5=new Eleve("Chevalier", "Pierre","Pierre@gmailcom","description", 2018, "Informatique de gestion",img,0);
+		Eleve el6=new Eleve("Vincent", "Hubert","Hubert2@gmailcom","description", 2022, "Informatique de gestion",img,0);
 		
 		Annonce an1=new Annonce("nomAnnonce", "contenuAnnonce", 1,ul);
 		
@@ -50,7 +52,7 @@ public class MainUtilisateurLocal {
 		DemandeStage do1 = new DemandeStage( "String nom", "String contenu", new Date(2020, 06, 30), "String entreprise", "String mailEntreprise",
 				"String duree", "String numero", 0, 0, ul,"Section");
 		
-		ImgEntite img=new ImgEntite();
+		
 		
 		Portrait po=new Portrait("","", img);
 		
