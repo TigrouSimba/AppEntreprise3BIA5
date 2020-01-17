@@ -71,19 +71,35 @@ public class UtilisateurControl implements Serializable{
 	public String getPrenom() {
 		return prenom;
 	}
-
+	
+	/**
+	 * 
+	 * @return la valeur de nom2
+	 */
 	public String getNom2() {
 		return nom2;
 	}
-
+	
+	/**
+	 * change la valeur de nom2 par celui passe en parametre
+	 * @param nom2 la valeur qui doit remplacer celle actuelle
+	 */
 	public void setNom2(String nom2) {
 		this.nom2 = nom2;
 	}
-
+	
+	/**
+	 * 
+	 * @return la valeur de prenom2
+	 */
 	public String getPrenom2() {
 		return prenom2;
 	}
-
+	
+	/**
+	 * change la valeur de prenom2 par celui passe en parametre
+	 * @param prenom2 la valeur qui doit remplacer celle actuelle
+	 */
 	public void setPrenom2(String prenom2) {
 		this.prenom2 = prenom2;
 	}
@@ -284,6 +300,10 @@ public class UtilisateurControl implements Serializable{
 	     return "index.xhtml?faces-redirect=true";
 	}
 	
+	/**
+	 * permet de modifier les valeurs de nom2 et prenom2
+	 * @return la page d'informations des élèves
+	 */
 	public String afficherUtilisateur(Eleve item) {
 		nom2 = item.getNom();
 		prenom2 = item.getPrenom();
@@ -292,8 +312,8 @@ public class UtilisateurControl implements Serializable{
 	
 	
 	/**
-	 * recupere une liste de toutes les sections
-	 * @return une liste de sections
+	 * recupere une liste d'ancien grace a une section
+	 * @return une liste d'anciens
 	 */
 	public List<Eleve> findAllSections(String sections) {		
 		return ejbEleve.findSections2(sections,option);
